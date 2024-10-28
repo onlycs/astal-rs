@@ -1,0 +1,8 @@
+[submodule "gir"]
+	path = gobject/gir-ffi
+	url = https://github.com/gtk-rs/gir
+	update = none
+	branch = main
+[submodule "gobject/gir-files"]
+	path = gobject/gir-files
+	url = https://github.com/gtk-rs/gir-files
