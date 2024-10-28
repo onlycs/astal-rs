@@ -1,6 +1,6 @@
 [submodule "gir"]
 	path = gobject/gir-ffi
-	url = https://github.com/gtk-rs/gir
+	url = https://github.com/onlycs/gir-ffi
 	update = none
 	branch = main
 [submodule "gobject/gir-files"]
