@@ -7,6 +7,7 @@ extern crate gio;
 extern crate glib as gobject;
 extern crate gtk;
 
+#[allow(warnings)]
 mod auto;
 
 pub use auto::*;

@@ -5,6 +5,7 @@ extern crate gio;
 extern crate glib;
 extern crate gtk;
 
+#[allow(warnings)]
 mod auto;
 
 pub use auto::*;
