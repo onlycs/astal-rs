@@ -3,12 +3,11 @@ name = "astal"
 version = "0.1.0"
 edition = "2021"
 
-[dependencies.ffi]
-package = "astal-sys"
-path = "astal-sys"
+[dependencies.astal-sys]
+workspace = true
 
 [dependencies.gir-error]
-path = "../gir-error"
+workspace = true
 
 [dependencies.gtk]
 git = "https://github.com/onlycs/gtk3-rs"

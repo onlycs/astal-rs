@@ -1,8 +1,8 @@
 [submodule "gir"]
-	path = gobject/gir-ffi
+	path = gir/gir-ffi
 	url = https://github.com/onlycs/gir-ffi
 	update = none
 	branch = main
 [submodule "gobject/gir-files"]
-	path = gobject/gir-files
+	path = gir/gir-files
 	url = https://github.com/gtk-rs/gir-files

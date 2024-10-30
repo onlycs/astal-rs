@@ -1,8 +1,13 @@
 [workspace]
 resolver = "2"
-members = [
-	"crates/*",
-	"crates/astal/astal-sys",
-	"crates/astal-io/astal-io-sys",
-	"gobject/gir-ffi",
-]
+members = ["crates/*", "sys/*", "gir/gir-ffi"]
+
+
+[workspace.dependencies.astal-io-sys]
+path = "sys/astal-io-sys"
+
+[workspace.dependencies.astal-sys]
+path = "sys/astal-sys"
+
+[workspace.dependencies.gir-error]
+path = "crates/gir-error"
