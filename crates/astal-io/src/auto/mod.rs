@@ -21,12 +21,12 @@ pub use self::variable_base::VariableBase;
 mod enums;
 pub use self::enums::AppError;
 
-pub(crate) mod functions;
+pub mod functions;
 
 mod constants;
 pub use self::constants::VERSION;
 
-pub(crate) mod traits {
+pub mod traits {
     pub use super::application::ApplicationExt;
     pub use super::process::ProcessExt;
     pub use super::time::TimeExt;
