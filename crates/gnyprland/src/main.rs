@@ -1,9 +1,7 @@
 use astal::{Application, Exclusivity, Label, Window, WindowAnchor};
 
-use astal::traits::{ApplicationExt as AstalApplicationExt, WindowExt};
+use astal::traits::WindowExt;
 use gio::prelude::{ApplicationExt, ApplicationExtManual};
-use gio::Cancellable;
-use glib::prelude::*;
 use gtk::prelude::{ContainerExt, LabelExt};
 use gtk::{traits::*, CssProvider};
 
