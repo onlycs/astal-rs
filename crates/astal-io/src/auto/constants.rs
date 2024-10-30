@@ -3,15 +3,8 @@
 // from ../../gobject/gir-files
 // DO NOT EDIT
 
-use std::ffi::CStr;
-
 use crate::ffi;
 use glib::GStr;
 
 #[doc(alias = "ASTAL_IO_VERSION")]
-pub static VERSION: &GStr = unsafe {
-    GStr::from_utf8_with_nul_unchecked({
-        let cstr = CStr::from_ptr(ffi::ASTAL_IO_VERSION);
-        cstr.to_bytes_with_nul()
-    })
-};
+pub static VERSION: &GStr = unsafe { GStr::from_utf8_with_nul_unchecked(ffi::ASTAL_IO_VERSION) };

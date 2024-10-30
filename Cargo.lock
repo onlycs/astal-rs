@@ -435,15 +435,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "gnyprland"
-version = "0.1.0"
-dependencies = [
- "astal",
- "gio",
- "gtk",
-]
-
-[[package]]
 name = "gobject-sys"
 version = "0.21.0"
 source = "git+https://github.com/gtk-rs/gtk-rs-core#fc2917d87ee005f12fb6a5139ee8b65433529be9"

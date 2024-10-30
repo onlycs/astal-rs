@@ -5,4 +5,4 @@
 	branch = main
 [submodule "gobject/gir-files"]
 	path = gir/gir-files
-	url = https://github.com/gtk-rs/gir-files
+	url = https://github.com/onlycs/astal-gir

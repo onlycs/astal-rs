@@ -3,24 +3,18 @@
 // from ../../gobject/gir-files
 // DO NOT EDIT
 
-use crate::{ffi, Application};
-use glib::{prelude::*, translate::*};
+use crate::{ffi,Application};
+use glib::{prelude::*,translate::*};
+
 
 #[doc(alias = "astal_io_acquire_socket")]
-pub fn acquire_socket(
-    app: &impl IsA<Application>,
-) -> Result<(gio::SocketService, glib::GString), glib::Error> {
+pub fn acquire_socket(app: &impl IsA<Application>) -> Result<(gio::SocketService, glib::GString), glib::Error> {
     skip_assert_initialized!();
     unsafe {
         let mut sock = std::ptr::null_mut();
         let mut error = std::ptr::null_mut();
-        let ret =
-            ffi::astal_io_acquire_socket(app.as_ref().to_glib_none().0, &mut sock, &mut error);
-        if error.is_null() {
-            Ok((from_glib_full(ret), from_glib_full(sock)))
-        } else {
-            Err(from_glib_full(error))
-        }
+        let ret = ffi::astal_io_acquire_socket(app.as_ref().to_glib_none().0, &mut sock, &mut error);
+        if error.is_null() { Ok((from_glib_full(ret), from_glib_full(sock))) } else { Err(from_glib_full(error)) }
     }
 }
 
@@ -28,7 +22,9 @@ pub fn acquire_socket(
 #[doc(alias = "get_instances")]
 pub fn instances() -> Vec<glib::GString> {
     assert_initialized_main_thread!();
-    unsafe { FromGlibPtrContainer::from_glib_full(ffi::astal_io_get_instances()) }
+    unsafe {
+        FromGlibPtrContainer::from_glib_full(ffi::astal_io_get_instances())
+    }
 }
 
 #[doc(alias = "astal_io_quit_instance")]
@@ -59,10 +55,7 @@ pub fn toggle_window_by_name(instance: &str, window: &str) {
 pub fn send_message(instance: &str, msg: &str) -> Option<glib::GString> {
     assert_initialized_main_thread!();
     unsafe {
-        from_glib_full(ffi::astal_io_send_message(
-            instance.to_glib_none().0,
-            msg.to_glib_none().0,
-        ))
+        from_glib_full(ffi::astal_io_send_message(instance.to_glib_none().0, msg.to_glib_none().0))
     }
 }
 
@@ -79,7 +72,9 @@ pub fn send_message(instance: &str, msg: &str) -> Option<glib::GString> {
 #[doc(alias = "astal_io_read_file")]
 pub fn read_file(path: &str) -> Option<glib::GString> {
     assert_initialized_main_thread!();
-    unsafe { from_glib_full(ffi::astal_io_read_file(path.to_glib_none().0)) }
+    unsafe {
+        from_glib_full(ffi::astal_io_read_file(path.to_glib_none().0))
+    }
 }
 
 //#[doc(alias = "astal_io_read_file_async")]
@@ -104,9 +99,6 @@ pub fn write_file(path: &str, content: &str) {
 pub fn monitor_file(path: &str, callback: &glib::Closure) -> Option<gio::FileMonitor> {
     assert_initialized_main_thread!();
     unsafe {
-        from_glib_full(ffi::astal_io_monitor_file(
-            path.to_glib_none().0,
-            callback.to_glib_none().0,
-        ))
+        from_glib_full(ffi::astal_io_monitor_file(path.to_glib_none().0, callback.to_glib_none().0))
     }
 }
