@@ -3,9 +3,15 @@
 // from ../../gobject/gir-files
 // DO NOT EDIT
 
-use crate::{ffi,Exclusivity,Keymode,Layer};
-use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
-use std::{boxed::Box as Box_};
+use crate::{ffi, Exclusivity, Keymode, Layer};
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::boxed::Box as Box_;
+
+use super::WindowAnchor;
 
 glib::wrapper! {
     #[doc(alias = "AstalWindow")]
@@ -17,30 +23,29 @@ glib::wrapper! {
 }
 
 impl Window {
-        pub const NONE: Option<&'static Window> = None;
-    
+    pub const NONE: Option<&'static Window> = None;
 
     #[doc(alias = "astal_window_new")]
     pub fn new() -> Window {
         assert_initialized_main_thread!();
-        unsafe {
-            from_glib_none(ffi::astal_window_new())
-        }
+        unsafe { from_glib_none(ffi::astal_window_new()) }
     }
 }
 
 impl Default for Window {
-                     fn default() -> Self {
-                         Self::new()
-                     }
-                 }
+    fn default() -> Self {
+        Self::new()
+    }
+}
 
 pub trait WindowExt: IsA<Window> + 'static {
     #[doc(alias = "astal_window_get_inhibit")]
     #[doc(alias = "get_inhibit")]
     fn is_inhibit(&self) -> bool {
         unsafe {
-            from_glib(ffi::astal_window_get_inhibit(self.as_ref().to_glib_none().0))
+            from_glib(ffi::astal_window_get_inhibit(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
@@ -55,7 +60,9 @@ pub trait WindowExt: IsA<Window> + 'static {
     #[doc(alias = "get_namespace")]
     fn namespace(&self) -> Option<glib::GString> {
         unsafe {
-            from_glib_none(ffi::astal_window_get_namespace(self.as_ref().to_glib_none().0))
+            from_glib_none(ffi::astal_window_get_namespace(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
@@ -69,15 +76,13 @@ pub trait WindowExt: IsA<Window> + 'static {
     #[doc(alias = "astal_window_get_anchor")]
     #[doc(alias = "get_anchor")]
     fn anchor(&self) -> i32 {
-        unsafe {
-            ffi::astal_window_get_anchor(self.as_ref().to_glib_none().0)
-        }
+        unsafe { ffi::astal_window_get_anchor(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "astal_window_set_anchor")]
-    fn set_anchor(&self, value: i32) {
+    fn set_anchor(&self, value: WindowAnchor) {
         unsafe {
-            ffi::astal_window_set_anchor(self.as_ref().to_glib_none().0, value);
+            ffi::astal_window_set_anchor(self.as_ref().to_glib_none().0, value.into_glib());
         }
     }
 
@@ -85,7 +90,9 @@ pub trait WindowExt: IsA<Window> + 'static {
     #[doc(alias = "get_exclusivity")]
     fn exclusivity(&self) -> Exclusivity {
         unsafe {
-            from_glib(ffi::astal_window_get_exclusivity(self.as_ref().to_glib_none().0))
+            from_glib(ffi::astal_window_get_exclusivity(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
@@ -99,9 +106,7 @@ pub trait WindowExt: IsA<Window> + 'static {
     #[doc(alias = "astal_window_get_layer")]
     #[doc(alias = "get_layer")]
     fn layer(&self) -> Layer {
-        unsafe {
-            from_glib(ffi::astal_window_get_layer(self.as_ref().to_glib_none().0))
-        }
+        unsafe { from_glib(ffi::astal_window_get_layer(self.as_ref().to_glib_none().0)) }
     }
 
     #[doc(alias = "astal_window_set_layer")]
@@ -115,7 +120,9 @@ pub trait WindowExt: IsA<Window> + 'static {
     #[doc(alias = "get_keymode")]
     fn keymode(&self) -> Keymode {
         unsafe {
-            from_glib(ffi::astal_window_get_keymode(self.as_ref().to_glib_none().0))
+            from_glib(ffi::astal_window_get_keymode(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
@@ -130,23 +137,26 @@ pub trait WindowExt: IsA<Window> + 'static {
     #[doc(alias = "get_gdkmonitor")]
     fn gdkmonitor(&self) -> Option<gdk::Monitor> {
         unsafe {
-            from_glib_none(ffi::astal_window_get_gdkmonitor(self.as_ref().to_glib_none().0))
+            from_glib_none(ffi::astal_window_get_gdkmonitor(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
     #[doc(alias = "astal_window_set_gdkmonitor")]
     fn set_gdkmonitor(&self, value: &gdk::Monitor) {
         unsafe {
-            ffi::astal_window_set_gdkmonitor(self.as_ref().to_glib_none().0, value.to_glib_none().0);
+            ffi::astal_window_set_gdkmonitor(
+                self.as_ref().to_glib_none().0,
+                value.to_glib_none().0,
+            );
         }
     }
 
     #[doc(alias = "astal_window_get_margin_top")]
     #[doc(alias = "get_margin_top")]
     fn margin_top(&self) -> i32 {
-        unsafe {
-            ffi::astal_window_get_margin_top(self.as_ref().to_glib_none().0)
-        }
+        unsafe { ffi::astal_window_get_margin_top(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "astal_window_set_margin_top")]
@@ -159,9 +169,7 @@ pub trait WindowExt: IsA<Window> + 'static {
     #[doc(alias = "astal_window_get_margin_bottom")]
     #[doc(alias = "get_margin_bottom")]
     fn margin_bottom(&self) -> i32 {
-        unsafe {
-            ffi::astal_window_get_margin_bottom(self.as_ref().to_glib_none().0)
-        }
+        unsafe { ffi::astal_window_get_margin_bottom(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "astal_window_set_margin_bottom")]
@@ -174,9 +182,7 @@ pub trait WindowExt: IsA<Window> + 'static {
     #[doc(alias = "astal_window_get_margin_left")]
     #[doc(alias = "get_margin_left")]
     fn margin_left(&self) -> i32 {
-        unsafe {
-            ffi::astal_window_get_margin_left(self.as_ref().to_glib_none().0)
-        }
+        unsafe { ffi::astal_window_get_margin_left(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "astal_window_set_margin_left")]
@@ -189,9 +195,7 @@ pub trait WindowExt: IsA<Window> + 'static {
     #[doc(alias = "astal_window_get_margin_right")]
     #[doc(alias = "get_margin_right")]
     fn margin_right(&self) -> i32 {
-        unsafe {
-            ffi::astal_window_get_margin_right(self.as_ref().to_glib_none().0)
-        }
+        unsafe { ffi::astal_window_get_margin_right(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "astal_window_set_margin_right")]
@@ -211,9 +215,7 @@ pub trait WindowExt: IsA<Window> + 'static {
     #[doc(alias = "astal_window_get_monitor")]
     #[doc(alias = "get_monitor")]
     fn monitor(&self) -> i32 {
-        unsafe {
-            ffi::astal_window_get_monitor(self.as_ref().to_glib_none().0)
-        }
+        unsafe { ffi::astal_window_get_monitor(self.as_ref().to_glib_none().0) }
     }
 
     #[doc(alias = "astal_window_set_monitor")]
@@ -225,105 +227,185 @@ pub trait WindowExt: IsA<Window> + 'static {
 
     #[doc(alias = "inhibit")]
     fn connect_inhibit_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_inhibit_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(this: *mut ffi::AstalWindow, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn notify_inhibit_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
+            this: *mut ffi::AstalWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::inhibit\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_inhibit_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::inhibit\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_inhibit_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     #[doc(alias = "namespace")]
     fn connect_namespace_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_namespace_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(this: *mut ffi::AstalWindow, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn notify_namespace_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
+            this: *mut ffi::AstalWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::namespace\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_namespace_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::namespace\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_namespace_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     #[doc(alias = "anchor")]
     fn connect_anchor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_anchor_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(this: *mut ffi::AstalWindow, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn notify_anchor_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
+            this: *mut ffi::AstalWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::anchor\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_anchor_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::anchor\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_anchor_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     #[doc(alias = "exclusivity")]
     fn connect_exclusivity_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_exclusivity_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(this: *mut ffi::AstalWindow, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn notify_exclusivity_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
+            this: *mut ffi::AstalWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::exclusivity\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_exclusivity_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::exclusivity\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_exclusivity_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     #[doc(alias = "layer")]
     fn connect_layer_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_layer_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(this: *mut ffi::AstalWindow, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn notify_layer_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
+            this: *mut ffi::AstalWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::layer\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_layer_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::layer\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_layer_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     #[doc(alias = "keymode")]
     fn connect_keymode_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_keymode_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(this: *mut ffi::AstalWindow, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn notify_keymode_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
+            this: *mut ffi::AstalWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::keymode\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_keymode_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::keymode\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_keymode_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     #[doc(alias = "gdkmonitor")]
     fn connect_gdkmonitor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_gdkmonitor_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(this: *mut ffi::AstalWindow, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn notify_gdkmonitor_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
+            this: *mut ffi::AstalWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::gdkmonitor\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_gdkmonitor_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::gdkmonitor\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_gdkmonitor_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     #[doc(alias = "monitor")]
     fn connect_monitor_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_monitor_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(this: *mut ffi::AstalWindow, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn notify_monitor_trampoline<P: IsA<Window>, F: Fn(&P) + 'static>(
+            this: *mut ffi::AstalWindow,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(Window::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::monitor\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_monitor_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::monitor\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_monitor_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }

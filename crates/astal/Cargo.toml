@@ -37,3 +37,9 @@ git = "https://github.com/onlycs/gtk3-rs"
 
 [dependencies.astal-io]
 path = "../astal-io"
+
+[features]
+default = []
+gio_v2_28 = []
+gio_v2_32 = []
+gtk_v3_4 = []

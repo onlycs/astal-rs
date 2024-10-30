@@ -3,11 +3,12 @@
 // from ../../gobject/gir-files
 // DO NOT EDIT
 
-use crate::{ffi};
-use glib::{prelude::*,translate::*};
+use std::ops::Add;
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+use crate::ffi;
+use glib::{prelude::*, translate::*};
+
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "AstalExclusivity")]
 pub enum Exclusivity {
@@ -17,7 +18,7 @@ pub enum Exclusivity {
     Exclusive,
     #[doc(alias = "ASTAL_EXCLUSIVITY_IGNORE")]
     Ignore,
-#[doc(hidden)]
+    #[doc(hidden)]
     __Unknown(i32),
 }
 
@@ -26,47 +27,47 @@ impl IntoGlib for Exclusivity {
     type GlibType = ffi::AstalExclusivity;
 
     #[inline]
-fn into_glib(self) -> ffi::AstalExclusivity {
-match self {
+    fn into_glib(self) -> ffi::AstalExclusivity {
+        match self {
             Self::Normal => ffi::ASTAL_EXCLUSIVITY_NORMAL,
             Self::Exclusive => ffi::ASTAL_EXCLUSIVITY_EXCLUSIVE,
             Self::Ignore => ffi::ASTAL_EXCLUSIVITY_IGNORE,
             Self::__Unknown(value) => value,
-}
-}
+        }
+    }
 }
 
 #[doc(hidden)]
 impl FromGlib<ffi::AstalExclusivity> for Exclusivity {
     #[inline]
-unsafe fn from_glib(value: ffi::AstalExclusivity) -> Self {
+    unsafe fn from_glib(value: ffi::AstalExclusivity) -> Self {
         skip_assert_initialized!();
-        
-match value {
+
+        match value {
             ffi::ASTAL_EXCLUSIVITY_NORMAL => Self::Normal,
             ffi::ASTAL_EXCLUSIVITY_EXCLUSIVE => Self::Exclusive,
             ffi::ASTAL_EXCLUSIVITY_IGNORE => Self::Ignore,
             value => Self::__Unknown(value),
-}
-}
+        }
+    }
 }
 
 impl StaticType for Exclusivity {
-                #[inline]
+    #[inline]
     #[doc(alias = "astal_exclusivity_get_type")]
-   fn static_type() -> glib::Type {
-                    unsafe { from_glib(ffi::astal_exclusivity_get_type()) }
-                }
-            }
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::astal_exclusivity_get_type()) }
+    }
+}
 
 impl glib::HasParamSpec for Exclusivity {
-                type ParamSpec = glib::ParamSpecEnum;
-                type SetValue = Self;
-                type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
-    
-                fn param_spec_builder() -> Self::BuilderFn {
-                    Self::ParamSpec::builder_with_default
-                }
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
 }
 
 impl glib::value::ValueType for Exclusivity {
@@ -107,8 +108,7 @@ impl From<Exclusivity> for glib::Value {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "AstalKeymode")]
 pub enum Keymode {
@@ -118,7 +118,7 @@ pub enum Keymode {
     Exclusive,
     #[doc(alias = "ASTAL_KEYMODE_ON_DEMAND")]
     OnDemand,
-#[doc(hidden)]
+    #[doc(hidden)]
     __Unknown(i32),
 }
 
@@ -127,47 +127,47 @@ impl IntoGlib for Keymode {
     type GlibType = ffi::AstalKeymode;
 
     #[inline]
-fn into_glib(self) -> ffi::AstalKeymode {
-match self {
+    fn into_glib(self) -> ffi::AstalKeymode {
+        match self {
             Self::None => ffi::ASTAL_KEYMODE_NONE,
             Self::Exclusive => ffi::ASTAL_KEYMODE_EXCLUSIVE,
             Self::OnDemand => ffi::ASTAL_KEYMODE_ON_DEMAND,
             Self::__Unknown(value) => value,
-}
-}
+        }
+    }
 }
 
 #[doc(hidden)]
 impl FromGlib<ffi::AstalKeymode> for Keymode {
     #[inline]
-unsafe fn from_glib(value: ffi::AstalKeymode) -> Self {
+    unsafe fn from_glib(value: ffi::AstalKeymode) -> Self {
         skip_assert_initialized!();
-        
-match value {
+
+        match value {
             ffi::ASTAL_KEYMODE_NONE => Self::None,
             ffi::ASTAL_KEYMODE_EXCLUSIVE => Self::Exclusive,
             ffi::ASTAL_KEYMODE_ON_DEMAND => Self::OnDemand,
             value => Self::__Unknown(value),
-}
-}
+        }
+    }
 }
 
 impl StaticType for Keymode {
-                #[inline]
+    #[inline]
     #[doc(alias = "astal_keymode_get_type")]
-   fn static_type() -> glib::Type {
-                    unsafe { from_glib(ffi::astal_keymode_get_type()) }
-                }
-            }
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::astal_keymode_get_type()) }
+    }
+}
 
 impl glib::HasParamSpec for Keymode {
-                type ParamSpec = glib::ParamSpecEnum;
-                type SetValue = Self;
-                type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
-    
-                fn param_spec_builder() -> Self::BuilderFn {
-                    Self::ParamSpec::builder_with_default
-                }
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
 }
 
 impl glib::value::ValueType for Keymode {
@@ -208,8 +208,7 @@ impl From<Keymode> for glib::Value {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "AstalLayer")]
 pub enum Layer {
@@ -221,7 +220,7 @@ pub enum Layer {
     Top,
     #[doc(alias = "ASTAL_LAYER_OVERLAY")]
     Overlay,
-#[doc(hidden)]
+    #[doc(hidden)]
     __Unknown(i32),
 }
 
@@ -230,49 +229,49 @@ impl IntoGlib for Layer {
     type GlibType = ffi::AstalLayer;
 
     #[inline]
-fn into_glib(self) -> ffi::AstalLayer {
-match self {
+    fn into_glib(self) -> ffi::AstalLayer {
+        match self {
             Self::Background => ffi::ASTAL_LAYER_BACKGROUND,
             Self::Bottom => ffi::ASTAL_LAYER_BOTTOM,
             Self::Top => ffi::ASTAL_LAYER_TOP,
             Self::Overlay => ffi::ASTAL_LAYER_OVERLAY,
             Self::__Unknown(value) => value,
-}
-}
+        }
+    }
 }
 
 #[doc(hidden)]
 impl FromGlib<ffi::AstalLayer> for Layer {
     #[inline]
-unsafe fn from_glib(value: ffi::AstalLayer) -> Self {
+    unsafe fn from_glib(value: ffi::AstalLayer) -> Self {
         skip_assert_initialized!();
-        
-match value {
+
+        match value {
             ffi::ASTAL_LAYER_BACKGROUND => Self::Background,
             ffi::ASTAL_LAYER_BOTTOM => Self::Bottom,
             ffi::ASTAL_LAYER_TOP => Self::Top,
             ffi::ASTAL_LAYER_OVERLAY => Self::Overlay,
             value => Self::__Unknown(value),
-}
-}
+        }
+    }
 }
 
 impl StaticType for Layer {
-                #[inline]
+    #[inline]
     #[doc(alias = "astal_layer_get_type")]
-   fn static_type() -> glib::Type {
-                    unsafe { from_glib(ffi::astal_layer_get_type()) }
-                }
-            }
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::astal_layer_get_type()) }
+    }
+}
 
 impl glib::HasParamSpec for Layer {
-                type ParamSpec = glib::ParamSpecEnum;
-                type SetValue = Self;
-                type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
-    
-                fn param_spec_builder() -> Self::BuilderFn {
-                    Self::ParamSpec::builder_with_default
-                }
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
 }
 
 impl glib::value::ValueType for Layer {
@@ -313,8 +312,7 @@ impl From<Layer> for glib::Value {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "AstalMouseButton")]
 pub enum MouseButton {
@@ -328,7 +326,7 @@ pub enum MouseButton {
     Back,
     #[doc(alias = "ASTAL_MOUSE_BUTTON_FORWARD")]
     Forward,
-#[doc(hidden)]
+    #[doc(hidden)]
     __Unknown(i32),
 }
 
@@ -337,51 +335,51 @@ impl IntoGlib for MouseButton {
     type GlibType = ffi::AstalMouseButton;
 
     #[inline]
-fn into_glib(self) -> ffi::AstalMouseButton {
-match self {
+    fn into_glib(self) -> ffi::AstalMouseButton {
+        match self {
             Self::Primary => ffi::ASTAL_MOUSE_BUTTON_PRIMARY,
             Self::Middle => ffi::ASTAL_MOUSE_BUTTON_MIDDLE,
             Self::Secondary => ffi::ASTAL_MOUSE_BUTTON_SECONDARY,
             Self::Back => ffi::ASTAL_MOUSE_BUTTON_BACK,
             Self::Forward => ffi::ASTAL_MOUSE_BUTTON_FORWARD,
             Self::__Unknown(value) => value,
-}
-}
+        }
+    }
 }
 
 #[doc(hidden)]
 impl FromGlib<ffi::AstalMouseButton> for MouseButton {
     #[inline]
-unsafe fn from_glib(value: ffi::AstalMouseButton) -> Self {
+    unsafe fn from_glib(value: ffi::AstalMouseButton) -> Self {
         skip_assert_initialized!();
-        
-match value {
+
+        match value {
             ffi::ASTAL_MOUSE_BUTTON_PRIMARY => Self::Primary,
             ffi::ASTAL_MOUSE_BUTTON_MIDDLE => Self::Middle,
             ffi::ASTAL_MOUSE_BUTTON_SECONDARY => Self::Secondary,
             ffi::ASTAL_MOUSE_BUTTON_BACK => Self::Back,
             ffi::ASTAL_MOUSE_BUTTON_FORWARD => Self::Forward,
             value => Self::__Unknown(value),
-}
-}
+        }
+    }
 }
 
 impl StaticType for MouseButton {
-                #[inline]
+    #[inline]
     #[doc(alias = "astal_mouse_button_get_type")]
-   fn static_type() -> glib::Type {
-                    unsafe { from_glib(ffi::astal_mouse_button_get_type()) }
-                }
-            }
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::astal_mouse_button_get_type()) }
+    }
+}
 
 impl glib::HasParamSpec for MouseButton {
-                type ParamSpec = glib::ParamSpecEnum;
-                type SetValue = Self;
-                type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
-    
-                fn param_spec_builder() -> Self::BuilderFn {
-                    Self::ParamSpec::builder_with_default
-                }
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
 }
 
 impl glib::value::ValueType for MouseButton {
@@ -422,8 +420,7 @@ impl From<MouseButton> for glib::Value {
     }
 }
 
-#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash)]
-#[derive(Clone, Copy)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Clone, Copy)]
 #[non_exhaustive]
 #[doc(alias = "AstalWindowAnchor")]
 pub enum WindowAnchor {
@@ -437,8 +434,21 @@ pub enum WindowAnchor {
     Left,
     #[doc(alias = "ASTAL_WINDOW_ANCHOR_BOTTOM")]
     Bottom,
-#[doc(hidden)]
+    #[doc(hidden)]
     __Unknown(i32),
+}
+
+impl Add<Self> for WindowAnchor {
+    type Output = Self;
+
+    fn add(self, rhs: Self) -> Self::Output {
+        unsafe {
+            let lhs = self.into_glib();
+            let rhs = rhs.into_glib();
+            let sum = lhs + rhs;
+            FromGlib::from_glib(sum)
+        }
+    }
 }
 
 #[doc(hidden)]
@@ -446,51 +456,51 @@ impl IntoGlib for WindowAnchor {
     type GlibType = ffi::AstalWindowAnchor;
 
     #[inline]
-fn into_glib(self) -> ffi::AstalWindowAnchor {
-match self {
+    fn into_glib(self) -> ffi::AstalWindowAnchor {
+        match self {
             Self::None => ffi::ASTAL_WINDOW_ANCHOR_NONE,
             Self::Top => ffi::ASTAL_WINDOW_ANCHOR_TOP,
             Self::Right => ffi::ASTAL_WINDOW_ANCHOR_RIGHT,
             Self::Left => ffi::ASTAL_WINDOW_ANCHOR_LEFT,
             Self::Bottom => ffi::ASTAL_WINDOW_ANCHOR_BOTTOM,
             Self::__Unknown(value) => value,
-}
-}
+        }
+    }
 }
 
 #[doc(hidden)]
 impl FromGlib<ffi::AstalWindowAnchor> for WindowAnchor {
     #[inline]
-unsafe fn from_glib(value: ffi::AstalWindowAnchor) -> Self {
+    unsafe fn from_glib(value: ffi::AstalWindowAnchor) -> Self {
         skip_assert_initialized!();
-        
-match value {
+
+        match value {
             ffi::ASTAL_WINDOW_ANCHOR_NONE => Self::None,
             ffi::ASTAL_WINDOW_ANCHOR_TOP => Self::Top,
             ffi::ASTAL_WINDOW_ANCHOR_RIGHT => Self::Right,
             ffi::ASTAL_WINDOW_ANCHOR_LEFT => Self::Left,
             ffi::ASTAL_WINDOW_ANCHOR_BOTTOM => Self::Bottom,
             value => Self::__Unknown(value),
-}
-}
+        }
+    }
 }
 
 impl StaticType for WindowAnchor {
-                #[inline]
+    #[inline]
     #[doc(alias = "astal_window_anchor_get_type")]
-   fn static_type() -> glib::Type {
-                    unsafe { from_glib(ffi::astal_window_anchor_get_type()) }
-                }
-            }
+    fn static_type() -> glib::Type {
+        unsafe { from_glib(ffi::astal_window_anchor_get_type()) }
+    }
+}
 
 impl glib::HasParamSpec for WindowAnchor {
-                type ParamSpec = glib::ParamSpecEnum;
-                type SetValue = Self;
-                type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
-    
-                fn param_spec_builder() -> Self::BuilderFn {
-                    Self::ParamSpec::builder_with_default
-                }
+    type ParamSpec = glib::ParamSpecEnum;
+    type SetValue = Self;
+    type BuilderFn = fn(&str, Self) -> glib::ParamSpecEnumBuilder<Self>;
+
+    fn param_spec_builder() -> Self::BuilderFn {
+        Self::ParamSpec::builder_with_default
+    }
 }
 
 impl glib::value::ValueType for WindowAnchor {
@@ -530,4 +540,3 @@ impl From<WindowAnchor> for glib::Value {
         ToValue::to_value(&v)
     }
 }
-

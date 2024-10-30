@@ -1,7 +1,8 @@
 [package]
-name = "gnyperland"
+name = "gnyprland"
 version = "0.1.0"
 edition = "2021"
+default-run = "gnyprland"
 
 [dependencies.astal]
 path = "../astal"
