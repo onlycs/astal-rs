@@ -15,18 +15,6 @@ generate = [
 	"Astal.Exclusivity",
 	"Astal.Layer",
 	"Astal.Keymode",
-	"Astal.Box",
-	"Astal.CenterBox",
-	"Astal.Icon",
-	"Astal.Label",
-	"Astal.LevelBar",
-	"Astal.CircularProgress",
-	"Astal.Overlay",
-	"Astal.Scrollable",
-	"Astal.Slider",
-	"Astal.Stack",
-	"Astal.Window",
-	"Astal.Application",
 	"Astal.Button",
 	"Astal.HoverEvent",
 	"Astal.ClickEvent",
@@ -75,3 +63,52 @@ manual = [
 	"Gdk.EventScroll",
 	"Gdk.EventMotion",
 ]
+
+[[object]]
+name = "Astal.Box"
+status = "generate"
+generate_builder = true
+[[object]]
+name = "Astal.CenterBox"
+status = "generate"
+generate_builder = true
+[[object]]
+name = "Astal.CircularProgress"
+status = "generate"
+generate_builder = true
+[[object]]
+name = "Astal.Icon"
+status = "generate"
+generate_builder = true
+[[object]]
+name = "Astal.Label"
+status = "generate"
+generate_builder = true
+[[object]]
+name = "Astal.LevelBar"
+status = "generate"
+generate_builder = true
+[[object]]
+name = "Astal.Overlay"
+status = "generate"
+generate_builder = true
+[[object]]
+name = "Astal.Scrollable"
+status = "generate"
+generate_builder = true
+[[object]]
+name = "Astal.Slider"
+status = "generate"
+generate_builder = true
+[[object]]
+name = "Astal.Stack"
+status = "generate"
+generate_builder = true
+[[object]]
+name = "Astal.Window"
+status = "generate"
+generate_builder = true
+[[object]]
+name = "Astal.Application"
+status = "generate"
+generate_builder = true

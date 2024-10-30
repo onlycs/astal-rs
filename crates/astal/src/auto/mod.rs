@@ -84,3 +84,17 @@ pub(crate) mod traits {
     pub use super::stack::StackExt;
     pub use super::window::WindowExt;
 }
+pub(crate) mod builders {
+    pub use super::application::ApplicationBuilder;
+    pub use super::box_::BoxBuilder;
+    pub use super::center_box::CenterBoxBuilder;
+    pub use super::circular_progress::CircularProgressBuilder;
+    pub use super::icon::IconBuilder;
+    pub use super::label::LabelBuilder;
+    pub use super::level_bar::LevelBarBuilder;
+    pub use super::overlay::OverlayBuilder;
+    pub use super::scrollable::ScrollableBuilder;
+    pub use super::slider::SliderBuilder;
+    pub use super::stack::StackBuilder;
+    pub use super::window::WindowBuilder;
+}

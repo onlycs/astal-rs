@@ -4,7 +4,7 @@
 
 #![cfg(unix)]
 
-use astal_sys::*;
+use astal_apps_sys::*;
 use std::mem::{align_of, size_of};
 use std::env;
 use std::error::Error;
@@ -14,7 +14,7 @@ use std::process::{Command, Stdio};
 use std::str;
 use tempfile::Builder;
 
-static PACKAGES: &[&str] = &["astal"];
+static PACKAGES: &[&str] = &["astal-apps"];
 
 #[derive(Clone, Debug)]
 struct Compiler {
@@ -206,70 +206,18 @@ fn get_c_output(name: &str) -> Result<String, Box<dyn Error>> {
 }
 
 const RUST_LAYOUTS: &[(&str, Layout)] = &[
-    ("AstalApplication", Layout {size: size_of::<AstalApplication>(), alignment: align_of::<AstalApplication>()}),
-    ("AstalApplicationClass", Layout {size: size_of::<AstalApplicationClass>(), alignment: align_of::<AstalApplicationClass>()}),
-    ("AstalBox", Layout {size: size_of::<AstalBox>(), alignment: align_of::<AstalBox>()}),
-    ("AstalBoxClass", Layout {size: size_of::<AstalBoxClass>(), alignment: align_of::<AstalBoxClass>()}),
-    ("AstalButton", Layout {size: size_of::<AstalButton>(), alignment: align_of::<AstalButton>()}),
-    ("AstalButtonClass", Layout {size: size_of::<AstalButtonClass>(), alignment: align_of::<AstalButtonClass>()}),
-    ("AstalCenterBox", Layout {size: size_of::<AstalCenterBox>(), alignment: align_of::<AstalCenterBox>()}),
-    ("AstalCenterBoxClass", Layout {size: size_of::<AstalCenterBoxClass>(), alignment: align_of::<AstalCenterBoxClass>()}),
-    ("AstalCircularProgress", Layout {size: size_of::<AstalCircularProgress>(), alignment: align_of::<AstalCircularProgress>()}),
-    ("AstalCircularProgressClass", Layout {size: size_of::<AstalCircularProgressClass>(), alignment: align_of::<AstalCircularProgressClass>()}),
-    ("AstalClickEvent", Layout {size: size_of::<AstalClickEvent>(), alignment: align_of::<AstalClickEvent>()}),
-    ("AstalEventBox", Layout {size: size_of::<AstalEventBox>(), alignment: align_of::<AstalEventBox>()}),
-    ("AstalEventBoxClass", Layout {size: size_of::<AstalEventBoxClass>(), alignment: align_of::<AstalEventBoxClass>()}),
-    ("AstalExclusivity", Layout {size: size_of::<AstalExclusivity>(), alignment: align_of::<AstalExclusivity>()}),
-    ("AstalHoverEvent", Layout {size: size_of::<AstalHoverEvent>(), alignment: align_of::<AstalHoverEvent>()}),
-    ("AstalIcon", Layout {size: size_of::<AstalIcon>(), alignment: align_of::<AstalIcon>()}),
-    ("AstalIconClass", Layout {size: size_of::<AstalIconClass>(), alignment: align_of::<AstalIconClass>()}),
-    ("AstalKeymode", Layout {size: size_of::<AstalKeymode>(), alignment: align_of::<AstalKeymode>()}),
-    ("AstalLabel", Layout {size: size_of::<AstalLabel>(), alignment: align_of::<AstalLabel>()}),
-    ("AstalLabelClass", Layout {size: size_of::<AstalLabelClass>(), alignment: align_of::<AstalLabelClass>()}),
-    ("AstalLayer", Layout {size: size_of::<AstalLayer>(), alignment: align_of::<AstalLayer>()}),
-    ("AstalLevelBar", Layout {size: size_of::<AstalLevelBar>(), alignment: align_of::<AstalLevelBar>()}),
-    ("AstalLevelBarClass", Layout {size: size_of::<AstalLevelBarClass>(), alignment: align_of::<AstalLevelBarClass>()}),
-    ("AstalMotionEvent", Layout {size: size_of::<AstalMotionEvent>(), alignment: align_of::<AstalMotionEvent>()}),
-    ("AstalMouseButton", Layout {size: size_of::<AstalMouseButton>(), alignment: align_of::<AstalMouseButton>()}),
-    ("AstalOverlay", Layout {size: size_of::<AstalOverlay>(), alignment: align_of::<AstalOverlay>()}),
-    ("AstalOverlayClass", Layout {size: size_of::<AstalOverlayClass>(), alignment: align_of::<AstalOverlayClass>()}),
-    ("AstalScrollEvent", Layout {size: size_of::<AstalScrollEvent>(), alignment: align_of::<AstalScrollEvent>()}),
-    ("AstalScrollable", Layout {size: size_of::<AstalScrollable>(), alignment: align_of::<AstalScrollable>()}),
-    ("AstalScrollableClass", Layout {size: size_of::<AstalScrollableClass>(), alignment: align_of::<AstalScrollableClass>()}),
-    ("AstalSlider", Layout {size: size_of::<AstalSlider>(), alignment: align_of::<AstalSlider>()}),
-    ("AstalSliderClass", Layout {size: size_of::<AstalSliderClass>(), alignment: align_of::<AstalSliderClass>()}),
-    ("AstalStack", Layout {size: size_of::<AstalStack>(), alignment: align_of::<AstalStack>()}),
-    ("AstalStackClass", Layout {size: size_of::<AstalStackClass>(), alignment: align_of::<AstalStackClass>()}),
-    ("AstalWindow", Layout {size: size_of::<AstalWindow>(), alignment: align_of::<AstalWindow>()}),
-    ("AstalWindowAnchor", Layout {size: size_of::<AstalWindowAnchor>(), alignment: align_of::<AstalWindowAnchor>()}),
-    ("AstalWindowClass", Layout {size: size_of::<AstalWindowClass>(), alignment: align_of::<AstalWindowClass>()}),
+    ("AstalAppsApplication", Layout {size: size_of::<AstalAppsApplication>(), alignment: align_of::<AstalAppsApplication>()}),
+    ("AstalAppsApplicationClass", Layout {size: size_of::<AstalAppsApplicationClass>(), alignment: align_of::<AstalAppsApplicationClass>()}),
+    ("AstalAppsApps", Layout {size: size_of::<AstalAppsApps>(), alignment: align_of::<AstalAppsApps>()}),
+    ("AstalAppsAppsClass", Layout {size: size_of::<AstalAppsAppsClass>(), alignment: align_of::<AstalAppsAppsClass>()}),
+    ("AstalAppsScore", Layout {size: size_of::<AstalAppsScore>(), alignment: align_of::<AstalAppsScore>()}),
 ];
 
 const RUST_CONSTANTS: &[(&str, &str)] = &[
-    ("(gint) ASTAL_EXCLUSIVITY_EXCLUSIVE", "1"),
-    ("(gint) ASTAL_EXCLUSIVITY_IGNORE", "2"),
-    ("(gint) ASTAL_EXCLUSIVITY_NORMAL", "0"),
-    ("(gint) ASTAL_KEYMODE_EXCLUSIVE", "1"),
-    ("(gint) ASTAL_KEYMODE_NONE", "0"),
-    ("(gint) ASTAL_KEYMODE_ON_DEMAND", "2"),
-    ("(gint) ASTAL_LAYER_BACKGROUND", "0"),
-    ("(gint) ASTAL_LAYER_BOTTOM", "1"),
-    ("(gint) ASTAL_LAYER_OVERLAY", "3"),
-    ("(gint) ASTAL_LAYER_TOP", "2"),
-    ("ASTAL_MAJOR_VERSION", "3"),
-    ("ASTAL_MICRO_VERSION", "0"),
-    ("ASTAL_MINOR_VERSION", "0"),
-    ("(gint) ASTAL_MOUSE_BUTTON_BACK", "4"),
-    ("(gint) ASTAL_MOUSE_BUTTON_FORWARD", "5"),
-    ("(gint) ASTAL_MOUSE_BUTTON_MIDDLE", "2"),
-    ("(gint) ASTAL_MOUSE_BUTTON_PRIMARY", "1"),
-    ("(gint) ASTAL_MOUSE_BUTTON_SECONDARY", "3"),
-    ("ASTAL_VERSION", "3.0.0"),
-    ("(gint) ASTAL_WINDOW_ANCHOR_BOTTOM", "8"),
-    ("(gint) ASTAL_WINDOW_ANCHOR_LEFT", "4"),
-    ("(gint) ASTAL_WINDOW_ANCHOR_NONE", "0"),
-    ("(gint) ASTAL_WINDOW_ANCHOR_RIGHT", "2"),
-    ("(gint) ASTAL_WINDOW_ANCHOR_TOP", "1"),
+    ("ASTAL_IO_MAJOR_VERSION", "0"),
+    ("ASTAL_IO_MICRO_VERSION", "0"),
+    ("ASTAL_IO_MINOR_VERSION", "1"),
+    ("ASTAL_IO_VERSION", "0.1.0"),
 ];
 
 

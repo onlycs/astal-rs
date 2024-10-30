@@ -49,6 +49,15 @@ impl Application {
             from_glib_full(ffi::astal_application_new())
         }
     }
+
+            // rustdoc-stripper-ignore-next
+            /// Creates a new builder-pattern struct instance to construct [`Application`] objects.
+            ///
+            /// This method returns an instance of [`ApplicationBuilder`](crate::builders::ApplicationBuilder) which can be used to create [`Application`] objects.
+            pub fn builder() -> ApplicationBuilder {
+                ApplicationBuilder::new()
+            }
+        
 }
 
 impl Default for Application {
@@ -56,6 +65,95 @@ impl Default for Application {
                          Self::new()
                      }
                  }
+
+// rustdoc-stripper-ignore-next
+        /// A [builder-pattern] type to construct [`Application`] objects.
+        ///
+        /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
+pub struct ApplicationBuilder {
+            builder: glib::object::ObjectBuilder<'static, Application>,
+        }
+
+        impl ApplicationBuilder {
+        fn new() -> Self {
+            Self { builder: glib::object::Object::builder() }
+        }
+
+                            pub fn gtk_theme(self, gtk_theme: impl Into<glib::GString>) -> Self {
+                            Self { builder: self.builder.property("gtk-theme", gtk_theme.into()), }
+                        }
+
+                            pub fn icon_theme(self, icon_theme: impl Into<glib::GString>) -> Self {
+                            Self { builder: self.builder.property("icon-theme", icon_theme.into()), }
+                        }
+
+                            pub fn cursor_theme(self, cursor_theme: impl Into<glib::GString>) -> Self {
+                            Self { builder: self.builder.property("cursor-theme", cursor_theme.into()), }
+                        }
+
+                            //pub fn app_menu(self, app_menu: &impl IsA</*Ignored*/gio::MenuModel>) -> Self {
+                        //    Self { builder: self.builder.property("app-menu", app_menu.clone().upcast()), }
+                        //}
+
+                            //pub fn menubar(self, menubar: &impl IsA</*Ignored*/gio::MenuModel>) -> Self {
+                        //    Self { builder: self.builder.property("menubar", menubar.clone().upcast()), }
+                        //}
+
+                            #[cfg(feature = "gtk_v3_4")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3_4")))]
+    pub fn register_session(self, register_session: bool) -> Self {
+                            Self { builder: self.builder.property("register-session", register_session), }
+                        }
+
+                            #[cfg(feature = "gio_v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_28")))]
+    #[cfg_attr(feature = "v2_32", deprecated = "Since 2.32")]
+    pub fn action_group(self, action_group: &impl IsA<gio::ActionGroup>) -> Self {
+                            Self { builder: self.builder.property("action-group", action_group.clone().upcast()), }
+                        }
+
+                            #[cfg(feature = "gio_v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_28")))]
+    pub fn application_id(self, application_id: impl Into<glib::GString>) -> Self {
+                            Self { builder: self.builder.property("application-id", application_id.into()), }
+                        }
+
+                        //    #[cfg(feature = "gio_v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_28")))]
+    //pub fn flags(self, flags: /*Ignored*/gio::ApplicationFlags) -> Self {
+                        //    Self { builder: self.builder.property("flags", flags), }
+                        //}
+
+                            #[cfg(feature = "gio_v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_28")))]
+    pub fn inactivity_timeout(self, inactivity_timeout: u32) -> Self {
+                            Self { builder: self.builder.property("inactivity-timeout", inactivity_timeout), }
+                        }
+
+                            #[cfg(feature = "gio_v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_28")))]
+    pub fn resource_base_path(self, resource_base_path: impl Into<glib::GString>) -> Self {
+                            Self { builder: self.builder.property("resource-base-path", resource_base_path.into()), }
+                        }
+
+                            #[cfg(feature = "gio_v2_80")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_80")))]
+    pub fn version(self, version: impl Into<glib::GString>) -> Self {
+                            Self { builder: self.builder.property("version", version.into()), }
+                        }
+
+                            pub fn instance_name(self, instance_name: impl Into<glib::GString>) -> Self {
+                            Self { builder: self.builder.property("instance-name", instance_name.into()), }
+                        }
+
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Application`].
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
+    pub fn build(self) -> Application {
+assert_initialized_main_thread!();
+    self.builder.build() }
+}
 
 pub trait ApplicationExt: IsA<Application> + 'static {
     #[doc(alias = "astal_application_reset_css")]

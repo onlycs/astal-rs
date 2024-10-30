@@ -27,6 +27,30 @@ dependencies = [
 ]
 
 [[package]]
+name = "astal-apps"
+version = "0.1.0"
+dependencies = [
+ "astal-apps-sys",
+ "gio",
+ "gir-error",
+ "glib 0.21.0",
+ "gtk",
+]
+
+[[package]]
+name = "astal-apps-sys"
+version = "0.0.1"
+dependencies = [
+ "gio-sys",
+ "glib-sys",
+ "gobject-sys",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.3",
+ "tempfile",
+]
+
+[[package]]
 name = "astal-io"
 version = "0.1.0"
 dependencies = [

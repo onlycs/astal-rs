@@ -26,6 +26,15 @@ impl Slider {
             from_glib_none(ffi::astal_slider_new())
         }
     }
+
+            // rustdoc-stripper-ignore-next
+            /// Creates a new builder-pattern struct instance to construct [`Slider`] objects.
+            ///
+            /// This method returns an instance of [`SliderBuilder`](crate::builders::SliderBuilder) which can be used to create [`Slider`] objects.
+            pub fn builder() -> SliderBuilder {
+                SliderBuilder::new()
+            }
+        
 }
 
 impl Default for Slider {
@@ -33,6 +42,301 @@ impl Default for Slider {
                          Self::new()
                      }
                  }
+
+// rustdoc-stripper-ignore-next
+        /// A [builder-pattern] type to construct [`Slider`] objects.
+        ///
+        /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
+pub struct SliderBuilder {
+            builder: glib::object::ObjectBuilder<'static, Slider>,
+        }
+
+        impl SliderBuilder {
+        fn new() -> Self {
+            Self { builder: glib::object::Object::builder() }
+        }
+
+                            pub fn vertical(self, vertical: bool) -> Self {
+                            Self { builder: self.builder.property("vertical", vertical), }
+                        }
+
+                            pub fn dragging(self, dragging: bool) -> Self {
+                            Self { builder: self.builder.property("dragging", dragging), }
+                        }
+
+                            pub fn value(self, value: f64) -> Self {
+                            Self { builder: self.builder.property("value", value), }
+                        }
+
+                            pub fn min(self, min: f64) -> Self {
+                            Self { builder: self.builder.property("min", min), }
+                        }
+
+                            pub fn max(self, max: f64) -> Self {
+                            Self { builder: self.builder.property("max", max), }
+                        }
+
+                            pub fn step(self, step: f64) -> Self {
+                            Self { builder: self.builder.property("step", step), }
+                        }
+
+                            pub fn digits(self, digits: i32) -> Self {
+                            Self { builder: self.builder.property("digits", digits), }
+                        }
+
+                            pub fn draw_value(self, draw_value: bool) -> Self {
+                            Self { builder: self.builder.property("draw-value", draw_value), }
+                        }
+
+                            pub fn has_origin(self, has_origin: bool) -> Self {
+                            Self { builder: self.builder.property("has-origin", has_origin), }
+                        }
+
+                            //pub fn value_pos(self, value_pos: /*Ignored*/gtk::PositionType) -> Self {
+                        //    Self { builder: self.builder.property("value-pos", value_pos), }
+                        //}
+
+                            //pub fn adjustment(self, adjustment: &impl IsA</*Ignored*/gtk::Adjustment>) -> Self {
+                        //    Self { builder: self.builder.property("adjustment", adjustment.clone().upcast()), }
+                        //}
+
+                            #[cfg(feature = "gtk_v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_12")))]
+    pub fn fill_level(self, fill_level: f64) -> Self {
+                            Self { builder: self.builder.property("fill-level", fill_level), }
+                        }
+
+                            pub fn inverted(self, inverted: bool) -> Self {
+                            Self { builder: self.builder.property("inverted", inverted), }
+                        }
+
+                            //pub fn lower_stepper_sensitivity(self, lower_stepper_sensitivity: /*Ignored*/gtk::SensitivityType) -> Self {
+                        //    Self { builder: self.builder.property("lower-stepper-sensitivity", lower_stepper_sensitivity), }
+                        //}
+
+                            #[cfg(feature = "gtk_v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_12")))]
+    pub fn restrict_to_fill_level(self, restrict_to_fill_level: bool) -> Self {
+                            Self { builder: self.builder.property("restrict-to-fill-level", restrict_to_fill_level), }
+                        }
+
+                            #[cfg(feature = "gtk_v2_24")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_24")))]
+    pub fn round_digits(self, round_digits: i32) -> Self {
+                            Self { builder: self.builder.property("round-digits", round_digits), }
+                        }
+
+                            #[cfg(feature = "gtk_v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_12")))]
+    pub fn show_fill_level(self, show_fill_level: bool) -> Self {
+                            Self { builder: self.builder.property("show-fill-level", show_fill_level), }
+                        }
+
+                            //pub fn upper_stepper_sensitivity(self, upper_stepper_sensitivity: /*Ignored*/gtk::SensitivityType) -> Self {
+                        //    Self { builder: self.builder.property("upper-stepper-sensitivity", upper_stepper_sensitivity), }
+                        //}
+
+                            pub fn app_paintable(self, app_paintable: bool) -> Self {
+                            Self { builder: self.builder.property("app-paintable", app_paintable), }
+                        }
+
+                            pub fn can_default(self, can_default: bool) -> Self {
+                            Self { builder: self.builder.property("can-default", can_default), }
+                        }
+
+                            pub fn can_focus(self, can_focus: bool) -> Self {
+                            Self { builder: self.builder.property("can-focus", can_focus), }
+                        }
+
+                            #[cfg(feature = "gtk_v2_18")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_18")))]
+    #[cfg_attr(feature = "v3_14", deprecated = "Since 3.14")]
+    pub fn double_buffered(self, double_buffered: bool) -> Self {
+                            Self { builder: self.builder.property("double-buffered", double_buffered), }
+                        }
+
+                            //pub fn events(self, events: /*Ignored*/gdk::EventMask) -> Self {
+                        //    Self { builder: self.builder.property("events", events), }
+                        //}
+
+                            #[cfg(feature = "gtk_v3")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
+    pub fn expand(self, expand: bool) -> Self {
+                            Self { builder: self.builder.property("expand", expand), }
+                        }
+
+                            #[cfg(feature = "gtk_v3_20")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3_20")))]
+    pub fn focus_on_click(self, focus_on_click: bool) -> Self {
+                            Self { builder: self.builder.property("focus-on-click", focus_on_click), }
+                        }
+
+                        //    #[cfg(feature = "gtk_v3")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
+    //pub fn halign(self, halign: /*Ignored*/gtk::Align) -> Self {
+                        //    Self { builder: self.builder.property("halign", halign), }
+                        //}
+
+                            pub fn has_default(self, has_default: bool) -> Self {
+                            Self { builder: self.builder.property("has-default", has_default), }
+                        }
+
+                            pub fn has_focus(self, has_focus: bool) -> Self {
+                            Self { builder: self.builder.property("has-focus", has_focus), }
+                        }
+
+                            #[cfg(feature = "gtk_v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_12")))]
+    pub fn has_tooltip(self, has_tooltip: bool) -> Self {
+                            Self { builder: self.builder.property("has-tooltip", has_tooltip), }
+                        }
+
+                            pub fn height_request(self, height_request: i32) -> Self {
+                            Self { builder: self.builder.property("height-request", height_request), }
+                        }
+
+                            #[cfg(feature = "gtk_v3")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
+    pub fn hexpand(self, hexpand: bool) -> Self {
+                            Self { builder: self.builder.property("hexpand", hexpand), }
+                        }
+
+                            #[cfg(feature = "gtk_v3")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
+    pub fn hexpand_set(self, hexpand_set: bool) -> Self {
+                            Self { builder: self.builder.property("hexpand-set", hexpand_set), }
+                        }
+
+                            pub fn is_focus(self, is_focus: bool) -> Self {
+                            Self { builder: self.builder.property("is-focus", is_focus), }
+                        }
+
+                            #[cfg(feature = "gtk_v3")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
+    pub fn margin(self, margin: i32) -> Self {
+                            Self { builder: self.builder.property("margin", margin), }
+                        }
+
+                            #[cfg(feature = "gtk_v3")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
+    pub fn margin_bottom(self, margin_bottom: i32) -> Self {
+                            Self { builder: self.builder.property("margin-bottom", margin_bottom), }
+                        }
+
+                            #[cfg(feature = "gtk_v3_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3_12")))]
+    pub fn margin_end(self, margin_end: i32) -> Self {
+                            Self { builder: self.builder.property("margin-end", margin_end), }
+                        }
+
+                            #[cfg(feature = "gtk_v3")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
+    #[cfg_attr(feature = "v3_12", deprecated = "Since 3.12")]
+    pub fn margin_left(self, margin_left: i32) -> Self {
+                            Self { builder: self.builder.property("margin-left", margin_left), }
+                        }
+
+                            #[cfg(feature = "gtk_v3")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
+    #[cfg_attr(feature = "v3_12", deprecated = "Since 3.12")]
+    pub fn margin_right(self, margin_right: i32) -> Self {
+                            Self { builder: self.builder.property("margin-right", margin_right), }
+                        }
+
+                            #[cfg(feature = "gtk_v3_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3_12")))]
+    pub fn margin_start(self, margin_start: i32) -> Self {
+                            Self { builder: self.builder.property("margin-start", margin_start), }
+                        }
+
+                            #[cfg(feature = "gtk_v3")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
+    pub fn margin_top(self, margin_top: i32) -> Self {
+                            Self { builder: self.builder.property("margin-top", margin_top), }
+                        }
+
+                            pub fn name(self, name: impl Into<glib::GString>) -> Self {
+                            Self { builder: self.builder.property("name", name.into()), }
+                        }
+
+                            pub fn no_show_all(self, no_show_all: bool) -> Self {
+                            Self { builder: self.builder.property("no-show-all", no_show_all), }
+                        }
+
+                            #[cfg(feature = "gtk_v3_8")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3_8")))]
+    pub fn opacity(self, opacity: f64) -> Self {
+                            Self { builder: self.builder.property("opacity", opacity), }
+                        }
+
+                            pub fn parent(self, parent: &impl IsA<gtk::Container>) -> Self {
+                            Self { builder: self.builder.property("parent", parent.clone().upcast()), }
+                        }
+
+                            pub fn receives_default(self, receives_default: bool) -> Self {
+                            Self { builder: self.builder.property("receives-default", receives_default), }
+                        }
+
+                            pub fn sensitive(self, sensitive: bool) -> Self {
+                            Self { builder: self.builder.property("sensitive", sensitive), }
+                        }
+
+                            //pub fn style(self, style: &impl IsA</*Ignored*/gtk::Style>) -> Self {
+                        //    Self { builder: self.builder.property("style", style.clone().upcast()), }
+                        //}
+
+                            #[cfg(feature = "gtk_v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_12")))]
+    pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+                            Self { builder: self.builder.property("tooltip-markup", tooltip_markup.into()), }
+                        }
+
+                            #[cfg(feature = "gtk_v2_12")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_12")))]
+    pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+                            Self { builder: self.builder.property("tooltip-text", tooltip_text.into()), }
+                        }
+
+                        //    #[cfg(feature = "gtk_v3")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
+    //pub fn valign(self, valign: /*Ignored*/gtk::Align) -> Self {
+                        //    Self { builder: self.builder.property("valign", valign), }
+                        //}
+
+                            #[cfg(feature = "gtk_v3")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
+    pub fn vexpand(self, vexpand: bool) -> Self {
+                            Self { builder: self.builder.property("vexpand", vexpand), }
+                        }
+
+                            #[cfg(feature = "gtk_v3")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
+    pub fn vexpand_set(self, vexpand_set: bool) -> Self {
+                            Self { builder: self.builder.property("vexpand-set", vexpand_set), }
+                        }
+
+                            pub fn visible(self, visible: bool) -> Self {
+                            Self { builder: self.builder.property("visible", visible), }
+                        }
+
+                            pub fn width_request(self, width_request: i32) -> Self {
+                            Self { builder: self.builder.property("width-request", width_request), }
+                        }
+
+                        //    #[cfg(feature = "gtk_v2_16")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_16")))]
+    //pub fn orientation(self, orientation: /*Ignored*/gtk::Orientation) -> Self {
+                        //    Self { builder: self.builder.property("orientation", orientation), }
+                        //}
+
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Slider`].
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
+    pub fn build(self) -> Slider {
+assert_initialized_main_thread!();
+    self.builder.build() }
+}
 
 pub trait SliderExt: IsA<Slider> + 'static {
     #[doc(alias = "astal_slider_get_vertical")]

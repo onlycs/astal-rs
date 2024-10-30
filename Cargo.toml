@@ -2,12 +2,14 @@
 resolver = "2"
 members = ["crates/*", "sys/*", "gir/gir-ffi"]
 
+[workspace.dependencies.astal-sys]
+path = "sys/astal-sys"
+
+[workspace.dependencies.astal-apps-sys]
+path = "sys/astal-apps-sys"
 
 [workspace.dependencies.astal-io-sys]
 path = "sys/astal-io-sys"
-
-[workspace.dependencies.astal-sys]
-path = "sys/astal-sys"
 
 [workspace.dependencies.gir-error]
 path = "crates/gir-error"

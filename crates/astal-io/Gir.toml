@@ -3,7 +3,7 @@ library = "AstalIO"
 version = "0.1"
 min_cfg_version = "0.1"
 target_path = "."
-girs_directories = ["../../gobject/gir-files", "/usr/share/gir-1.0"]
+girs_directories = ["../../gir/gir-files"]
 work_mode = "normal"
 single_version_file = true
 generate_safety_asserts = true
@@ -11,10 +11,8 @@ deprecate_by_min_version = true
 
 generate = [
 	"AstalIO.AppError",
-	"AstalIO.Process",
 	"AstalIO.Time",
 	"AstalIO.VariableBase",
-	"AstalIO.Variable",
 	"AstalIO.Application",
 	"AstalIO.*",
 ]
@@ -29,3 +27,13 @@ manual = [
 	"Gio.SocketService",
 	"Gio.FileMonitor",
 ]
+
+[[object]]
+name = "AstalIO.Process"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "AstalIO.Variable"
+status = "generate"
+generate_builder = true
