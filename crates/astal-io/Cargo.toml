@@ -1,5 +1,5 @@
 [package]
-name = "astal"
+name = "astal-io"
 version = "0.1.0"
 edition = "2021"
 
@@ -8,8 +8,8 @@ libc = "0.2"
 bitflags = "2.2"
 
 [dependencies.ffi]
-package = "astal-sys"
-path = "astal-sys"
+package = "astal-io-sys"
+path = "astal-io-sys"
 
 [dependencies.gir-error]
 path = "../gir-error"
@@ -28,12 +28,3 @@ git = "https://github.com/gtk-rs/gtk-rs-core"
 
 [dependencies.gdk-pixbuf]
 git = "https://github.com/gtk-rs/gtk-rs-core"
-
-[dependencies.gobject-sys]
-git = "https://github.com/gtk-rs/gtk-rs-core"
-
-[dependencies.atk]
-git = "https://github.com/onlycs/gtk3-rs"
-
-[dependencies.astal-io]
-path = "../astal-io"

@@ -1,11 +1,11 @@
 [options]
 girs_directories = ["../../../gobject/gir-files", "/usr/share/gir-1.0"]
-library = "Astal"
-version = "3.0"
+library = "AstalIO"
+version = "0.1"
 min_cfg_version = "0.1"
 target_path = "."
 work_mode = "sys"
 split_build_rs = false
 split_lib = false
 
-external_libraries = ["Gtk", "GLib", "Gdk", "Gio", "GdkPixbuf", "Atk"]
+external_libraries = ["GLib", "Gio", "gobject"]

@@ -3,8 +3,8 @@
 // from ../../gobject/gir-files
 // DO NOT EDIT
 
-use crate::{ffi};
-use glib::{translate::*};
+use crate::ffi;
+use glib::translate::*;
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -19,8 +19,8 @@ glib::wrapper! {
 
 impl HoverEvent {
     #[doc(alias = "astal_hover_event_init")]
-#[must_use]
-    pub fn init(event: &mut gdk::EventCrossing) -> HoverEvent {
+    #[must_use]
+    pub fn init(&mut self, event: &mut gdk::EventCrossing) {
         unsafe {
             ffi::astal_hover_event_init(self.to_glib_none_mut().0, event.to_glib_none_mut().0);
         }

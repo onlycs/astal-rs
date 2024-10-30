@@ -1,3 +1,8 @@
 [workspace]
 resolver = "2"
-members = ["crates/*", "crates/astal/astal-sys", "gobject/gir-ffi"]
+members = [
+	"crates/*",
+	"crates/astal/astal-sys",
+	"crates/astal-io/astal-io-sys",
+	"gobject/gir-ffi",
+]

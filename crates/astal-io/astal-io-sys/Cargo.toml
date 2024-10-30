@@ -1,20 +1,17 @@
 [package]
-name = "astal-sys"
-version = "0.0.1"
+name = "astal-io-sys"
+version = "0.1.0"
 edition = "2021"
 build = "build.rs"
 
-[package.metadata.system-deps.astal]
-name = "astal"
+[package.metadata.system-deps.astal_io]
+name = "astal-io"
 version = "0.1"
 
 [package.metadata.docs.rs]
 rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
 all-features = true
-
-[lib]
-name = "astal_sys"
 
 [dependencies]
 libc = "0.2"
@@ -32,6 +29,9 @@ git = "https://github.com/onlycs/gtk3-rs"
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
 [dependencies.gdk-pixbuf-sys]
+git = "https://github.com/gtk-rs/gtk-rs-core"
+
+[dependencies.gobject-sys]
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
 [build-dependencies]

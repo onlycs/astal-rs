@@ -3,9 +3,13 @@
 // from ../../gobject/gir-files
 // DO NOT EDIT
 
-use crate::{ffi};
-use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
-use std::{boxed::Box as Box_};
+use crate::ffi;
+use glib::{
+    prelude::*,
+    signal::{connect_raw, SignalHandlerId},
+    translate::*,
+};
+use std::boxed::Box as Box_;
 
 glib::wrapper! {
     #[doc(alias = "AstalBox")]
@@ -17,14 +21,16 @@ glib::wrapper! {
 }
 
 impl Box {
-        pub const NONE: Option<&'static Box> = None;
-    
+    pub const NONE: Option<&'static Box> = None;
 
     #[doc(alias = "astal_box_new")]
     pub fn new(vertical: bool, children: &[gtk::Widget]) -> Box {
         assert_initialized_main_thread!();
         unsafe {
-            from_glib_none(ffi::astal_box_new(vertical.into_glib(), children.to_glib_none().0))
+            from_glib_none(ffi::astal_box_new(
+                vertical.into_glib(),
+                children.to_glib_none().0,
+            ))
         }
     }
 }
@@ -33,9 +39,7 @@ pub trait BoxExt: IsA<Box> + 'static {
     #[doc(alias = "astal_box_get_vertical")]
     #[doc(alias = "get_vertical")]
     fn is_vertical(&self) -> bool {
-        unsafe {
-            from_glib(ffi::astal_box_get_vertical(self.as_ref().to_glib_none().0))
-        }
+        unsafe { from_glib(ffi::astal_box_get_vertical(self.as_ref().to_glib_none().0)) }
     }
 
     #[doc(alias = "astal_box_set_vertical")]
@@ -49,7 +53,9 @@ pub trait BoxExt: IsA<Box> + 'static {
     #[doc(alias = "get_children")]
     fn children(&self) -> Vec<gtk::Widget> {
         unsafe {
-            FromGlibPtrContainer::from_glib_container(ffi::astal_box_get_children(self.as_ref().to_glib_none().0))
+            FromGlibPtrContainer::from_glib_container(ffi::astal_box_get_children(
+                self.as_ref().to_glib_none().0,
+            ))
         }
     }
 
@@ -63,41 +69,62 @@ pub trait BoxExt: IsA<Box> + 'static {
     #[doc(alias = "astal_box_get_child")]
     #[doc(alias = "get_child")]
     fn child(&self) -> Option<gtk::Widget> {
-        unsafe {
-            from_glib_full(ffi::astal_box_get_child(self.as_ref().to_glib_none().0))
-        }
+        unsafe { from_glib_full(ffi::astal_box_get_child(self.as_ref().to_glib_none().0)) }
     }
 
     #[doc(alias = "astal_box_set_child")]
     fn set_child(&self, value: &impl IsA<gtk::Widget>) {
         unsafe {
-            ffi::astal_box_set_child(self.as_ref().to_glib_none().0, value.as_ref().to_glib_none().0);
+            ffi::astal_box_set_child(
+                self.as_ref().to_glib_none().0,
+                value.as_ref().to_glib_none().0,
+            );
         }
     }
 
     #[doc(alias = "vertical")]
     fn connect_vertical_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_vertical_trampoline<P: IsA<Box>, F: Fn(&P) + 'static>(this: *mut ffi::AstalBox, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn notify_vertical_trampoline<P: IsA<Box>, F: Fn(&P) + 'static>(
+            this: *mut ffi::AstalBox,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(Box::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::vertical\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_vertical_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::vertical\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_vertical_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 
     #[doc(alias = "children")]
     fn connect_children_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_children_trampoline<P: IsA<Box>, F: Fn(&P) + 'static>(this: *mut ffi::AstalBox, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn notify_children_trampoline<P: IsA<Box>, F: Fn(&P) + 'static>(
+            this: *mut ffi::AstalBox,
+            _param_spec: glib::ffi::gpointer,
+            f: glib::ffi::gpointer,
+        ) {
             let f: &F = &*(f as *const F);
             f(Box::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::children\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_children_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+            connect_raw(
+                self.as_ptr() as *mut _,
+                b"notify::children\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(
+                    notify_children_trampoline::<Self, F> as *const (),
+                )),
+                Box_::into_raw(f),
+            )
         }
     }
 }

@@ -8,7 +8,10 @@ use std::ffi::CStr;
 use crate::ffi;
 use glib::GStr;
 
-#[doc(alias = "ASTAL_VERSION")]
+#[doc(alias = "ASTAL_IO_VERSION")]
 pub static VERSION: &GStr = unsafe {
-    GStr::from_utf8_with_nul_unchecked(CStr::from_ptr(ffi::ASTAL_VERSION).to_bytes_with_nul())
+    GStr::from_utf8_with_nul_unchecked({
+        let cstr = CStr::from_ptr(ffi::ASTAL_IO_VERSION);
+        cstr.to_bytes_with_nul()
+    })
 };

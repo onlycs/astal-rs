@@ -3,7 +3,8 @@
 // from ../../gobject/gir-files
 // DO NOT EDIT
 
-use crate::{ffi};
+use crate::ffi;
+use glib::translate::*;
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -17,9 +18,11 @@ glib::wrapper! {
 }
 
 impl MotionEvent {
-    //#[doc(alias = "astal_motion_event_init")]
-//#[must_use]
-    //pub fn init(event: /*Ignored*/&mut gdk::EventMotion) -> MotionEvent {
-    //    unsafe { TODO: call ffi:astal_motion_event_init() }
-    //}
+    #[doc(alias = "astal_motion_event_init")]
+    #[must_use]
+    pub fn init(&mut self, event: &mut gdk::EventMotion) {
+        unsafe {
+            ffi::astal_motion_event_init(self.to_glib_none_mut().0, event.to_glib_none_mut().0);
+        }
+    }
 }

@@ -3,8 +3,8 @@
 // from ../../gobject/gir-files
 // DO NOT EDIT
 
-use crate::{ffi};
-use glib::{translate::*};
+use crate::ffi;
+use glib::translate::*;
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -19,8 +19,8 @@ glib::wrapper! {
 
 impl ScrollEvent {
     #[doc(alias = "astal_scroll_event_init")]
-#[must_use]
-    pub fn init(event: &mut gdk::EventScroll) -> ScrollEvent {
+    #[must_use]
+    pub fn init(&mut self, event: &mut gdk::EventScroll) {
         unsafe {
             ffi::astal_scroll_event_init(self.to_glib_none_mut().0, event.to_glib_none_mut().0);
         }
