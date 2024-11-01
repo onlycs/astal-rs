@@ -77,6 +77,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "astal-battery-sys"
+version = "0.0.1"
+dependencies = [
+ "libc",
+ "shell-words",
+ "system-deps 7.0.3",
+ "tempfile",
+]
+
+[[package]]
 name = "astal-io"
 version = "0.1.0"
 dependencies = [
