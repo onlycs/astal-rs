@@ -1,7 +1,7 @@
 [options]
 library = "Astal"
 version = "3.0"
-min_cfg_version = "3.11"
+min_cfg_version = "1.0"
 target_path = "."
 girs_directories = ["../../gir/gir-files"]
 work_mode = "normal"
@@ -71,7 +71,6 @@ manual = [
 	"Gtk.Style",
 	"Gtk.Orientation",
 	"cairo.Surface",
-	"Gtk.IconSet",
 	"Gtk.IconSize",
 	"GdkPixbuf.PixbufAnimation",
 	"Pango.AttrList",
@@ -91,6 +90,9 @@ manual = [
 	"Gtk.WindowPosition",
 	"Pango.WrapMode",
 ]
+
+# gtk doesn't generate some object right
+ignore = ["Gtk.IconSet"]
 
 [[object]]
 name = "Astal.Box"

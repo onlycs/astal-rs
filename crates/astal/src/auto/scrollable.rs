@@ -153,6 +153,14 @@ pub struct ScrollableBuilder {
                             Self { builder: self.builder.property("window-placement", window_placement), }
                         }
 
+                            #[cfg(feature = "gtk_v2_10")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_10")))]
+    #[cfg_attr(feature = "v3_10", deprecated = "Since 3.10")]
+    pub fn window_placement_set(self, window_placement_set: bool) -> Self {
+                            
+                            Self { builder: self.builder.property("window-placement-set", window_placement_set), }
+                        }
+
                             pub fn border_width(self, border_width: u32) -> Self {
                             
                             Self { builder: self.builder.property("border-width", border_width), }

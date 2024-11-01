@@ -114,6 +114,14 @@ pub struct ApplicationBuilder {
 
                             #[cfg(feature = "gio_v2_28")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_28")))]
+    #[cfg_attr(feature = "v2_32", deprecated = "Since 2.32")]
+    pub fn action_group(self, action_group: &impl IsA<gio::ActionGroup>) -> Self {
+                            
+                            Self { builder: self.builder.property("action-group", action_group.clone().upcast()), }
+                        }
+
+                            #[cfg(feature = "gio_v2_28")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "gio_v2_28")))]
     pub fn application_id(self, application_id: impl Into<glib::GString>) -> Self {
                             
                             Self { builder: self.builder.property("application-id", application_id.into()), }

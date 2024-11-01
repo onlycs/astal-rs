@@ -8,6 +8,9 @@ path = "sys/astal-sys"
 [workspace.dependencies.astal-apps-sys]
 path = "sys/astal-apps-sys"
 
+[workspace.dependencies.astal-auth-sys]
+path = "sys/astal-auth-sys"
+
 [workspace.dependencies.astal-io-sys]
 path = "sys/astal-io-sys"
 

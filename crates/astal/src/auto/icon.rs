@@ -99,6 +99,12 @@ pub struct IconBuilder {
                             Self { builder: self.builder.property("icon-name", icon_name.into()), }
                         }
 
+                        //    #[cfg_attr(feature = "v3_10", deprecated = "Since 3.10")]
+    //pub fn icon_set(self, icon_set: /*Ignored*/&gtk::IconSet) -> Self {
+                        //    
+                        //    Self { builder: self.builder.property("icon-set", icon_set), }
+                        //}
+
                             pub fn icon_size(self, icon_size: gtk::IconSize) -> Self {
                             
                             Self { builder: self.builder.property("icon-size", icon_size), }
@@ -121,6 +127,12 @@ pub struct IconBuilder {
     pub fn resource(self, resource: impl Into<glib::GString>) -> Self {
                             
                             Self { builder: self.builder.property("resource", resource.into()), }
+                        }
+
+                            #[cfg_attr(feature = "v3_10", deprecated = "Since 3.10")]
+    pub fn stock(self, stock: impl Into<glib::GString>) -> Self {
+                            
+                            Self { builder: self.builder.property("stock", stock.into()), }
                         }
 
                             pub fn surface(self, surface: &cairo::Surface) -> Self {
