@@ -27,11 +27,38 @@ git = "https://github.com/gtk-rs/gtk-rs-core"
 [dependencies.atk]
 git = "https://github.com/onlycs/gtk3-rs"
 
+[dependencies.cairo-rs]
+git = "https://github.com/gtk-rs/gtk-rs-core"
+
+[dependencies.pango]
+git = "https://github.com/gtk-rs/gtk-rs-core"
+
 [dependencies.astal-io]
 path = "../astal-io"
 
 [features]
 default = []
+v3_12 = []
+v3_14 = []
 gio_v2_28 = []
 gio_v2_32 = []
+gio_v2_80 = []
+gtk_v2_4 = []
+gtk_v2_6 = []
+gtk_v2_10 = []
+gtk_v2_12 = []
+gtk_v2_14 = []
+gtk_v2_16 = []
+gtk_v2_18 = []
+gtk_v2_20 = []
+gtk_v2_24 = []
 gtk_v3_4 = []
+gtk_v3_6 = []
+gtk_v3_8 = []
+gtk_v3_10 = []
+gtk_v3_12 = []
+gtk_v3_14 = []
+gtk_v3_16 = []
+gtk_v3_20 = []
+gtk_v3_22 = []
+gtk_v3 = []

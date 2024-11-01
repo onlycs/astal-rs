@@ -2,10 +2,11 @@
 girs_directories = ["../../gir/gir-files"]
 library = "Astal"
 version = "3.0"
-min_cfg_version = "0.1"
+min_cfg_version = "3.0"
 target_path = "."
 work_mode = "sys"
 split_build_rs = false
 split_lib = false
+single_version_file = true
 
 external_libraries = ["Gtk", "GLib", "Gdk", "Gio", "GdkPixbuf"]

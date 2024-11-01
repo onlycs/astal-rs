@@ -6,7 +6,7 @@ build = "build.rs"
 
 [package.metadata.system-deps.astal]
 name = "astal"
-version = "0.1"
+version = "3"
 
 [package.metadata.docs.rs]
 rustc-args = ["--cfg", "docsrs"]

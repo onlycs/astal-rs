@@ -2,12 +2,12 @@
 extern crate gir_error;
 extern crate astal_sys as ffi;
 extern crate atk;
+extern crate cairo;
 extern crate gdk;
 extern crate gio;
 extern crate glib as gobject;
 extern crate gtk;
 
-#[allow(warnings)]
 mod auto;
 
 pub use auto::*;

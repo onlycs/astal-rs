@@ -1,7 +1,7 @@
 [options]
 library = "Astal"
 version = "3.0"
-min_cfg_version = "0.1"
+min_cfg_version = "3.11"
 target_path = "."
 girs_directories = ["../../gir/gir-files"]
 work_mode = "normal"
@@ -62,6 +62,34 @@ manual = [
 	"Gdk.EventButton",
 	"Gdk.EventScroll",
 	"Gdk.EventMotion",
+	"Gtk.ResizeMode",
+	"Gtk.BaselinePosition",
+	"Gio.MenuModel",
+	"Gio.ApplicationFlags",
+	"Gdk.EventMask",
+	"Gtk.Align",
+	"Gtk.Style",
+	"Gtk.Orientation",
+	"cairo.Surface",
+	"Gtk.IconSet",
+	"Gtk.IconSize",
+	"GdkPixbuf.PixbufAnimation",
+	"Pango.AttrList",
+	"Pango.EllipsizeMode",
+	"Gtk.Justification",
+	"Gtk.LevelBarMode",
+	"Gtk.Adjustment",
+	"Gtk.ShadowType",
+	"Gtk.CornerType",
+	"Gtk.PositionType",
+	"Gtk.SensitivityType",
+	"Gtk.StackTransitionType",
+	"Gdk.Gravity",
+	"Gdk.Screen",
+	"Gtk.WindowType",
+	"Gdk.WindowTypeHint",
+	"Gtk.WindowPosition",
+	"Pango.WrapMode",
 ]
 
 [[object]]

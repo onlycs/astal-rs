@@ -58,223 +58,271 @@ pub struct WindowBuilder {
         }
 
                             pub fn inhibit(self, inhibit: bool) -> Self {
+                            
                             Self { builder: self.builder.property("inhibit", inhibit), }
                         }
 
                             pub fn namespace(self, namespace: impl Into<glib::GString>) -> Self {
+                            
                             Self { builder: self.builder.property("namespace", namespace.into()), }
                         }
 
                             pub fn anchor(self, anchor: i32) -> Self {
+                            
                             Self { builder: self.builder.property("anchor", anchor), }
                         }
 
                             pub fn exclusivity(self, exclusivity: Exclusivity) -> Self {
+                            
                             Self { builder: self.builder.property("exclusivity", exclusivity), }
                         }
 
                             pub fn layer(self, layer: Layer) -> Self {
+                            
                             Self { builder: self.builder.property("layer", layer), }
                         }
 
                             pub fn keymode(self, keymode: Keymode) -> Self {
+                            
                             Self { builder: self.builder.property("keymode", keymode), }
                         }
 
                             pub fn gdkmonitor(self, gdkmonitor: &gdk::Monitor) -> Self {
+                            
                             Self { builder: self.builder.property("gdkmonitor", gdkmonitor.clone()), }
                         }
 
                             pub fn margin_top(self, margin_top: i32) -> Self {
+                            
                             Self { builder: self.builder.property("margin-top", margin_top), }
                         }
 
                             pub fn margin_bottom(self, margin_bottom: i32) -> Self {
+                            
                             Self { builder: self.builder.property("margin-bottom", margin_bottom), }
                         }
 
                             pub fn margin_left(self, margin_left: i32) -> Self {
+                            
                             Self { builder: self.builder.property("margin-left", margin_left), }
                         }
 
                             pub fn margin_right(self, margin_right: i32) -> Self {
+                            
                             Self { builder: self.builder.property("margin-right", margin_right), }
                         }
 
                             pub fn margin(self, margin: i32) -> Self {
+                            
                             Self { builder: self.builder.property("margin", margin), }
                         }
 
                             pub fn monitor(self, monitor: i32) -> Self {
+                            
                             Self { builder: self.builder.property("monitor", monitor), }
                         }
 
                             #[cfg(feature = "gtk_v2_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_4")))]
     pub fn accept_focus(self, accept_focus: bool) -> Self {
+                            
                             Self { builder: self.builder.property("accept-focus", accept_focus), }
                         }
 
                             #[cfg(feature = "gtk_v3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
     pub fn application(self, application: &impl IsA<gtk::Application>) -> Self {
+                            
                             Self { builder: self.builder.property("application", application.clone().upcast()), }
                         }
 
                             #[cfg(feature = "gtk_v3_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3_4")))]
     pub fn attached_to(self, attached_to: &impl IsA<gtk::Widget>) -> Self {
+                            
                             Self { builder: self.builder.property("attached-to", attached_to.clone().upcast()), }
                         }
 
                             #[cfg(feature = "gtk_v2_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_4")))]
     pub fn decorated(self, decorated: bool) -> Self {
+                            
                             Self { builder: self.builder.property("decorated", decorated), }
                         }
 
                             pub fn default_height(self, default_height: i32) -> Self {
+                            
                             Self { builder: self.builder.property("default-height", default_height), }
                         }
 
                             pub fn default_width(self, default_width: i32) -> Self {
+                            
                             Self { builder: self.builder.property("default-width", default_width), }
                         }
 
                             #[cfg(feature = "gtk_v2_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_10")))]
     pub fn deletable(self, deletable: bool) -> Self {
+                            
                             Self { builder: self.builder.property("deletable", deletable), }
                         }
 
                             pub fn destroy_with_parent(self, destroy_with_parent: bool) -> Self {
+                            
                             Self { builder: self.builder.property("destroy-with-parent", destroy_with_parent), }
                         }
 
                             #[cfg(feature = "gtk_v2_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_6")))]
     pub fn focus_on_map(self, focus_on_map: bool) -> Self {
+                            
                             Self { builder: self.builder.property("focus-on-map", focus_on_map), }
                         }
 
                             #[cfg(feature = "gtk_v2_20")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_20")))]
     pub fn focus_visible(self, focus_visible: bool) -> Self {
+                            
                             Self { builder: self.builder.property("focus-visible", focus_visible), }
                         }
 
-                        //    #[cfg(feature = "gtk_v2_4")]
+                            #[cfg(feature = "gtk_v2_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_4")))]
-    //pub fn gravity(self, gravity: /*Ignored*/gdk::Gravity) -> Self {
-                        //    Self { builder: self.builder.property("gravity", gravity), }
-                        //}
+    pub fn gravity(self, gravity: gdk::Gravity) -> Self {
+                            
+                            Self { builder: self.builder.property("gravity", gravity), }
+                        }
 
                             #[cfg(feature = "gtk_v3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
     #[cfg_attr(feature = "v3_14", deprecated = "Since 3.14")]
     pub fn has_resize_grip(self, has_resize_grip: bool) -> Self {
+                            
                             Self { builder: self.builder.property("has-resize-grip", has_resize_grip), }
                         }
 
                             #[cfg(feature = "gtk_v3_4")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3_4")))]
     pub fn hide_titlebar_when_maximized(self, hide_titlebar_when_maximized: bool) -> Self {
+                            
                             Self { builder: self.builder.property("hide-titlebar-when-maximized", hide_titlebar_when_maximized), }
                         }
 
                             pub fn icon(self, icon: &gdk_pixbuf::Pixbuf) -> Self {
+                            
                             Self { builder: self.builder.property("icon", icon.clone()), }
                         }
 
                             #[cfg(feature = "gtk_v2_6")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_6")))]
     pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
+                            
                             Self { builder: self.builder.property("icon-name", icon_name.into()), }
                         }
 
                             #[cfg(feature = "gtk_v2_20")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_20")))]
     pub fn mnemonics_visible(self, mnemonics_visible: bool) -> Self {
+                            
                             Self { builder: self.builder.property("mnemonics-visible", mnemonics_visible), }
                         }
 
                             pub fn modal(self, modal: bool) -> Self {
+                            
                             Self { builder: self.builder.property("modal", modal), }
                         }
 
                             pub fn resizable(self, resizable: bool) -> Self {
+                            
                             Self { builder: self.builder.property("resizable", resizable), }
                         }
 
                             pub fn role(self, role: impl Into<glib::GString>) -> Self {
+                            
                             Self { builder: self.builder.property("role", role.into()), }
                         }
 
-                            //pub fn screen(self, screen: /*Ignored*/&gdk::Screen) -> Self {
-                        //    Self { builder: self.builder.property("screen", screen), }
-                        //}
+                            pub fn screen(self, screen: &gdk::Screen) -> Self {
+                            
+                            Self { builder: self.builder.property("screen", screen.clone()), }
+                        }
 
                             pub fn skip_pager_hint(self, skip_pager_hint: bool) -> Self {
+                            
                             Self { builder: self.builder.property("skip-pager-hint", skip_pager_hint), }
                         }
 
                             pub fn skip_taskbar_hint(self, skip_taskbar_hint: bool) -> Self {
+                            
                             Self { builder: self.builder.property("skip-taskbar-hint", skip_taskbar_hint), }
                         }
 
                             #[cfg(feature = "gtk_v2_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_12")))]
     pub fn startup_id(self, startup_id: impl Into<glib::GString>) -> Self {
+                            
                             Self { builder: self.builder.property("startup-id", startup_id.into()), }
                         }
 
                             pub fn title(self, title: impl Into<glib::GString>) -> Self {
+                            
                             Self { builder: self.builder.property("title", title.into()), }
                         }
 
                             #[cfg(feature = "gtk_v2_10")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_10")))]
     pub fn transient_for(self, transient_for: &impl IsA<gtk::Window>) -> Self {
+                            
                             Self { builder: self.builder.property("transient-for", transient_for.clone().upcast()), }
                         }
 
-                            //pub fn type_(self, type_: /*Ignored*/gtk::WindowType) -> Self {
-                        //    Self { builder: self.builder.property("type", type_), }
-                        //}
+                            pub fn type_(self, type_: gtk::WindowType) -> Self {
+                            
+                            Self { builder: self.builder.property("type", type_), }
+                        }
 
-                            //pub fn type_hint(self, type_hint: /*Ignored*/gdk::WindowTypeHint) -> Self {
-                        //    Self { builder: self.builder.property("type-hint", type_hint), }
-                        //}
+                            pub fn type_hint(self, type_hint: gdk::WindowTypeHint) -> Self {
+                            
+                            Self { builder: self.builder.property("type-hint", type_hint), }
+                        }
 
                             pub fn urgency_hint(self, urgency_hint: bool) -> Self {
+                            
                             Self { builder: self.builder.property("urgency-hint", urgency_hint), }
                         }
 
-                            //pub fn window_position(self, window_position: /*Ignored*/gtk::WindowPosition) -> Self {
-                        //    Self { builder: self.builder.property("window-position", window_position), }
-                        //}
+                            pub fn window_position(self, window_position: gtk::WindowPosition) -> Self {
+                            
+                            Self { builder: self.builder.property("window-position", window_position), }
+                        }
 
                             pub fn border_width(self, border_width: u32) -> Self {
+                            
                             Self { builder: self.builder.property("border-width", border_width), }
                         }
 
                             pub fn child(self, child: &impl IsA<gtk::Widget>) -> Self {
+                            
                             Self { builder: self.builder.property("child", child.clone().upcast()), }
                         }
 
-                            //pub fn resize_mode(self, resize_mode: /*Ignored*/gtk::ResizeMode) -> Self {
-                        //    Self { builder: self.builder.property("resize-mode", resize_mode), }
-                        //}
+                            pub fn resize_mode(self, resize_mode: gtk::ResizeMode) -> Self {
+                            
+                            Self { builder: self.builder.property("resize-mode", resize_mode), }
+                        }
 
                             pub fn app_paintable(self, app_paintable: bool) -> Self {
+                            
                             Self { builder: self.builder.property("app-paintable", app_paintable), }
                         }
 
                             pub fn can_default(self, can_default: bool) -> Self {
+                            
                             Self { builder: self.builder.property("can-default", can_default), }
                         }
 
                             pub fn can_focus(self, can_focus: bool) -> Self {
+                            
                             Self { builder: self.builder.property("can-focus", can_focus), }
                         }
 
@@ -282,142 +330,170 @@ pub struct WindowBuilder {
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_18")))]
     #[cfg_attr(feature = "v3_14", deprecated = "Since 3.14")]
     pub fn double_buffered(self, double_buffered: bool) -> Self {
+                            
                             Self { builder: self.builder.property("double-buffered", double_buffered), }
                         }
 
-                            //pub fn events(self, events: /*Ignored*/gdk::EventMask) -> Self {
-                        //    Self { builder: self.builder.property("events", events), }
-                        //}
+                            pub fn events(self, events: gdk::EventMask) -> Self {
+                            
+                            Self { builder: self.builder.property("events", events), }
+                        }
 
                             #[cfg(feature = "gtk_v3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
     pub fn expand(self, expand: bool) -> Self {
+                            
                             Self { builder: self.builder.property("expand", expand), }
                         }
 
                             #[cfg(feature = "gtk_v3_20")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3_20")))]
     pub fn focus_on_click(self, focus_on_click: bool) -> Self {
+                            
                             Self { builder: self.builder.property("focus-on-click", focus_on_click), }
                         }
 
-                        //    #[cfg(feature = "gtk_v3")]
+                            #[cfg(feature = "gtk_v3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
-    //pub fn halign(self, halign: /*Ignored*/gtk::Align) -> Self {
-                        //    Self { builder: self.builder.property("halign", halign), }
-                        //}
+    pub fn halign(self, halign: gtk::Align) -> Self {
+                            
+                            Self { builder: self.builder.property("halign", halign), }
+                        }
 
                             pub fn has_default(self, has_default: bool) -> Self {
+                            
                             Self { builder: self.builder.property("has-default", has_default), }
                         }
 
                             pub fn has_focus(self, has_focus: bool) -> Self {
+                            
                             Self { builder: self.builder.property("has-focus", has_focus), }
                         }
 
                             #[cfg(feature = "gtk_v2_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_12")))]
     pub fn has_tooltip(self, has_tooltip: bool) -> Self {
+                            
                             Self { builder: self.builder.property("has-tooltip", has_tooltip), }
                         }
 
                             pub fn height_request(self, height_request: i32) -> Self {
+                            
                             Self { builder: self.builder.property("height-request", height_request), }
                         }
 
                             #[cfg(feature = "gtk_v3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
     pub fn hexpand(self, hexpand: bool) -> Self {
+                            
                             Self { builder: self.builder.property("hexpand", hexpand), }
                         }
 
                             #[cfg(feature = "gtk_v3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
     pub fn hexpand_set(self, hexpand_set: bool) -> Self {
+                            
                             Self { builder: self.builder.property("hexpand-set", hexpand_set), }
                         }
 
                             pub fn is_focus(self, is_focus: bool) -> Self {
+                            
                             Self { builder: self.builder.property("is-focus", is_focus), }
                         }
 
                             #[cfg(feature = "gtk_v3_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3_12")))]
     pub fn margin_end(self, margin_end: i32) -> Self {
+                            
                             Self { builder: self.builder.property("margin-end", margin_end), }
                         }
 
                             #[cfg(feature = "gtk_v3_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3_12")))]
     pub fn margin_start(self, margin_start: i32) -> Self {
+                            
                             Self { builder: self.builder.property("margin-start", margin_start), }
                         }
 
                             pub fn name(self, name: impl Into<glib::GString>) -> Self {
+                            
                             Self { builder: self.builder.property("name", name.into()), }
                         }
 
                             pub fn no_show_all(self, no_show_all: bool) -> Self {
+                            
                             Self { builder: self.builder.property("no-show-all", no_show_all), }
                         }
 
                             #[cfg(feature = "gtk_v3_8")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3_8")))]
     pub fn opacity(self, opacity: f64) -> Self {
+                            
                             Self { builder: self.builder.property("opacity", opacity), }
                         }
 
                             pub fn parent(self, parent: &impl IsA<gtk::Container>) -> Self {
+                            
                             Self { builder: self.builder.property("parent", parent.clone().upcast()), }
                         }
 
                             pub fn receives_default(self, receives_default: bool) -> Self {
+                            
                             Self { builder: self.builder.property("receives-default", receives_default), }
                         }
 
                             pub fn sensitive(self, sensitive: bool) -> Self {
+                            
                             Self { builder: self.builder.property("sensitive", sensitive), }
                         }
 
-                            //pub fn style(self, style: &impl IsA</*Ignored*/gtk::Style>) -> Self {
-                        //    Self { builder: self.builder.property("style", style.clone().upcast()), }
-                        //}
+                            pub fn style(self, style: &impl IsA<gtk::Style>) -> Self {
+                            
+                            Self { builder: self.builder.property("style", style.clone().upcast()), }
+                        }
 
                             #[cfg(feature = "gtk_v2_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_12")))]
     pub fn tooltip_markup(self, tooltip_markup: impl Into<glib::GString>) -> Self {
+                            
                             Self { builder: self.builder.property("tooltip-markup", tooltip_markup.into()), }
                         }
 
                             #[cfg(feature = "gtk_v2_12")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v2_12")))]
     pub fn tooltip_text(self, tooltip_text: impl Into<glib::GString>) -> Self {
+                            
                             Self { builder: self.builder.property("tooltip-text", tooltip_text.into()), }
                         }
 
-                        //    #[cfg(feature = "gtk_v3")]
+                            #[cfg(feature = "gtk_v3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
-    //pub fn valign(self, valign: /*Ignored*/gtk::Align) -> Self {
-                        //    Self { builder: self.builder.property("valign", valign), }
-                        //}
+    pub fn valign(self, valign: gtk::Align) -> Self {
+                            
+                            Self { builder: self.builder.property("valign", valign), }
+                        }
 
                             #[cfg(feature = "gtk_v3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
     pub fn vexpand(self, vexpand: bool) -> Self {
+                            
                             Self { builder: self.builder.property("vexpand", vexpand), }
                         }
 
                             #[cfg(feature = "gtk_v3")]
     #[cfg_attr(docsrs, doc(cfg(feature = "gtk_v3")))]
     pub fn vexpand_set(self, vexpand_set: bool) -> Self {
+                            
                             Self { builder: self.builder.property("vexpand-set", vexpand_set), }
                         }
 
                             pub fn visible(self, visible: bool) -> Self {
+                            
                             Self { builder: self.builder.property("visible", visible), }
                         }
 
                             pub fn width_request(self, width_request: i32) -> Self {
+                            
                             Self { builder: self.builder.property("width-request", width_request), }
                         }
 

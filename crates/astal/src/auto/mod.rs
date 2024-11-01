@@ -63,12 +63,12 @@ pub use self::enums::Layer;
 pub use self::enums::MouseButton;
 pub use self::enums::WindowAnchor;
 
-pub(crate) mod functions;
+pub mod functions;
 
 mod constants;
 pub use self::constants::VERSION;
 
-pub(crate) mod traits {
+pub mod traits {
     pub use super::application::ApplicationExt;
     pub use super::box_::BoxExt;
     pub use super::button::ButtonExt;
@@ -84,7 +84,7 @@ pub(crate) mod traits {
     pub use super::stack::StackExt;
     pub use super::window::WindowExt;
 }
-pub(crate) mod builders {
+pub mod builders {
     pub use super::application::ApplicationBuilder;
     pub use super::box_::BoxBuilder;
     pub use super::center_box::CenterBoxBuilder;
