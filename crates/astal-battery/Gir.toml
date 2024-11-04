@@ -1,0 +1,31 @@
+[options]
+library = "AstalBattery"
+version = "0.1"
+min_cfg_version = "0.1"
+target_path = "."
+girs_directories = ["../../gir/gir-files"]
+work_mode = "normal"
+single_version_file = true
+generate_safety_asserts = true
+deprecate_by_min_version = true
+
+generate = [
+	"AstalBattery.State",
+	"AstalBattery.Technology",
+	"AstalBattery.WarningLevel",
+	"AstalBattery.BatteryLevel",
+	"AstalBattery.Type",
+	"AstalBattery.Device",
+	"AstalBattery.UPower",
+	"AstalBattery.HistoryDataPoint",
+	"AstalBattery.IUPowerDevice",
+	"AstalBattery.StatisticsDataPoint",
+]
+
+manual = [
+	"Gio.DBusProxy",
+	"Gio.AsyncInitable",
+	"Gio.DBusInterface",
+	"Gio.Initable",
+	"GLib.Error",
+]

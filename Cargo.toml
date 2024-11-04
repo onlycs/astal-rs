@@ -11,6 +11,9 @@ path = "sys/astal-apps-sys"
 [workspace.dependencies.astal-auth-sys]
 path = "sys/astal-auth-sys"
 
+[workspace.dependencies.astal-battery-sys]
+path = "sys/astal-battery-sys"
+
 [workspace.dependencies.astal-io-sys]
 path = "sys/astal-io-sys"
 

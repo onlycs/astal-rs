@@ -77,9 +77,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "astal-battery"
+version = "0.1.0"
+dependencies = [
+ "astal-battery-sys",
+ "gio",
+ "gir-error",
+ "glib 0.21.0",
+ "gtk",
+]
+
+[[package]]
 name = "astal-battery-sys"
 version = "0.0.1"
 dependencies = [
+ "glib-sys",
+ "gobject-sys",
  "libc",
  "shell-words",
  "system-deps 7.0.3",

@@ -6,6 +6,8 @@
 #![allow(clippy::approx_constant, clippy::type_complexity, clippy::unreadable_literal, clippy::upper_case_acronyms)]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 
+use glib_sys as glib;
+use gobject_sys as gobject;
 
 #[allow(unused_imports)]
 use std::ffi::{c_int, c_char, c_uchar, c_float, c_uint, c_double,
