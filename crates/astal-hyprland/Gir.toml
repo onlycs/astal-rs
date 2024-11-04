@@ -1,0 +1,44 @@
+[options]
+library = "AstalHyprland"
+version = "0.1"
+min_cfg_version = "0.1"
+target_path = "."
+girs_directories = ["../../gir/gir-files"]
+work_mode = "normal"
+single_version_file = true
+generate_safety_asserts = true
+deprecate_by_min_version = true
+
+generate = ["AstalHyprland.Fullscreen"]
+
+manual = ["Gio.AsyncReadyCallback", "Gio.AsyncResult", "GLib.Error"]
+
+[[object]]
+name = "AstalHyprland.Client"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "AstalHyprland.Workspace"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "AstalHyprland.Monitor"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "AstalHyprland.Hyprland"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "AstalHyprland.Bind"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "AstalHyprland.Position"
+status = "generate"
+generate_builder = true

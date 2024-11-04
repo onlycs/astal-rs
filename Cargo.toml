@@ -17,6 +17,9 @@ path = "sys/astal-battery-sys"
 [workspace.dependencies.astal-bluetooth-sys]
 path = "sys/astal-bluetooth-sys"
 
+[workspace.dependencies.astal-hyprland-sys]
+path = "sys/astal-hyprland-sys"
+
 [workspace.dependencies.astal-io-sys]
 path = "sys/astal-io-sys"
 

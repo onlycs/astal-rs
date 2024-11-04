@@ -1,0 +1,11 @@
+[options]
+girs_directories = ["../../gir/gir-files"]
+library = "AstalHyprland"
+version = "0.1"
+min_cfg_version = "0.1"
+target_path = "."
+work_mode = "sys"
+split_build_rs = false
+split_lib = false
+
+external_libraries = ["GLib", "Gio", "GObject"]
