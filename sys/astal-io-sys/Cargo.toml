@@ -1,6 +1,6 @@
 [package]
 name = "astal-io-sys"
-version = "0.1.0"
+version = "0.0.1"
 edition = "2021"
 build = "build.rs"
 
@@ -12,6 +12,9 @@ version = "0.1"
 rustc-args = ["--cfg", "docsrs"]
 rustdoc-args = ["--cfg", "docsrs", "--generate-link-to-definition"]
 all-features = true
+
+[lib]
+name = "astal_io_sys"
 
 [dependencies]
 libc = "0.2"

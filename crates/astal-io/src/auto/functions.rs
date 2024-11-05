@@ -12,7 +12,7 @@ pub fn acquire_socket(app: &impl IsA<Application>) -> Result<(gio::SocketService
     unsafe {
         let mut sock = std::ptr::null_mut();
         let mut error = std::ptr::null_mut();
-        let ret = ffi::astal_io_acquire_socket(app.as_ref().to_glib_none().0, &mut sock, &mut error);
+        let mut ret = ffi::astal_io_acquire_socket(app.as_ref().to_glib_none().0, &mut sock, &mut error);
         if error.is_null() { Ok((from_glib_full(ret), from_glib_full(sock))) } else { Err(from_glib_full(error)) }
     }
 }
@@ -27,34 +27,42 @@ pub fn instances() -> Vec<glib::GString> {
 }
 
 #[doc(alias = "astal_io_quit_instance")]
-pub fn quit_instance(instance: &str) {
+pub fn quit_instance(instance: &str) -> Result<(), glib::Error> {
     assert_initialized_main_thread!();
     unsafe {
-        ffi::astal_io_quit_instance(instance.to_glib_none().0);
+        let mut error = std::ptr::null_mut();
+        let _ = ffi::astal_io_quit_instance(instance.to_glib_none().0, &mut error);
+        if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) }
     }
 }
 
 #[doc(alias = "astal_io_open_inspector")]
-pub fn open_inspector(instance: &str) {
+pub fn open_inspector(instance: &str) -> Result<(), glib::Error> {
     assert_initialized_main_thread!();
     unsafe {
-        ffi::astal_io_open_inspector(instance.to_glib_none().0);
+        let mut error = std::ptr::null_mut();
+        let _ = ffi::astal_io_open_inspector(instance.to_glib_none().0, &mut error);
+        if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) }
     }
 }
 
 #[doc(alias = "astal_io_toggle_window_by_name")]
-pub fn toggle_window_by_name(instance: &str, window: &str) {
+pub fn toggle_window_by_name(instance: &str, window: &str) -> Result<(), glib::Error> {
     assert_initialized_main_thread!();
     unsafe {
-        ffi::astal_io_toggle_window_by_name(instance.to_glib_none().0, window.to_glib_none().0);
+        let mut error = std::ptr::null_mut();
+        let _ = ffi::astal_io_toggle_window_by_name(instance.to_glib_none().0, window.to_glib_none().0, &mut error);
+        if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) }
     }
 }
 
 #[doc(alias = "astal_io_send_message")]
-pub fn send_message(instance: &str, msg: &str) -> Option<glib::GString> {
+pub fn send_message(instance: &str, msg: &str) -> Result<glib::GString, glib::Error> {
     assert_initialized_main_thread!();
     unsafe {
-        from_glib_full(ffi::astal_io_send_message(instance.to_glib_none().0, msg.to_glib_none().0))
+        let mut error = std::ptr::null_mut();
+        let mut ret = ffi::astal_io_send_message(instance.to_glib_none().0, msg.to_glib_none().0, &mut error);
+        if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
     }
 }
 

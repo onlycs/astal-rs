@@ -25,7 +25,7 @@ impl Process {
         let cmd_length1 = cmd.len() as _;
         unsafe {
             let mut error = std::ptr::null_mut();
-            let ret = ffi::astal_io_process_new_subprocessv(cmd.to_glib_none().0, cmd_length1, &mut error);
+            let mut ret = ffi::astal_io_process_new_subprocessv(cmd.to_glib_none().0, cmd_length1, &mut error);
             if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
         }
     }
@@ -52,7 +52,7 @@ impl Process {
         assert_initialized_main_thread!();
         unsafe {
             let mut error = std::ptr::null_mut();
-            let ret = ffi::astal_io_process_subprocess(cmd.to_glib_none().0, &mut error);
+            let mut ret = ffi::astal_io_process_subprocess(cmd.to_glib_none().0, &mut error);
             if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
         }
     }
@@ -63,7 +63,7 @@ impl Process {
         let cmd_length1 = cmd.len() as _;
         unsafe {
             let mut error = std::ptr::null_mut();
-            let ret = ffi::astal_io_process_execv(cmd.to_glib_none().0, cmd_length1, &mut error);
+            let mut ret = ffi::astal_io_process_execv(cmd.to_glib_none().0, cmd_length1, &mut error);
             if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
         }
     }
@@ -73,7 +73,7 @@ impl Process {
         assert_initialized_main_thread!();
         unsafe {
             let mut error = std::ptr::null_mut();
-            let ret = ffi::astal_io_process_exec(cmd.to_glib_none().0, &mut error);
+            let mut ret = ffi::astal_io_process_exec(cmd.to_glib_none().0, &mut error);
             if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
         }
     }
@@ -110,6 +110,7 @@ pub struct ProcessBuilder {
         }
 
                             pub fn argv(self, argv: impl Into<glib::StrV>) -> Self {
+                            
                             Self { builder: self.builder.property("argv", argv.into()), }
                         }
 

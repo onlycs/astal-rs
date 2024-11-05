@@ -58,42 +58,52 @@ pub struct AppsBuilder {
         }
 
                             pub fn show_hidden(self, show_hidden: bool) -> Self {
+                            
                             Self { builder: self.builder.property("show-hidden", show_hidden), }
                         }
 
                             pub fn min_score(self, min_score: f64) -> Self {
+                            
                             Self { builder: self.builder.property("min-score", min_score), }
                         }
 
                             pub fn name_multiplier(self, name_multiplier: f64) -> Self {
+                            
                             Self { builder: self.builder.property("name-multiplier", name_multiplier), }
                         }
 
                             pub fn entry_multiplier(self, entry_multiplier: f64) -> Self {
+                            
                             Self { builder: self.builder.property("entry-multiplier", entry_multiplier), }
                         }
 
                             pub fn executable_multiplier(self, executable_multiplier: f64) -> Self {
+                            
                             Self { builder: self.builder.property("executable-multiplier", executable_multiplier), }
                         }
 
                             pub fn description_multiplier(self, description_multiplier: f64) -> Self {
+                            
                             Self { builder: self.builder.property("description-multiplier", description_multiplier), }
                         }
 
                             pub fn include_name(self, include_name: bool) -> Self {
+                            
                             Self { builder: self.builder.property("include-name", include_name), }
                         }
 
                             pub fn include_entry(self, include_entry: bool) -> Self {
+                            
                             Self { builder: self.builder.property("include-entry", include_entry), }
                         }
 
                             pub fn include_executable(self, include_executable: bool) -> Self {
+                            
                             Self { builder: self.builder.property("include-executable", include_executable), }
                         }
 
                             pub fn include_description(self, include_description: bool) -> Self {
+                            
                             Self { builder: self.builder.property("include-description", include_description), }
                         }
 

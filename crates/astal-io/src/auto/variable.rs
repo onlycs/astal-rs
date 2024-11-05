@@ -58,6 +58,7 @@ pub struct VariableBuilder {
         }
 
                             pub fn value(self, value: &glib::Value) -> Self {
+                            
                             Self { builder: self.builder.property("value", value.clone()), }
                         }
 
@@ -74,7 +75,7 @@ pub trait VariableExt: IsA<Variable> + 'static {
     fn poll(&self, interval: u32, exec: &str, transform: Option<&glib::Closure>) -> Result<Variable, glib::Error> {
         unsafe {
             let mut error = std::ptr::null_mut();
-            let ret = ffi::astal_io_variable_poll(self.as_ref().to_glib_none().0, interval, exec.to_glib_none().0, transform.to_glib_none().0, &mut error);
+            let mut ret = ffi::astal_io_variable_poll(self.as_ref().to_glib_none().0, interval, exec.to_glib_none().0, transform.to_glib_none().0, &mut error);
             if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
         }
     }
@@ -84,7 +85,7 @@ pub trait VariableExt: IsA<Variable> + 'static {
         let execv_length1 = execv.len() as _;
         unsafe {
             let mut error = std::ptr::null_mut();
-            let ret = ffi::astal_io_variable_pollv(self.as_ref().to_glib_none().0, interval, execv.to_glib_none().0, execv_length1, transform.to_glib_none().0, &mut error);
+            let mut ret = ffi::astal_io_variable_pollv(self.as_ref().to_glib_none().0, interval, execv.to_glib_none().0, execv_length1, transform.to_glib_none().0, &mut error);
             if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
         }
     }
@@ -93,7 +94,7 @@ pub trait VariableExt: IsA<Variable> + 'static {
     fn pollfn(&self, interval: u32, fn_: &glib::Closure) -> Result<Variable, glib::Error> {
         unsafe {
             let mut error = std::ptr::null_mut();
-            let ret = ffi::astal_io_variable_pollfn(self.as_ref().to_glib_none().0, interval, fn_.to_glib_none().0, &mut error);
+            let mut ret = ffi::astal_io_variable_pollfn(self.as_ref().to_glib_none().0, interval, fn_.to_glib_none().0, &mut error);
             if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
         }
     }
@@ -102,7 +103,7 @@ pub trait VariableExt: IsA<Variable> + 'static {
     fn watch(&self, exec: &str, transform: Option<&glib::Closure>) -> Result<Variable, glib::Error> {
         unsafe {
             let mut error = std::ptr::null_mut();
-            let ret = ffi::astal_io_variable_watch(self.as_ref().to_glib_none().0, exec.to_glib_none().0, transform.to_glib_none().0, &mut error);
+            let mut ret = ffi::astal_io_variable_watch(self.as_ref().to_glib_none().0, exec.to_glib_none().0, transform.to_glib_none().0, &mut error);
             if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
         }
     }
@@ -112,7 +113,7 @@ pub trait VariableExt: IsA<Variable> + 'static {
         let execv_length1 = execv.len() as _;
         unsafe {
             let mut error = std::ptr::null_mut();
-            let ret = ffi::astal_io_variable_watchv(self.as_ref().to_glib_none().0, execv.to_glib_none().0, execv_length1, transform.to_glib_none().0, &mut error);
+            let mut ret = ffi::astal_io_variable_watchv(self.as_ref().to_glib_none().0, execv.to_glib_none().0, execv_length1, transform.to_glib_none().0, &mut error);
             if error.is_null() { Ok(from_glib_full(ret)) } else { Err(from_glib_full(error)) }
         }
     }

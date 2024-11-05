@@ -11,11 +11,11 @@ pub use self::apps::Apps;
 mod score;
 pub use self::score::Score;
 
-pub(crate) mod traits {
+pub mod traits {
     pub use super::application::ApplicationExt;
     pub use super::apps::AppsExt;
 }
-pub(crate) mod builders {
+pub mod builders {
     pub use super::application::ApplicationBuilder;
     pub use super::apps::AppsBuilder;
 }

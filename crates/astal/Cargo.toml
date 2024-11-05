@@ -38,6 +38,7 @@ path = "../astal-io"
 
 [features]
 default = []
+v3_10 = []
 v3_12 = []
 v3_14 = []
 gio_v2_28 = []

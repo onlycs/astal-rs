@@ -160,9 +160,57 @@ dependencies = [
 
 [[package]]
 name = "astal-io-sys"
-version = "0.1.0"
+version = "0.0.1"
 dependencies = [
  "gio-sys",
+ "glib-sys",
+ "gobject-sys",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.3",
+ "tempfile",
+]
+
+[[package]]
+name = "astal-mpris-sys"
+version = "0.0.1"
+dependencies = [
+ "glib-sys",
+ "gobject-sys",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.3",
+ "tempfile",
+]
+
+[[package]]
+name = "astal-notifd-sys"
+version = "0.0.1"
+dependencies = [
+ "glib-sys",
+ "gobject-sys",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.3",
+ "tempfile",
+]
+
+[[package]]
+name = "astal-power-profiles-sys"
+version = "0.0.1"
+dependencies = [
+ "glib-sys",
+ "gobject-sys",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.3",
+ "tempfile",
+]
+
+[[package]]
+name = "astal-river-sys"
+version = "0.0.1"
+dependencies = [
  "glib-sys",
  "gobject-sys",
  "libc",
@@ -180,6 +228,33 @@ dependencies = [
  "gio-sys",
  "glib-sys",
  "gtk-sys",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.3",
+ "tempfile",
+]
+
+[[package]]
+name = "astal-tray-sys"
+version = "0.0.1"
+dependencies = [
+ "gdk-pixbuf-sys",
+ "gio-sys",
+ "glib-sys",
+ "gobject-sys",
+ "gtk-sys",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.3",
+ "tempfile",
+]
+
+[[package]]
+name = "astal-wp-sys"
+version = "0.0.1"
+dependencies = [
+ "glib-sys",
+ "gobject-sys",
  "libc",
  "shell-words",
  "system-deps 7.0.3",
@@ -686,6 +761,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "488016bfae457b036d996092f6cb448677611ce4449e970ceaf42695203f218a"
 dependencies = [
  "autocfg",
+]
+
+[[package]]
+name = "nm-sys"
+version = "0.0.1"
+dependencies = [
+ "gio-sys",
+ "glib-sys",
+ "gobject-sys",
+ "libc",
+ "shell-words",
+ "system-deps 7.0.3",
+ "tempfile",
 ]
 
 [[package]]

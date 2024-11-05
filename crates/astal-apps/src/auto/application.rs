@@ -44,10 +44,12 @@ pub struct ApplicationBuilder {
         }
 
                             pub fn app(self, app: &gio::DesktopAppInfo) -> Self {
+                            
                             Self { builder: self.builder.property("app", app.clone()), }
                         }
 
                             pub fn frequency(self, frequency: i32) -> Self {
+                            
                             Self { builder: self.builder.property("frequency", frequency), }
                         }
 

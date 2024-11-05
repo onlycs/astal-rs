@@ -19,7 +19,7 @@ use std::ffi::{c_int, c_char, c_uchar, c_float, c_uint, c_double,
 use libc::{size_t, ssize_t, time_t, off_t, intptr_t, uintptr_t, FILE};
 #[cfg(unix)]
 #[allow(unused_imports)]
-use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t};
+use libc::{dev_t, gid_t, pid_t, socklen_t, uid_t, stat, in6_addr};
 
 #[allow(unused_imports)]
 use glib::{gboolean, gconstpointer, gpointer, GType};
