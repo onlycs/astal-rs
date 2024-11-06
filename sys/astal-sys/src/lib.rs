@@ -50,10 +50,10 @@ pub const ASTAL_MOUSE_BUTTON_FORWARD: AstalMouseButton = 5;
 
 pub type AstalWindowAnchor = c_int;
 pub const ASTAL_WINDOW_ANCHOR_NONE: AstalWindowAnchor = 0;
-pub const ASTAL_WINDOW_ANCHOR_TOP: AstalWindowAnchor = 1;
-pub const ASTAL_WINDOW_ANCHOR_RIGHT: AstalWindowAnchor = 2;
-pub const ASTAL_WINDOW_ANCHOR_LEFT: AstalWindowAnchor = 4;
-pub const ASTAL_WINDOW_ANCHOR_BOTTOM: AstalWindowAnchor = 8;
+pub const ASTAL_WINDOW_ANCHOR_TOP: AstalWindowAnchor = 2;
+pub const ASTAL_WINDOW_ANCHOR_RIGHT: AstalWindowAnchor = 4;
+pub const ASTAL_WINDOW_ANCHOR_LEFT: AstalWindowAnchor = 8;
+pub const ASTAL_WINDOW_ANCHOR_BOTTOM: AstalWindowAnchor = 16;
 
 // Constants
 pub const ASTAL_MAJOR_VERSION: c_int = 3;
