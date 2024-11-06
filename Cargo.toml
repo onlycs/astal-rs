@@ -23,5 +23,29 @@ path = "sys/astal-hyprland-sys"
 [workspace.dependencies.astal-io-sys]
 path = "sys/astal-io-sys"
 
+[workspace.dependencies.astal-mpris-sys]
+path = "sys/astal-mpris-sys"
+
+[workspace.dependencies.astal-network-sys]
+path = "sys/astal-network-sys"
+
+[workspace.dependencies.astal-notifd-sys]
+path = "sys/astal-notifd-sys"
+
+[workspace.dependencies.astal-power-profiles-sys]
+path = "sys/astal-power-profiles-sys"
+
+[workspace.dependencies.astal-river-sys]
+path = "sys/astal-river-sys"
+
+[workspace.dependencies.astal-tray-sys]
+path = "sys/astal-tray-sys"
+
+[workspace.dependencies.astal-wp-sys]
+path = "sys/astal-wp-sys"
+
+[workspace.dependencies.nm-sys]
+path = "sys/nm-sys"
+
 [workspace.dependencies.gir-error]
 path = "crates/gir-error"

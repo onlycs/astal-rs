@@ -1,0 +1,36 @@
+[options]
+library = "AstalWp"
+version = "0.1"
+min_cfg_version = "0.1"
+target_path = "."
+girs_directories = ["../../gir/gir-files"]
+work_mode = "normal"
+single_version_file = true
+generate_safety_asserts = true
+deprecate_by_min_version = true
+
+generate = [
+    "AstalWp.Audio",
+    "AstalWp.DeviceType",
+    "AstalWp.MediaClass",
+    "AstalWp.Scale",
+    "AstalWp.Video",
+    "AstalWp.Wp",
+]
+
+manual = []
+
+[[object]]
+name = "AstalWp.Endpoint"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "AstalWp.Device"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "AstalWp.Profile"
+status = "generate"
+generate_builder = true

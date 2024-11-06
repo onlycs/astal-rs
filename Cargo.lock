@@ -172,6 +172,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "astal-mpris"
+version = "0.1.0"
+dependencies = [
+ "astal-mpris-sys",
+ "gio",
+ "gir-error",
+ "glib 0.21.0",
+ "gtk",
+]
+
+[[package]]
 name = "astal-mpris-sys"
 version = "0.0.1"
 dependencies = [
@@ -181,6 +192,17 @@ dependencies = [
  "shell-words",
  "system-deps 7.0.3",
  "tempfile",
+]
+
+[[package]]
+name = "astal-notifd"
+version = "0.1.0"
+dependencies = [
+ "astal-notifd-sys",
+ "gio",
+ "gir-error",
+ "glib 0.21.0",
+ "gtk",
 ]
 
 [[package]]
@@ -196,6 +218,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "astal-power-profiles"
+version = "0.1.0"
+dependencies = [
+ "astal-power-profiles-sys",
+ "gio",
+ "gir-error",
+ "glib 0.21.0",
+ "gtk",
+]
+
+[[package]]
 name = "astal-power-profiles-sys"
 version = "0.0.1"
 dependencies = [
@@ -205,6 +238,17 @@ dependencies = [
  "shell-words",
  "system-deps 7.0.3",
  "tempfile",
+]
+
+[[package]]
+name = "astal-river"
+version = "0.1.0"
+dependencies = [
+ "astal-river-sys",
+ "gio",
+ "gir-error",
+ "glib 0.21.0",
+ "gtk",
 ]
 
 [[package]]
@@ -235,6 +279,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "astal-tray"
+version = "0.1.0"
+dependencies = [
+ "astal-tray-sys",
+ "gdk-pixbuf",
+ "gio",
+ "gir-error",
+ "glib 0.21.0",
+ "gtk",
+]
+
+[[package]]
 name = "astal-tray-sys"
 version = "0.0.1"
 dependencies = [
@@ -247,6 +303,17 @@ dependencies = [
  "shell-words",
  "system-deps 7.0.3",
  "tempfile",
+]
+
+[[package]]
+name = "astal-wp"
+version = "0.1.0"
+dependencies = [
+ "astal-wp-sys",
+ "gio",
+ "gir-error",
+ "glib 0.21.0",
+ "gtk",
 ]
 
 [[package]]
@@ -761,19 +828,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "488016bfae457b036d996092f6cb448677611ce4449e970ceaf42695203f218a"
 dependencies = [
  "autocfg",
-]
-
-[[package]]
-name = "nm-sys"
-version = "0.0.1"
-dependencies = [
- "gio-sys",
- "glib-sys",
- "gobject-sys",
- "libc",
- "shell-words",
- "system-deps 7.0.3",
- "tempfile",
 ]
 
 [[package]]
