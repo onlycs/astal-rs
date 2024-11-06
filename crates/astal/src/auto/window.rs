@@ -2,7 +2,7 @@
 // from ../../gir/gir-files
 // DO NOT EDIT
 
-use crate::{ffi,Exclusivity,Keymode,Layer};
+use crate::{ffi,Exclusivity,Keymode,Layer,WindowAnchor};
 use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
@@ -545,9 +545,9 @@ pub trait WindowExt: IsA<Window> + 'static {
     }
 
     #[doc(alias = "astal_window_set_anchor")]
-    fn set_anchor(&self, value: i32) {
+    fn set_anchor(&self, value: WindowAnchor) {
         unsafe {
-            ffi::astal_window_set_anchor(self.as_ref().to_glib_none().0, value);
+            ffi::astal_window_set_anchor(self.as_ref().to_glib_none().0, value.into_glib());
         }
     }
 

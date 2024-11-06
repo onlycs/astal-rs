@@ -530,11 +530,3 @@ impl From<WindowAnchor> for glib::Value {
     }
 }
 
-
-impl std::ops::Add<WindowAnchor> for WindowAnchor {
-    type Output = Self;
-    fn add(self, other: Self) -> Self {
-        unsafe { Self::from_glib(self.into_glib() + other.into_glib()) }
-    }
-}
-            
