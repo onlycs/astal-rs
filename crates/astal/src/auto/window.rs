@@ -67,7 +67,7 @@ pub struct WindowBuilder {
                             Self { builder: self.builder.property("namespace", namespace.into()), }
                         }
 
-                            pub fn anchor(self, anchor: i32) -> Self {
+                            pub fn anchor(self, anchor: WindowAnchor) -> Self {
                             
                             Self { builder: self.builder.property("anchor", anchor), }
                         }
@@ -538,9 +538,9 @@ pub trait WindowExt: IsA<Window> + 'static {
 
     #[doc(alias = "astal_window_get_anchor")]
     #[doc(alias = "get_anchor")]
-    fn anchor(&self) -> i32 {
+    fn anchor(&self) -> WindowAnchor {
         unsafe {
-            ffi::astal_window_get_anchor(self.as_ref().to_glib_none().0)
+            from_glib(ffi::astal_window_get_anchor(self.as_ref().to_glib_none().0))
         }
     }
 

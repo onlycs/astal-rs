@@ -882,7 +882,7 @@ extern "C" {
     pub fn astal_window_set_inhibit(self_: *mut AstalWindow, value: gboolean);
     pub fn astal_window_get_namespace(self_: *mut AstalWindow) -> *const c_char;
     pub fn astal_window_set_namespace(self_: *mut AstalWindow, value: *const c_char);
-    pub fn astal_window_get_anchor(self_: *mut AstalWindow) -> c_int;
+    pub fn astal_window_get_anchor(self_: *mut AstalWindow) -> AstalWindowAnchor;
     pub fn astal_window_set_anchor(self_: *mut AstalWindow, value: AstalWindowAnchor);
     pub fn astal_window_get_exclusivity(self_: *mut AstalWindow) -> AstalExclusivity;
     pub fn astal_window_set_exclusivity(self_: *mut AstalWindow, value: AstalExclusivity);
