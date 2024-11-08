@@ -345,19 +345,6 @@ pub trait NotificationExt: IsA<Notification> + 'static {
         }
     }
 
-    #[doc(alias = "dismissed")]
-    fn connect_dismissed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn dismissed_trampoline<P: IsA<Notification>, F: Fn(&P) + 'static>(this: *mut ffi::AstalNotifdNotification, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(Notification::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"dismissed\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(dismissed_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
-        }
-    }
-
     #[doc(alias = "invoked")]
     fn connect_invoked<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn invoked_trampoline<P: IsA<Notification>, F: Fn(&P, &str) + 'static>(this: *mut ffi::AstalNotifdNotification, action_id: *const std::ffi::c_char, f: glib::ffi::gpointer) {

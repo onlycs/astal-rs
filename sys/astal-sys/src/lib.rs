@@ -48,18 +48,19 @@ pub const ASTAL_MOUSE_BUTTON_SECONDARY: AstalMouseButton = 3;
 pub const ASTAL_MOUSE_BUTTON_BACK: AstalMouseButton = 4;
 pub const ASTAL_MOUSE_BUTTON_FORWARD: AstalMouseButton = 5;
 
-pub type AstalWindowAnchor = c_int;
-pub const ASTAL_WINDOW_ANCHOR_NONE: AstalWindowAnchor = 0;
-pub const ASTAL_WINDOW_ANCHOR_TOP: AstalWindowAnchor = 2;
-pub const ASTAL_WINDOW_ANCHOR_RIGHT: AstalWindowAnchor = 4;
-pub const ASTAL_WINDOW_ANCHOR_LEFT: AstalWindowAnchor = 8;
-pub const ASTAL_WINDOW_ANCHOR_BOTTOM: AstalWindowAnchor = 16;
-
 // Constants
 pub const ASTAL_MAJOR_VERSION: c_int = 3;
 pub const ASTAL_MINOR_VERSION: c_int = 0;
 pub const ASTAL_MICRO_VERSION: c_int = 0;
 pub const ASTAL_VERSION: &[u8] = b"3.0.0\0";
+
+// Flags
+pub type AstalWindowAnchor = c_uint;
+pub const ASTAL_WINDOW_ANCHOR_NONE: AstalWindowAnchor = 1;
+pub const ASTAL_WINDOW_ANCHOR_TOP: AstalWindowAnchor = 2;
+pub const ASTAL_WINDOW_ANCHOR_RIGHT: AstalWindowAnchor = 4;
+pub const ASTAL_WINDOW_ANCHOR_LEFT: AstalWindowAnchor = 8;
+pub const ASTAL_WINDOW_ANCHOR_BOTTOM: AstalWindowAnchor = 16;
 
 // Records
 #[derive(Copy, Clone)]

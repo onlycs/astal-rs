@@ -87,11 +87,6 @@ pub struct PlayerBuilder {
                             Self { builder: self.builder.property("can-raise", can_raise), }
                         }
 
-                            pub fn has_track_list(self, has_track_list: bool) -> Self {
-                            
-                            Self { builder: self.builder.property("has-track-list", has_track_list), }
-                        }
-
                             pub fn identity(self, identity: impl Into<glib::GString>) -> Self {
                             
                             Self { builder: self.builder.property("identity", identity.into()), }
@@ -336,13 +331,6 @@ pub trait PlayerExt: IsA<Player> + 'static {
         }
     }
 
-    #[doc(alias = "_astal_mpris_player_get_position")]
-    fn _get_position(&self) -> f64 {
-        unsafe {
-            ffi::_astal_mpris_player_get_position(self.as_ref().to_glib_none().0)
-        }
-    }
-
     #[doc(alias = "astal_mpris_player_get_meta")]
     #[doc(alias = "get_meta")]
     fn meta(&self, key: &str) -> Option<glib::Variant> {
@@ -351,27 +339,11 @@ pub trait PlayerExt: IsA<Player> + 'static {
         }
     }
 
-    #[doc(alias = "astal_mpris_player_try_proxy")]
-    fn try_proxy(&self) -> Result<(), glib::Error> {
-        unsafe {
-            let mut error = std::ptr::null_mut();
-            let _ = ffi::astal_mpris_player_try_proxy(self.as_ref().to_glib_none().0, &mut error);
-            if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) }
-        }
-    }
-
     #[doc(alias = "astal_mpris_player_get_bus_name")]
     #[doc(alias = "get_bus_name")]
     fn bus_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::astal_mpris_player_get_bus_name(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    #[doc(alias = "astal_mpris_player_set_bus_name")]
-    fn set_bus_name(&self, value: &str) {
-        unsafe {
-            ffi::astal_mpris_player_set_bus_name(self.as_ref().to_glib_none().0, value.to_glib_none().0);
         }
     }
 
@@ -412,14 +384,6 @@ pub trait PlayerExt: IsA<Player> + 'static {
     fn can_raise(&self) -> bool {
         unsafe {
             from_glib(ffi::astal_mpris_player_get_can_raise(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    #[doc(alias = "astal_mpris_player_get_has_track_list")]
-    #[doc(alias = "get_has_track_list")]
-    fn has_track_list(&self) -> bool {
-        unsafe {
-            from_glib(ffi::astal_mpris_player_get_has_track_list(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -700,6 +664,11 @@ pub trait PlayerExt: IsA<Player> + 'static {
         }
     }
 
+    #[doc(alias = "bus-name")]
+    fn set_bus_name(&self, bus_name: Option<&str>) {
+        ObjectExt::set_property(self.as_ref(),"bus-name", bus_name)
+    }
+
     fn set_available(&self, available: bool) {
         ObjectExt::set_property(self.as_ref(),"available", available)
     }
@@ -721,11 +690,6 @@ pub trait PlayerExt: IsA<Player> + 'static {
     #[doc(alias = "can-raise")]
     fn set_can_raise(&self, can_raise: bool) {
         ObjectExt::set_property(self.as_ref(),"can-raise", can_raise)
-    }
-
-    #[doc(alias = "has-track-list")]
-    fn set_has_track_list(&self, has_track_list: bool) {
-        ObjectExt::set_property(self.as_ref(),"has-track-list", has_track_list)
     }
 
     fn set_identity(&self, identity: Option<&str>) {
@@ -842,45 +806,6 @@ pub trait PlayerExt: IsA<Player> + 'static {
         ObjectExt::set_property(self.as_ref(),"cover-art", cover_art)
     }
 
-    #[doc(alias = "appeared")]
-    fn connect_appeared<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn appeared_trampoline<P: IsA<Player>, F: Fn(&P) + 'static>(this: *mut ffi::AstalMprisPlayer, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(Player::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"appeared\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(appeared_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
-        }
-    }
-
-    #[doc(alias = "closed")]
-    fn connect_closed<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn closed_trampoline<P: IsA<Player>, F: Fn(&P) + 'static>(this: *mut ffi::AstalMprisPlayer, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(Player::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"closed\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(closed_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
-        }
-    }
-
-    #[doc(alias = "seeked")]
-    fn connect_seeked<F: Fn(&Self, i64) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn seeked_trampoline<P: IsA<Player>, F: Fn(&P, i64) + 'static>(this: *mut ffi::AstalMprisPlayer, position: i64, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(Player::from_glib_borrow(this).unsafe_cast_ref(), position)
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"seeked\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(seeked_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
-        }
-    }
-
     #[doc(alias = "bus-name")]
     fn connect_bus_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_bus_name_trampoline<P: IsA<Player>, F: Fn(&P) + 'static>(this: *mut ffi::AstalMprisPlayer, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
@@ -956,19 +881,6 @@ pub trait PlayerExt: IsA<Player> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::can-raise\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_can_raise_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
-        }
-    }
-
-    #[doc(alias = "has-track-list")]
-    fn connect_has_track_list_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_has_track_list_trampoline<P: IsA<Player>, F: Fn(&P) + 'static>(this: *mut ffi::AstalMprisPlayer, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(Player::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::has-track-list\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_has_track_list_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 

@@ -40,13 +40,6 @@ impl Device {
 }
 
 pub trait DeviceExt: IsA<Device> + 'static {
-    #[doc(alias = "astal_battery_device_sync")]
-    fn sync(&self) {
-        unsafe {
-            ffi::astal_battery_device_sync(self.as_ref().to_glib_none().0);
-        }
-    }
-
     #[doc(alias = "astal_battery_device_get_device_type")]
     #[doc(alias = "get_device_type")]
     fn device_type(&self) -> Type {
@@ -100,22 +93,6 @@ pub trait DeviceExt: IsA<Device> + 'static {
     fn is_power_supply(&self) -> bool {
         unsafe {
             from_glib(ffi::astal_battery_device_get_power_supply(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    #[doc(alias = "astal_battery_device_get_has_history")]
-    #[doc(alias = "get_has_history")]
-    fn has_history(&self) -> bool {
-        unsafe {
-            from_glib(ffi::astal_battery_device_get_has_history(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    #[doc(alias = "astal_battery_device_get_has_statistics")]
-    #[doc(alias = "get_has_statistics")]
-    fn has_statistics(&self) -> bool {
-        unsafe {
-            from_glib(ffi::astal_battery_device_get_has_statistics(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -359,16 +336,6 @@ pub trait DeviceExt: IsA<Device> + 'static {
         ObjectExt::set_property(self.as_ref(),"power-supply", power_supply)
     }
 
-    #[doc(alias = "has-history")]
-    fn set_has_history(&self, has_history: bool) {
-        ObjectExt::set_property(self.as_ref(),"has-history", has_history)
-    }
-
-    #[doc(alias = "has-statistics")]
-    fn set_has_statistics(&self, has_statistics: bool) {
-        ObjectExt::set_property(self.as_ref(),"has-statistics", has_statistics)
-    }
-
     fn set_online(&self, online: bool) {
         ObjectExt::set_property(self.as_ref(),"online", online)
     }
@@ -577,32 +544,6 @@ pub trait DeviceExt: IsA<Device> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::power-supply\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_power_supply_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
-        }
-    }
-
-    #[doc(alias = "has-history")]
-    fn connect_has_history_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_has_history_trampoline<P: IsA<Device>, F: Fn(&P) + 'static>(this: *mut ffi::AstalBatteryDevice, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(Device::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::has-history\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_has_history_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
-        }
-    }
-
-    #[doc(alias = "has-statistics")]
-    fn connect_has_statistics_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_has_statistics_trampoline<P: IsA<Device>, F: Fn(&P) + 'static>(this: *mut ffi::AstalBatteryDevice, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(Device::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::has-statistics\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_has_statistics_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 

@@ -61,7 +61,9 @@ pub use self::enums::Exclusivity;
 pub use self::enums::Keymode;
 pub use self::enums::Layer;
 pub use self::enums::MouseButton;
-pub use self::enums::WindowAnchor;
+
+mod flags;
+pub use self::flags::WindowAnchor;
 
 pub mod functions;
 

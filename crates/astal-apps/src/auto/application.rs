@@ -77,6 +77,16 @@ pub trait ApplicationExt: IsA<Application> + 'static {
         }
     }
 
+    //#[doc(alias = "astal_apps_application_fuzzy_match")]
+    //fn fuzzy_match(&self, term: &str, result: /*Ignored*/Score) {
+    //    unsafe { TODO: call ffi:astal_apps_application_fuzzy_match() }
+    //}
+
+    //#[doc(alias = "astal_apps_application_exact_match")]
+    //fn exact_match(&self, term: &str, result: /*Ignored*/Score) {
+    //    unsafe { TODO: call ffi:astal_apps_application_exact_match() }
+    //}
+
     #[doc(alias = "astal_apps_application_get_app")]
     #[doc(alias = "get_app")]
     fn app(&self) -> Option<gio::DesktopAppInfo> {
@@ -152,6 +162,26 @@ pub trait ApplicationExt: IsA<Application> + 'static {
     fn icon_name(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::astal_apps_application_get_icon_name(self.as_ref().to_glib_none().0))
+        }
+    }
+
+    #[doc(alias = "astal_apps_application_get_keywords")]
+    #[doc(alias = "get_keywords")]
+    fn keywords(&self) -> Vec<glib::GString> {
+        unsafe {
+            let mut result_length1 = std::mem::MaybeUninit::uninit();
+            let ret = FromGlibContainer::from_glib_full_num(ffi::astal_apps_application_get_keywords(self.as_ref().to_glib_none().0, result_length1.as_mut_ptr()), result_length1.assume_init() as _);
+            ret
+        }
+    }
+
+    #[doc(alias = "astal_apps_application_get_categories")]
+    #[doc(alias = "get_categories")]
+    fn categories(&self) -> Vec<glib::GString> {
+        unsafe {
+            let mut result_length1 = std::mem::MaybeUninit::uninit();
+            let ret = FromGlibContainer::from_glib_full_num(ffi::astal_apps_application_get_categories(self.as_ref().to_glib_none().0, result_length1.as_mut_ptr()), result_length1.assume_init() as _);
+            ret
         }
     }
 
@@ -256,6 +286,32 @@ pub trait ApplicationExt: IsA<Application> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::icon-name\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_icon_name_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+
+    #[doc(alias = "keywords")]
+    fn connect_keywords_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_keywords_trampoline<P: IsA<Application>, F: Fn(&P) + 'static>(this: *mut ffi::AstalAppsApplication, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(Application::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::keywords\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_keywords_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+
+    #[doc(alias = "categories")]
+    fn connect_categories_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_categories_trampoline<P: IsA<Application>, F: Fn(&P) + 'static>(this: *mut ffi::AstalAppsApplication, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(Application::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::categories\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_categories_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 }

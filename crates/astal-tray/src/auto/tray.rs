@@ -46,9 +46,9 @@ impl Default for Tray {
 pub trait TrayExt: IsA<Tray> + 'static {
     #[doc(alias = "astal_tray_tray_get_item")]
     #[doc(alias = "get_item")]
-    fn item(&self, service: &str) -> Option<TrayItem> {
+    fn item(&self, item_id: &str) -> Option<TrayItem> {
         unsafe {
-            from_glib_full(ffi::astal_tray_tray_get_item(self.as_ref().to_glib_none().0, service.to_glib_none().0))
+            from_glib_full(ffi::astal_tray_tray_get_item(self.as_ref().to_glib_none().0, item_id.to_glib_none().0))
         }
     }
 
@@ -62,9 +62,9 @@ pub trait TrayExt: IsA<Tray> + 'static {
 
     #[doc(alias = "item-added")]
     fn connect_item_added<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn item_added_trampoline<P: IsA<Tray>, F: Fn(&P, &str) + 'static>(this: *mut ffi::AstalTrayTray, service: *const std::ffi::c_char, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn item_added_trampoline<P: IsA<Tray>, F: Fn(&P, &str) + 'static>(this: *mut ffi::AstalTrayTray, item_id: *const std::ffi::c_char, f: glib::ffi::gpointer) {
             let f: &F = &*(f as *const F);
-            f(Tray::from_glib_borrow(this).unsafe_cast_ref(), &glib::GString::from_glib_borrow(service))
+            f(Tray::from_glib_borrow(this).unsafe_cast_ref(), &glib::GString::from_glib_borrow(item_id))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
@@ -75,9 +75,9 @@ pub trait TrayExt: IsA<Tray> + 'static {
 
     #[doc(alias = "item-removed")]
     fn connect_item_removed<F: Fn(&Self, &str) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn item_removed_trampoline<P: IsA<Tray>, F: Fn(&P, &str) + 'static>(this: *mut ffi::AstalTrayTray, service: *const std::ffi::c_char, f: glib::ffi::gpointer) {
+        unsafe extern "C" fn item_removed_trampoline<P: IsA<Tray>, F: Fn(&P, &str) + 'static>(this: *mut ffi::AstalTrayTray, item_id: *const std::ffi::c_char, f: glib::ffi::gpointer) {
             let f: &F = &*(f as *const F);
-            f(Tray::from_glib_borrow(this).unsafe_cast_ref(), &glib::GString::from_glib_borrow(service))
+            f(Tray::from_glib_borrow(this).unsafe_cast_ref(), &glib::GString::from_glib_borrow(item_id))
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);

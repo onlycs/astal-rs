@@ -19,14 +19,6 @@ impl TrayItem {
         pub const NONE: Option<&'static TrayItem> = None;
     
 
-    #[doc(alias = "astal_tray_tray_item_new")]
-    pub fn new(service: &str, path: &str) -> TrayItem {
-        assert_initialized_main_thread!();
-        unsafe {
-            from_glib_full(ffi::astal_tray_tray_item_new(service.to_glib_none().0, path.to_glib_none().0))
-        }
-    }
-
             // rustdoc-stripper-ignore-next
             /// Creates a new builder-pattern struct instance to construct [`TrayItem`] objects.
             ///
@@ -36,12 +28,6 @@ impl TrayItem {
             }
         
 }
-
-impl Default for TrayItem {
-                     fn default() -> Self {
-                         glib::object::Object::new::<Self>()
-                     }
-                 }
 
 // rustdoc-stripper-ignore-next
         /// A [builder-pattern] type to construct [`TrayItem`] objects.
@@ -104,13 +90,6 @@ pub trait TrayItemExt: IsA<TrayItem> + 'static {
         }
     }
 
-    #[doc(alias = "_astal_tray_tray_item_get_icon_pixbuf")]
-    fn _get_icon_pixbuf(&self) -> Option<gdk_pixbuf::Pixbuf> {
-        unsafe {
-            from_glib_full(ffi::_astal_tray_tray_item_get_icon_pixbuf(self.as_ref().to_glib_none().0))
-        }
-    }
-
     #[doc(alias = "astal_tray_tray_item_to_json_string")]
     fn to_json_string(&self) -> Option<glib::GString> {
         unsafe {
@@ -166,19 +145,19 @@ pub trait TrayItemExt: IsA<TrayItem> + 'static {
         }
     }
 
-    #[doc(alias = "astal_tray_tray_item_get_icon_theme_path")]
-    #[doc(alias = "get_icon_theme_path")]
-    fn icon_theme_path(&self) -> Option<glib::GString> {
-        unsafe {
-            from_glib_full(ffi::astal_tray_tray_item_get_icon_theme_path(self.as_ref().to_glib_none().0))
-        }
-    }
-
     #[doc(alias = "astal_tray_tray_item_get_is_menu")]
     #[doc(alias = "get_is_menu")]
     fn is_menu(&self) -> bool {
         unsafe {
             from_glib(ffi::astal_tray_tray_item_get_is_menu(self.as_ref().to_glib_none().0))
+        }
+    }
+
+    #[doc(alias = "astal_tray_tray_item_get_icon_theme_path")]
+    #[doc(alias = "get_icon_theme_path")]
+    fn icon_theme_path(&self) -> Option<glib::GString> {
+        unsafe {
+            from_glib_full(ffi::astal_tray_tray_item_get_icon_theme_path(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -327,19 +306,6 @@ pub trait TrayItemExt: IsA<TrayItem> + 'static {
         }
     }
 
-    #[doc(alias = "icon-theme-path")]
-    fn connect_icon_theme_path_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_icon_theme_path_trampoline<P: IsA<TrayItem>, F: Fn(&P) + 'static>(this: *mut ffi::AstalTrayTrayItem, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(TrayItem::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::icon-theme-path\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_icon_theme_path_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
-        }
-    }
-
     #[doc(alias = "is-menu")]
     fn connect_is_menu_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_is_menu_trampoline<P: IsA<TrayItem>, F: Fn(&P) + 'static>(this: *mut ffi::AstalTrayTrayItem, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
@@ -350,6 +316,19 @@ pub trait TrayItemExt: IsA<TrayItem> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::is-menu\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_is_menu_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+
+    #[doc(alias = "icon-theme-path")]
+    fn connect_icon_theme_path_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_icon_theme_path_trampoline<P: IsA<TrayItem>, F: Fn(&P) + 'static>(this: *mut ffi::AstalTrayTrayItem, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(TrayItem::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::icon-theme-path\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_icon_theme_path_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 

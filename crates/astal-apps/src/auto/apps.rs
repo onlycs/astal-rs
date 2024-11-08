@@ -87,24 +87,14 @@ pub struct AppsBuilder {
                             Self { builder: self.builder.property("description-multiplier", description_multiplier), }
                         }
 
-                            pub fn include_name(self, include_name: bool) -> Self {
+                            pub fn keywords_multiplier(self, keywords_multiplier: f64) -> Self {
                             
-                            Self { builder: self.builder.property("include-name", include_name), }
+                            Self { builder: self.builder.property("keywords-multiplier", keywords_multiplier), }
                         }
 
-                            pub fn include_entry(self, include_entry: bool) -> Self {
+                            pub fn categories_multiplier(self, categories_multiplier: f64) -> Self {
                             
-                            Self { builder: self.builder.property("include-entry", include_entry), }
-                        }
-
-                            pub fn include_executable(self, include_executable: bool) -> Self {
-                            
-                            Self { builder: self.builder.property("include-executable", include_executable), }
-                        }
-
-                            pub fn include_description(self, include_description: bool) -> Self {
-                            
-                            Self { builder: self.builder.property("include-description", include_description), }
+                            Self { builder: self.builder.property("categories-multiplier", categories_multiplier), }
                         }
 
     // rustdoc-stripper-ignore-next
@@ -116,6 +106,20 @@ assert_initialized_main_thread!();
 }
 
 pub trait AppsExt: IsA<Apps> + 'static {
+    #[doc(alias = "astal_apps_apps_fuzzy_score")]
+    fn fuzzy_score(&self, search: &str, a: &impl IsA<Application>) -> f64 {
+        unsafe {
+            ffi::astal_apps_apps_fuzzy_score(self.as_ref().to_glib_none().0, search.to_glib_none().0, a.as_ref().to_glib_none().0)
+        }
+    }
+
+    #[doc(alias = "astal_apps_apps_exact_score")]
+    fn exact_score(&self, search: &str, a: &impl IsA<Application>) -> f64 {
+        unsafe {
+            ffi::astal_apps_apps_exact_score(self.as_ref().to_glib_none().0, search.to_glib_none().0, a.as_ref().to_glib_none().0)
+        }
+    }
+
     #[doc(alias = "astal_apps_apps_fuzzy_query")]
     fn fuzzy_query(&self, search: Option<&str>) -> Vec<Application> {
         unsafe {
@@ -235,63 +239,33 @@ pub trait AppsExt: IsA<Apps> + 'static {
         }
     }
 
-    #[doc(alias = "astal_apps_apps_get_include_name")]
-    #[doc(alias = "get_include_name")]
-    fn is_include_name(&self) -> bool {
+    #[doc(alias = "astal_apps_apps_get_keywords_multiplier")]
+    #[doc(alias = "get_keywords_multiplier")]
+    fn keywords_multiplier(&self) -> f64 {
         unsafe {
-            from_glib(ffi::astal_apps_apps_get_include_name(self.as_ref().to_glib_none().0))
+            ffi::astal_apps_apps_get_keywords_multiplier(self.as_ref().to_glib_none().0)
         }
     }
 
-    #[doc(alias = "astal_apps_apps_set_include_name")]
-    fn set_include_name(&self, value: bool) {
+    #[doc(alias = "astal_apps_apps_set_keywords_multiplier")]
+    fn set_keywords_multiplier(&self, value: f64) {
         unsafe {
-            ffi::astal_apps_apps_set_include_name(self.as_ref().to_glib_none().0, value.into_glib());
+            ffi::astal_apps_apps_set_keywords_multiplier(self.as_ref().to_glib_none().0, value);
         }
     }
 
-    #[doc(alias = "astal_apps_apps_get_include_entry")]
-    #[doc(alias = "get_include_entry")]
-    fn is_include_entry(&self) -> bool {
+    #[doc(alias = "astal_apps_apps_get_categories_multiplier")]
+    #[doc(alias = "get_categories_multiplier")]
+    fn categories_multiplier(&self) -> f64 {
         unsafe {
-            from_glib(ffi::astal_apps_apps_get_include_entry(self.as_ref().to_glib_none().0))
+            ffi::astal_apps_apps_get_categories_multiplier(self.as_ref().to_glib_none().0)
         }
     }
 
-    #[doc(alias = "astal_apps_apps_set_include_entry")]
-    fn set_include_entry(&self, value: bool) {
+    #[doc(alias = "astal_apps_apps_set_categories_multiplier")]
+    fn set_categories_multiplier(&self, value: f64) {
         unsafe {
-            ffi::astal_apps_apps_set_include_entry(self.as_ref().to_glib_none().0, value.into_glib());
-        }
-    }
-
-    #[doc(alias = "astal_apps_apps_get_include_executable")]
-    #[doc(alias = "get_include_executable")]
-    fn is_include_executable(&self) -> bool {
-        unsafe {
-            from_glib(ffi::astal_apps_apps_get_include_executable(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    #[doc(alias = "astal_apps_apps_set_include_executable")]
-    fn set_include_executable(&self, value: bool) {
-        unsafe {
-            ffi::astal_apps_apps_set_include_executable(self.as_ref().to_glib_none().0, value.into_glib());
-        }
-    }
-
-    #[doc(alias = "astal_apps_apps_get_include_description")]
-    #[doc(alias = "get_include_description")]
-    fn is_include_description(&self) -> bool {
-        unsafe {
-            from_glib(ffi::astal_apps_apps_get_include_description(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    #[doc(alias = "astal_apps_apps_set_include_description")]
-    fn set_include_description(&self, value: bool) {
-        unsafe {
-            ffi::astal_apps_apps_set_include_description(self.as_ref().to_glib_none().0, value.into_glib());
+            ffi::astal_apps_apps_set_categories_multiplier(self.as_ref().to_glib_none().0, value);
         }
     }
 
@@ -386,55 +360,29 @@ pub trait AppsExt: IsA<Apps> + 'static {
         }
     }
 
-    #[doc(alias = "include-name")]
-    fn connect_include_name_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_include_name_trampoline<P: IsA<Apps>, F: Fn(&P) + 'static>(this: *mut ffi::AstalAppsApps, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+    #[doc(alias = "keywords-multiplier")]
+    fn connect_keywords_multiplier_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_keywords_multiplier_trampoline<P: IsA<Apps>, F: Fn(&P) + 'static>(this: *mut ffi::AstalAppsApps, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
             let f: &F = &*(f as *const F);
             f(Apps::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::include-name\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_include_name_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+            connect_raw(self.as_ptr() as *mut _, b"notify::keywords-multiplier\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_keywords_multiplier_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 
-    #[doc(alias = "include-entry")]
-    fn connect_include_entry_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_include_entry_trampoline<P: IsA<Apps>, F: Fn(&P) + 'static>(this: *mut ffi::AstalAppsApps, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+    #[doc(alias = "categories-multiplier")]
+    fn connect_categories_multiplier_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_categories_multiplier_trampoline<P: IsA<Apps>, F: Fn(&P) + 'static>(this: *mut ffi::AstalAppsApps, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
             let f: &F = &*(f as *const F);
             f(Apps::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::include-entry\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_include_entry_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
-        }
-    }
-
-    #[doc(alias = "include-executable")]
-    fn connect_include_executable_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_include_executable_trampoline<P: IsA<Apps>, F: Fn(&P) + 'static>(this: *mut ffi::AstalAppsApps, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(Apps::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::include-executable\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_include_executable_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
-        }
-    }
-
-    #[doc(alias = "include-description")]
-    fn connect_include_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_include_description_trampoline<P: IsA<Apps>, F: Fn(&P) + 'static>(this: *mut ffi::AstalAppsApps, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(Apps::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::include-description\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_include_description_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+            connect_raw(self.as_ptr() as *mut _, b"notify::categories-multiplier\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_categories_multiplier_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 }

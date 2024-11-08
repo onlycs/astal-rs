@@ -6,7 +6,8 @@ ls sys
 | get name
 | each { |folder|
     cd $folder
-    rm Cargo.*
+	print -e $"Entering ($folder)"
+  	rm Cargo.*
     gir -o .
 }
 | ignore
@@ -16,6 +17,7 @@ ls crates
 | get name
 | each { |folder|
     cd $folder
+	print -e $"Entering ($folder)"
     gir -o .
 }
 | ignore

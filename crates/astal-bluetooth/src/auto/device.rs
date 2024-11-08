@@ -43,11 +43,6 @@ pub struct DeviceBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
-                            pub fn object_path(self, object_path: impl Into<glib::GString>) -> Self {
-                            
-                            Self { builder: self.builder.property("object-path", object_path.into()), }
-                        }
-
                             pub fn connecting(self, connecting: bool) -> Self {
                             
                             Self { builder: self.builder.property("connecting", connecting), }
@@ -77,13 +72,6 @@ assert_initialized_main_thread!();
 }
 
 pub trait DeviceExt: IsA<Device> + 'static {
-    #[doc(alias = "astal_bluetooth_device_cancel_pairing")]
-    fn cancel_pairing(&self) {
-        unsafe {
-            ffi::astal_bluetooth_device_cancel_pairing(self.as_ref().to_glib_none().0);
-        }
-    }
-
     //#[doc(alias = "astal_bluetooth_device_connect_device")]
     //fn connect_device(&self, _callback_: AsyncReadyCallback) {
     //    unsafe { TODO: call ffi:astal_bluetooth_device_connect_device() }
@@ -94,41 +82,25 @@ pub trait DeviceExt: IsA<Device> + 'static {
     //    unsafe { TODO: call ffi:astal_bluetooth_device_disconnect_device() }
     //}
 
-    #[doc(alias = "astal_bluetooth_device_connect_profile")]
-    fn connect_profile(&self, uuid: &str) {
-        unsafe {
-            ffi::astal_bluetooth_device_connect_profile(self.as_ref().to_glib_none().0, uuid.to_glib_none().0);
-        }
-    }
+    //#[doc(alias = "astal_bluetooth_device_connect_profile")]
+    //fn connect_profile(&self, uuid: &str, error: /*Ignored*/Option<glib::Error>) {
+    //    unsafe { TODO: call ffi:astal_bluetooth_device_connect_profile() }
+    //}
 
-    #[doc(alias = "astal_bluetooth_device_disconnect_profile")]
-    fn disconnect_profile(&self, uuid: &str) {
-        unsafe {
-            ffi::astal_bluetooth_device_disconnect_profile(self.as_ref().to_glib_none().0, uuid.to_glib_none().0);
-        }
-    }
+    //#[doc(alias = "astal_bluetooth_device_disconnect_profile")]
+    //fn disconnect_profile(&self, uuid: &str, error: /*Ignored*/Option<glib::Error>) {
+    //    unsafe { TODO: call ffi:astal_bluetooth_device_disconnect_profile() }
+    //}
 
-    #[doc(alias = "astal_bluetooth_device_pair")]
-    fn pair(&self) {
-        unsafe {
-            ffi::astal_bluetooth_device_pair(self.as_ref().to_glib_none().0);
-        }
-    }
+    //#[doc(alias = "astal_bluetooth_device_pair")]
+    //fn pair(&self, error: /*Ignored*/Option<glib::Error>) {
+    //    unsafe { TODO: call ffi:astal_bluetooth_device_pair() }
+    //}
 
-    #[doc(alias = "astal_bluetooth_device_get_object_path")]
-    #[doc(alias = "get_object_path")]
-    fn object_path(&self) -> Option<glib::GString> {
-        unsafe {
-            from_glib_full(ffi::astal_bluetooth_device_get_object_path(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    #[doc(alias = "astal_bluetooth_device_set_object_path")]
-    fn set_object_path(&self, value: &str) {
-        unsafe {
-            ffi::astal_bluetooth_device_set_object_path(self.as_ref().to_glib_none().0, value.to_glib_none().0);
-        }
-    }
+    //#[doc(alias = "astal_bluetooth_device_cancel_pairing")]
+    //fn cancel_pairing(&self, error: /*Ignored*/Option<glib::Error>) {
+    //    unsafe { TODO: call ffi:astal_bluetooth_device_cancel_pairing() }
+    //}
 
     #[doc(alias = "astal_bluetooth_device_get_uuids")]
     #[doc(alias = "get_uuids")]
@@ -283,19 +255,6 @@ pub trait DeviceExt: IsA<Device> + 'static {
 
     fn set_connecting(&self, connecting: bool) {
         ObjectExt::set_property(self.as_ref(),"connecting", connecting)
-    }
-
-    #[doc(alias = "object-path")]
-    fn connect_object_path_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_object_path_trampoline<P: IsA<Device>, F: Fn(&P) + 'static>(this: *mut ffi::AstalBluetoothDevice, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(Device::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::object-path\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_object_path_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
-        }
     }
 
     #[doc(alias = "uuids")]

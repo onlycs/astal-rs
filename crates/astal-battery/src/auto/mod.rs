@@ -5,17 +5,8 @@
 mod device;
 pub use self::device::Device;
 
-mod iu_power_device;
-pub use self::iu_power_device::IUPowerDevice;
-
 mod upower;
 pub use self::upower::UPower;
-
-mod history_data_point;
-pub use self::history_data_point::HistoryDataPoint;
-
-mod statistics_data_point;
-pub use self::statistics_data_point::StatisticsDataPoint;
 
 mod enums;
 pub use self::enums::BatteryLevel;
@@ -26,6 +17,5 @@ pub use self::enums::WarningLevel;
 
 pub mod traits {
     pub use super::device::DeviceExt;
-    pub use super::iu_power_device::IUPowerDeviceExt;
     pub use super::upower::UPowerExt;
 }

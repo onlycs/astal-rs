@@ -2,7 +2,7 @@
 // from ../../gir/gir-files
 // DO NOT EDIT
 
-use crate::{ffi,Device};
+use crate::{ffi};
 use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
@@ -43,11 +43,6 @@ pub struct AdapterBuilder {
             Self { builder: glib::object::Object::builder() }
         }
 
-                            pub fn object_path(self, object_path: impl Into<glib::GString>) -> Self {
-                            
-                            Self { builder: self.builder.property("object-path", object_path.into()), }
-                        }
-
                             pub fn discoverable(self, discoverable: bool) -> Self {
                             
                             Self { builder: self.builder.property("discoverable", discoverable), }
@@ -87,41 +82,20 @@ assert_initialized_main_thread!();
 }
 
 pub trait AdapterExt: IsA<Adapter> + 'static {
-    #[doc(alias = "astal_bluetooth_adapter_remove_device")]
-    fn remove_device(&self, device: &impl IsA<Device>) {
-        unsafe {
-            ffi::astal_bluetooth_adapter_remove_device(self.as_ref().to_glib_none().0, device.as_ref().to_glib_none().0);
-        }
-    }
+    //#[doc(alias = "astal_bluetooth_adapter_remove_device")]
+    //fn remove_device(&self, device: &impl IsA<Device>, error: /*Ignored*/Option<glib::Error>) {
+    //    unsafe { TODO: call ffi:astal_bluetooth_adapter_remove_device() }
+    //}
 
-    #[doc(alias = "astal_bluetooth_adapter_start_discovery")]
-    fn start_discovery(&self) {
-        unsafe {
-            ffi::astal_bluetooth_adapter_start_discovery(self.as_ref().to_glib_none().0);
-        }
-    }
+    //#[doc(alias = "astal_bluetooth_adapter_start_discovery")]
+    //fn start_discovery(&self, error: /*Ignored*/Option<glib::Error>) {
+    //    unsafe { TODO: call ffi:astal_bluetooth_adapter_start_discovery() }
+    //}
 
-    #[doc(alias = "astal_bluetooth_adapter_stop_discovery")]
-    fn stop_discovery(&self) {
-        unsafe {
-            ffi::astal_bluetooth_adapter_stop_discovery(self.as_ref().to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "astal_bluetooth_adapter_get_object_path")]
-    #[doc(alias = "get_object_path")]
-    fn object_path(&self) -> Option<glib::GString> {
-        unsafe {
-            from_glib_full(ffi::astal_bluetooth_adapter_get_object_path(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    #[doc(alias = "astal_bluetooth_adapter_set_object_path")]
-    fn set_object_path(&self, value: &str) {
-        unsafe {
-            ffi::astal_bluetooth_adapter_set_object_path(self.as_ref().to_glib_none().0, value.to_glib_none().0);
-        }
-    }
+    //#[doc(alias = "astal_bluetooth_adapter_stop_discovery")]
+    //fn stop_discovery(&self, error: /*Ignored*/Option<glib::Error>) {
+    //    unsafe { TODO: call ffi:astal_bluetooth_adapter_stop_discovery() }
+    //}
 
     #[doc(alias = "astal_bluetooth_adapter_get_uuids")]
     #[doc(alias = "get_uuids")]
@@ -260,19 +234,6 @@ pub trait AdapterExt: IsA<Adapter> + 'static {
     fn set_pairable_timeout(&self, value: u32) {
         unsafe {
             ffi::astal_bluetooth_adapter_set_pairable_timeout(self.as_ref().to_glib_none().0, value);
-        }
-    }
-
-    #[doc(alias = "object-path")]
-    fn connect_object_path_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_object_path_trampoline<P: IsA<Adapter>, F: Fn(&P) + 'static>(this: *mut ffi::AstalBluetoothAdapter, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(Adapter::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::object-path\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_object_path_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 

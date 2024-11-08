@@ -8,9 +8,6 @@ pub use self::application::Application;
 mod apps;
 pub use self::apps::Apps;
 
-mod score;
-pub use self::score::Score;
-
 pub mod traits {
     pub use super::application::ApplicationExt;
     pub use super::apps::AppsExt;

@@ -3,7 +3,6 @@
 // DO NOT EDIT
 
 use crate::{ffi};
-use glib::{translate::*};
 
 glib::wrapper! {
     #[derive(Debug, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -17,10 +16,9 @@ glib::wrapper! {
 }
 
 impl ClickEvent {
-    #[doc(alias = "astal_click_event_init")]
-    pub fn init(&mut self, event: &mut gdk::EventButton) {
-        unsafe {
-            ffi::astal_click_event_init(self.to_glib_none_mut().0, event.to_glib_none_mut().0);
-        }
-    }
+    //#[doc(alias = "astal_click_event_init")]
+//#[must_use]
+    //pub fn init(event: /*Ignored*/&mut gdk::EventButton) -> ClickEvent {
+    //    unsafe { TODO: call ffi:astal_click_event_init() }
+    //}
 }

@@ -265,11 +265,11 @@ const RUST_CONSTANTS: &[(&str, &str)] = &[
     ("(gint) ASTAL_MOUSE_BUTTON_PRIMARY", "1"),
     ("(gint) ASTAL_MOUSE_BUTTON_SECONDARY", "3"),
     ("ASTAL_VERSION", "3.0.0"),
-    ("(gint) ASTAL_WINDOW_ANCHOR_BOTTOM", "16"),
-    ("(gint) ASTAL_WINDOW_ANCHOR_LEFT", "8"),
-    ("(gint) ASTAL_WINDOW_ANCHOR_NONE", "0"),
-    ("(gint) ASTAL_WINDOW_ANCHOR_RIGHT", "4"),
-    ("(gint) ASTAL_WINDOW_ANCHOR_TOP", "2"),
+    ("(guint) ASTAL_WINDOW_ANCHOR_BOTTOM", "16"),
+    ("(guint) ASTAL_WINDOW_ANCHOR_LEFT", "8"),
+    ("(guint) ASTAL_WINDOW_ANCHOR_NONE", "1"),
+    ("(guint) ASTAL_WINDOW_ANCHOR_RIGHT", "4"),
+    ("(guint) ASTAL_WINDOW_ANCHOR_TOP", "2"),
 ];
 
 

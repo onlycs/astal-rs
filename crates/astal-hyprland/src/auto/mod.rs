@@ -20,8 +20,8 @@ pub use self::position::Position;
 mod workspace;
 pub use self::workspace::Workspace;
 
-mod enums;
-pub use self::enums::Fullscreen;
+mod flags;
+pub use self::flags::Fullscreen;
 
 pub mod traits {
     pub use super::bind::BindExt;
