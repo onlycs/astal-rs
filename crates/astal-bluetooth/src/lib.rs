@@ -1,6 +1,6 @@
 #[macro_use]
 extern crate gir_error;
-extern crate astal_bluetooth_sys as ffi;
+pub extern crate astal_bluetooth_sys as ffi;
 extern crate gio;
 extern crate glib;
 extern crate gtk;
