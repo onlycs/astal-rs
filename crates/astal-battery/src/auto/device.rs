@@ -29,6 +29,15 @@ impl Device {
         }
     }
 
+            // rustdoc-stripper-ignore-next
+            /// Creates a new builder-pattern struct instance to construct [`Device`] objects.
+            ///
+            /// This method returns an instance of [`DeviceBuilder`](crate::builders::DeviceBuilder) which can be used to create [`Device`] objects.
+            pub fn builder() -> DeviceBuilder {
+                DeviceBuilder::new()
+            }
+        
+
     #[doc(alias = "astal_battery_device_get_default")]
     #[doc(alias = "get_default")]
     #[allow(clippy::should_implement_trait)]    pub fn default() -> Option<Device> {
@@ -37,6 +46,199 @@ impl Device {
             from_glib_full(ffi::astal_battery_device_get_default())
         }
     }
+}
+
+impl Default for Device {
+                     fn default() -> Self {
+                         glib::object::Object::new::<Self>()
+                     }
+                 }
+
+// rustdoc-stripper-ignore-next
+        /// A [builder-pattern] type to construct [`Device`] objects.
+        ///
+        /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
+pub struct DeviceBuilder {
+            builder: glib::object::ObjectBuilder<'static, Device>,
+        }
+
+        impl DeviceBuilder {
+        fn new() -> Self {
+            Self { builder: glib::object::Object::builder() }
+        }
+
+                            pub fn device_type(self, device_type: Type) -> Self {
+                            
+                            Self { builder: self.builder.property("device-type", device_type), }
+                        }
+
+                            pub fn native_path(self, native_path: impl Into<glib::GString>) -> Self {
+                            
+                            Self { builder: self.builder.property("native-path", native_path.into()), }
+                        }
+
+                            pub fn vendor(self, vendor: impl Into<glib::GString>) -> Self {
+                            
+                            Self { builder: self.builder.property("vendor", vendor.into()), }
+                        }
+
+                            pub fn model(self, model: impl Into<glib::GString>) -> Self {
+                            
+                            Self { builder: self.builder.property("model", model.into()), }
+                        }
+
+                            pub fn serial(self, serial: impl Into<glib::GString>) -> Self {
+                            
+                            Self { builder: self.builder.property("serial", serial.into()), }
+                        }
+
+                            pub fn update_time(self, update_time: u64) -> Self {
+                            
+                            Self { builder: self.builder.property("update-time", update_time), }
+                        }
+
+                            pub fn power_supply(self, power_supply: bool) -> Self {
+                            
+                            Self { builder: self.builder.property("power-supply", power_supply), }
+                        }
+
+                            pub fn online(self, online: bool) -> Self {
+                            
+                            Self { builder: self.builder.property("online", online), }
+                        }
+
+                            pub fn energy(self, energy: f64) -> Self {
+                            
+                            Self { builder: self.builder.property("energy", energy), }
+                        }
+
+                            pub fn energy_empty(self, energy_empty: f64) -> Self {
+                            
+                            Self { builder: self.builder.property("energy-empty", energy_empty), }
+                        }
+
+                            pub fn energy_full(self, energy_full: f64) -> Self {
+                            
+                            Self { builder: self.builder.property("energy-full", energy_full), }
+                        }
+
+                            pub fn energy_full_design(self, energy_full_design: f64) -> Self {
+                            
+                            Self { builder: self.builder.property("energy-full-design", energy_full_design), }
+                        }
+
+                            pub fn energy_rate(self, energy_rate: f64) -> Self {
+                            
+                            Self { builder: self.builder.property("energy-rate", energy_rate), }
+                        }
+
+                            pub fn voltage(self, voltage: f64) -> Self {
+                            
+                            Self { builder: self.builder.property("voltage", voltage), }
+                        }
+
+                            pub fn charge_cycles(self, charge_cycles: i32) -> Self {
+                            
+                            Self { builder: self.builder.property("charge-cycles", charge_cycles), }
+                        }
+
+                            pub fn luminosity(self, luminosity: f64) -> Self {
+                            
+                            Self { builder: self.builder.property("luminosity", luminosity), }
+                        }
+
+                            pub fn time_to_empty(self, time_to_empty: i64) -> Self {
+                            
+                            Self { builder: self.builder.property("time-to-empty", time_to_empty), }
+                        }
+
+                            pub fn time_to_full(self, time_to_full: i64) -> Self {
+                            
+                            Self { builder: self.builder.property("time-to-full", time_to_full), }
+                        }
+
+                            pub fn percentage(self, percentage: f64) -> Self {
+                            
+                            Self { builder: self.builder.property("percentage", percentage), }
+                        }
+
+                            pub fn temperature(self, temperature: f64) -> Self {
+                            
+                            Self { builder: self.builder.property("temperature", temperature), }
+                        }
+
+                            pub fn is_present(self, is_present: bool) -> Self {
+                            
+                            Self { builder: self.builder.property("is-present", is_present), }
+                        }
+
+                            pub fn state(self, state: State) -> Self {
+                            
+                            Self { builder: self.builder.property("state", state), }
+                        }
+
+                            pub fn is_rechargable(self, is_rechargable: bool) -> Self {
+                            
+                            Self { builder: self.builder.property("is-rechargable", is_rechargable), }
+                        }
+
+                            pub fn capacity(self, capacity: f64) -> Self {
+                            
+                            Self { builder: self.builder.property("capacity", capacity), }
+                        }
+
+                            pub fn technology(self, technology: Technology) -> Self {
+                            
+                            Self { builder: self.builder.property("technology", technology), }
+                        }
+
+                            pub fn warning_level(self, warning_level: WarningLevel) -> Self {
+                            
+                            Self { builder: self.builder.property("warning-level", warning_level), }
+                        }
+
+                            pub fn battery_level(self, battery_level: BatteryLevel) -> Self {
+                            
+                            Self { builder: self.builder.property("battery-level", battery_level), }
+                        }
+
+                            pub fn icon_name(self, icon_name: impl Into<glib::GString>) -> Self {
+                            
+                            Self { builder: self.builder.property("icon-name", icon_name.into()), }
+                        }
+
+                            pub fn charging(self, charging: bool) -> Self {
+                            
+                            Self { builder: self.builder.property("charging", charging), }
+                        }
+
+                            pub fn is_battery(self, is_battery: bool) -> Self {
+                            
+                            Self { builder: self.builder.property("is-battery", is_battery), }
+                        }
+
+                            pub fn battery_icon_name(self, battery_icon_name: impl Into<glib::GString>) -> Self {
+                            
+                            Self { builder: self.builder.property("battery-icon-name", battery_icon_name.into()), }
+                        }
+
+                            pub fn device_type_name(self, device_type_name: impl Into<glib::GString>) -> Self {
+                            
+                            Self { builder: self.builder.property("device-type-name", device_type_name.into()), }
+                        }
+
+                            pub fn device_type_icon(self, device_type_icon: impl Into<glib::GString>) -> Self {
+                            
+                            Self { builder: self.builder.property("device-type-icon", device_type_icon.into()), }
+                        }
+
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Device`].
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
+    pub fn build(self) -> Device {
+assert_initialized_main_thread!();
+    self.builder.build() }
 }
 
 pub trait DeviceExt: IsA<Device> + 'static {

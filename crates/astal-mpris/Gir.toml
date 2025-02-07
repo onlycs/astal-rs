@@ -10,10 +10,10 @@ generate_safety_asserts = true
 deprecate_by_min_version = true
 
 generate = [
-    "AstalMpris.PlaybackStatus",
-    "AstalMpris.Loop",
-    "AstalMpris.Shuffle",
-    "AstalMpris.Mpris",
+	"AstalMpris.PlaybackStatus",
+	"AstalMpris.Loop",
+	"AstalMpris.Shuffle",
+	"AstalMpris.Mpris",
 ]
 
 manual = ["GLib.HashTable", "GLib.Variant", "GLib.Error"]

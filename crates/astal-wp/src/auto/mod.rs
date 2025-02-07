@@ -29,4 +29,5 @@ pub mod builders {
     pub use super::device::DeviceBuilder;
     pub use super::endpoint::EndpointBuilder;
     pub use super::profile::ProfileBuilder;
+    pub use super::wp::WpBuilder;
 }

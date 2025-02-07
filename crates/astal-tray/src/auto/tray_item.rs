@@ -62,6 +62,13 @@ assert_initialized_main_thread!();
 }
 
 pub trait TrayItemExt: IsA<TrayItem> + 'static {
+    #[doc(alias = "astal_tray_tray_item_about_to_show")]
+    fn about_to_show(&self) {
+        unsafe {
+            ffi::astal_tray_tray_item_about_to_show(self.as_ref().to_glib_none().0);
+        }
+    }
+
     #[doc(alias = "astal_tray_tray_item_activate")]
     fn activate(&self, x: i32, y: i32) {
         unsafe {
@@ -80,13 +87,6 @@ pub trait TrayItemExt: IsA<TrayItem> + 'static {
     fn scroll(&self, delta: i32, orientation: &str) {
         unsafe {
             ffi::astal_tray_tray_item_scroll(self.as_ref().to_glib_none().0, delta, orientation.to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "astal_tray_tray_item_create_menu")]
-    fn create_menu(&self) -> Option<gtk::Menu> {
-        unsafe {
-            from_glib_full(ffi::astal_tray_tray_item_create_menu(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -190,6 +190,22 @@ pub trait TrayItemExt: IsA<TrayItem> + 'static {
     fn item_id(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_none(ffi::astal_tray_tray_item_get_item_id(self.as_ref().to_glib_none().0))
+        }
+    }
+
+    #[doc(alias = "astal_tray_tray_item_get_menu_model")]
+    #[doc(alias = "get_menu_model")]
+    fn menu_model(&self) -> Option<gio::MenuModel> {
+        unsafe {
+            from_glib_full(ffi::astal_tray_tray_item_get_menu_model(self.as_ref().to_glib_none().0))
+        }
+    }
+
+    #[doc(alias = "astal_tray_tray_item_get_action_group")]
+    #[doc(alias = "get_action_group")]
+    fn action_group(&self) -> Option<gio::ActionGroup> {
+        unsafe {
+            from_glib_full(ffi::astal_tray_tray_item_get_action_group(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -381,6 +397,32 @@ pub trait TrayItemExt: IsA<TrayItem> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::item-id\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_item_id_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+
+    #[doc(alias = "menu-model")]
+    fn connect_menu_model_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_menu_model_trampoline<P: IsA<TrayItem>, F: Fn(&P) + 'static>(this: *mut ffi::AstalTrayTrayItem, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(TrayItem::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::menu-model\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_menu_model_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+
+    #[doc(alias = "action-group")]
+    fn connect_action_group_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_action_group_trampoline<P: IsA<TrayItem>, F: Fn(&P) + 'static>(this: *mut ffi::AstalTrayTrayItem, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(TrayItem::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::action-group\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_action_group_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 }

@@ -9,6 +9,10 @@ single_version_file = true
 generate_safety_asserts = true
 deprecate_by_min_version = true
 
-generate = ["AstalRiver.Output", "AstalRiver.River"]
-
+generate = ["AstalRiver.River", "AstalRiver.CommandCallback"]
 manual = []
+
+[[object]]
+name = "AstalRiver.Output"
+status = "generate"
+generate_builder = true

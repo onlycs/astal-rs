@@ -16,6 +16,15 @@ glib::wrapper! {
 }
 
 impl Output {
+            // rustdoc-stripper-ignore-next
+            /// Creates a new builder-pattern struct instance to construct [`Output`] objects.
+            ///
+            /// This method returns an instance of [`OutputBuilder`](crate::builders::OutputBuilder) which can be used to create [`Output`] objects.
+            pub fn builder() -> OutputBuilder {
+                OutputBuilder::new()
+            }
+        
+
     #[doc(alias = "astal_river_output_get_focused_tags")]
     #[doc(alias = "get_focused_tags")]
     #[doc(alias = "focused-tags")]
@@ -188,4 +197,31 @@ impl Output {
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_urgent_tags_trampoline::<F> as *const ())), Box_::into_raw(f))
         }
     }
+}
+
+// rustdoc-stripper-ignore-next
+        /// A [builder-pattern] type to construct [`Output`] objects.
+        ///
+        /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
+pub struct OutputBuilder {
+            builder: glib::object::ObjectBuilder<'static, Output>,
+        }
+
+        impl OutputBuilder {
+        fn new() -> Self {
+            Self { builder: glib::object::Object::builder() }
+        }
+
+                            pub fn focused_tags(self, focused_tags: u32) -> Self {
+                            
+                            Self { builder: self.builder.property("focused-tags", focused_tags), }
+                        }
+
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Output`].
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
+    pub fn build(self) -> Output {
+assert_initialized_main_thread!();
+    self.builder.build() }
 }

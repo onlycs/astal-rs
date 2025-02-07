@@ -209,6 +209,8 @@ fn get_c_output(name: &str) -> Result<String, Box<dyn Error>> {
 const RUST_LAYOUTS: &[(&str, Layout)] = &[
     ("AstalIOAppError", Layout {size: size_of::<AstalIOAppError>(), alignment: align_of::<AstalIOAppError>()}),
     ("AstalIOApplicationIface", Layout {size: size_of::<AstalIOApplicationIface>(), alignment: align_of::<AstalIOApplicationIface>()}),
+    ("AstalIODaemon", Layout {size: size_of::<AstalIODaemon>(), alignment: align_of::<AstalIODaemon>()}),
+    ("AstalIODaemonClass", Layout {size: size_of::<AstalIODaemonClass>(), alignment: align_of::<AstalIODaemonClass>()}),
     ("AstalIOProcess", Layout {size: size_of::<AstalIOProcess>(), alignment: align_of::<AstalIOProcess>()}),
     ("AstalIOProcessClass", Layout {size: size_of::<AstalIOProcessClass>(), alignment: align_of::<AstalIOProcessClass>()}),
     ("AstalIOTime", Layout {size: size_of::<AstalIOTime>(), alignment: align_of::<AstalIOTime>()}),

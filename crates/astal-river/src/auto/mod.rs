@@ -8,3 +8,6 @@ pub use self::output::Output;
 mod river;
 pub use self::river::River;
 
+pub mod builders {
+    pub use super::output::OutputBuilder;
+}

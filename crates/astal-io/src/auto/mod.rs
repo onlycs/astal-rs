@@ -5,6 +5,9 @@
 mod application;
 pub use self::application::Application;
 
+mod daemon;
+pub use self::daemon::Daemon;
+
 mod process;
 pub use self::process::Process;
 
@@ -27,6 +30,7 @@ pub use self::constants::VERSION;
 
 pub mod traits {
     pub use super::application::ApplicationExt;
+    pub use super::daemon::DaemonExt;
     pub use super::process::ProcessExt;
     pub use super::time::TimeExt;
     pub use super::variable::VariableExt;

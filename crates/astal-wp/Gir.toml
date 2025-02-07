@@ -10,12 +10,11 @@ generate_safety_asserts = true
 deprecate_by_min_version = true
 
 generate = [
-    "AstalWp.Audio",
-    "AstalWp.DeviceType",
-    "AstalWp.MediaClass",
-    "AstalWp.Scale",
-    "AstalWp.Video",
-    "AstalWp.Wp",
+	"AstalWp.Audio",
+	"AstalWp.DeviceType",
+	"AstalWp.MediaClass",
+	"AstalWp.Scale",
+	"AstalWp.Video",
 ]
 
 manual = []
@@ -32,5 +31,10 @@ generate_builder = true
 
 [[object]]
 name = "AstalWp.Profile"
+status = "generate"
+generate_builder = true
+
+[[object]]
+name = "AstalWp.Wp"
 status = "generate"
 generate_builder = true

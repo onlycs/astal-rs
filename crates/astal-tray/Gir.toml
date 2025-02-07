@@ -10,14 +10,14 @@ generate_safety_asserts = true
 deprecate_by_min_version = true
 
 generate = [
-    "AstalTray.Category",
-    "AstalTray.Status",
-    "AstalTray.Tray",
-    "AstalTray.Tooltip",
-    "AstalTray.Pixmap",
+	"AstalTray.Category",
+	"AstalTray.Status",
+	"AstalTray.Tray",
+	"AstalTray.Tooltip",
+	"AstalTray.Pixmap",
 ]
 
-manual = ["Gtk.Menu", "GdkPixbuf.Pixbuf", "Gio.Icon"]
+manual = ["GdkPixbuf.Pixbuf", "Gio.Icon", "Gio.MenuModel", "Gio.ActionGroup"]
 
 [[object]]
 name = "AstalTray.TrayItem"

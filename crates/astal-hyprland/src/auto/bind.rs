@@ -77,9 +77,19 @@ pub struct BindBuilder {
                             Self { builder: self.builder.property("repeat", repeat), }
                         }
 
+                            pub fn long_press(self, long_press: bool) -> Self {
+                            
+                            Self { builder: self.builder.property("long-press", long_press), }
+                        }
+
                             pub fn non_consuming(self, non_consuming: bool) -> Self {
                             
                             Self { builder: self.builder.property("non-consuming", non_consuming), }
+                        }
+
+                            pub fn has_description(self, has_description: bool) -> Self {
+                            
+                            Self { builder: self.builder.property("has-description", has_description), }
                         }
 
                             pub fn modmask(self, modmask: i64) -> Self {
@@ -105,6 +115,11 @@ pub struct BindBuilder {
                             pub fn catch_all(self, catch_all: bool) -> Self {
                             
                             Self { builder: self.builder.property("catch-all", catch_all), }
+                        }
+
+                            pub fn description(self, description: impl Into<glib::GString>) -> Self {
+                            
+                            Self { builder: self.builder.property("description", description.into()), }
                         }
 
                             pub fn dispatcher(self, dispatcher: impl Into<glib::GString>) -> Self {
@@ -186,6 +201,21 @@ pub trait BindExt: IsA<Bind> + 'static {
         }
     }
 
+    #[doc(alias = "astal_hyprland_bind_get_long_press")]
+    #[doc(alias = "get_long_press")]
+    fn is_long_press(&self) -> bool {
+        unsafe {
+            from_glib(ffi::astal_hyprland_bind_get_long_press(self.as_ref().to_glib_none().0))
+        }
+    }
+
+    #[doc(alias = "astal_hyprland_bind_set_long_press")]
+    fn set_long_press(&self, value: bool) {
+        unsafe {
+            ffi::astal_hyprland_bind_set_long_press(self.as_ref().to_glib_none().0, value.into_glib());
+        }
+    }
+
     #[doc(alias = "astal_hyprland_bind_get_non_consuming")]
     #[doc(alias = "get_non_consuming")]
     fn is_non_consuming(&self) -> bool {
@@ -198,6 +228,21 @@ pub trait BindExt: IsA<Bind> + 'static {
     fn set_non_consuming(&self, value: bool) {
         unsafe {
             ffi::astal_hyprland_bind_set_non_consuming(self.as_ref().to_glib_none().0, value.into_glib());
+        }
+    }
+
+    #[doc(alias = "astal_hyprland_bind_get_has_description")]
+    #[doc(alias = "get_has_description")]
+    fn has_description(&self) -> bool {
+        unsafe {
+            from_glib(ffi::astal_hyprland_bind_get_has_description(self.as_ref().to_glib_none().0))
+        }
+    }
+
+    #[doc(alias = "astal_hyprland_bind_set_has_description")]
+    fn set_has_description(&self, value: bool) {
+        unsafe {
+            ffi::astal_hyprland_bind_set_has_description(self.as_ref().to_glib_none().0, value.into_glib());
         }
     }
 
@@ -273,6 +318,21 @@ pub trait BindExt: IsA<Bind> + 'static {
     fn set_catch_all(&self, value: bool) {
         unsafe {
             ffi::astal_hyprland_bind_set_catch_all(self.as_ref().to_glib_none().0, value.into_glib());
+        }
+    }
+
+    #[doc(alias = "astal_hyprland_bind_get_description")]
+    #[doc(alias = "get_description")]
+    fn description(&self) -> Option<glib::GString> {
+        unsafe {
+            from_glib_none(ffi::astal_hyprland_bind_get_description(self.as_ref().to_glib_none().0))
+        }
+    }
+
+    #[doc(alias = "astal_hyprland_bind_set_description")]
+    fn set_description(&self, value: &str) {
+        unsafe {
+            ffi::astal_hyprland_bind_set_description(self.as_ref().to_glib_none().0, value.to_glib_none().0);
         }
     }
 
@@ -358,6 +418,19 @@ pub trait BindExt: IsA<Bind> + 'static {
         }
     }
 
+    #[doc(alias = "long-press")]
+    fn connect_long_press_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_long_press_trampoline<P: IsA<Bind>, F: Fn(&P) + 'static>(this: *mut ffi::AstalHyprlandBind, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(Bind::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::long-press\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_long_press_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+
     #[doc(alias = "non-consuming")]
     fn connect_non_consuming_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
         unsafe extern "C" fn notify_non_consuming_trampoline<P: IsA<Bind>, F: Fn(&P) + 'static>(this: *mut ffi::AstalHyprlandBind, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
@@ -368,6 +441,19 @@ pub trait BindExt: IsA<Bind> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::non-consuming\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_non_consuming_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+
+    #[doc(alias = "has-description")]
+    fn connect_has_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_has_description_trampoline<P: IsA<Bind>, F: Fn(&P) + 'static>(this: *mut ffi::AstalHyprlandBind, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(Bind::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::has-description\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_has_description_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 
@@ -433,6 +519,19 @@ pub trait BindExt: IsA<Bind> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::catch-all\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_catch_all_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+
+    #[doc(alias = "description")]
+    fn connect_description_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_description_trampoline<P: IsA<Bind>, F: Fn(&P) + 'static>(this: *mut ffi::AstalHyprlandBind, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(Bind::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::description\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_description_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 

@@ -9,8 +9,7 @@ single_version_file = true
 generate_safety_asserts = true
 deprecate_by_min_version = true
 
-generate = [""]
-
+generate = []
 manual = ["Gio.DesktopAppInfo"]
 
 [[object]]
@@ -22,3 +21,7 @@ generate_builder = true
 name = "AstalApps.Apps"
 status = "generate"
 generate_builder = true
+
+[[object]]
+name = "AstalApps.Score"
+status = "generate"

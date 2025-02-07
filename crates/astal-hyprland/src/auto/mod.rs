@@ -20,6 +20,9 @@ pub use self::position::Position;
 mod workspace;
 pub use self::workspace::Workspace;
 
+mod enums;
+pub use self::enums::MonitorTransform;
+
 mod flags;
 pub use self::flags::Fullscreen;
 

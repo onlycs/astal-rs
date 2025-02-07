@@ -11,7 +11,7 @@ deprecate_by_min_version = true
 
 generate = []
 
-manual = ["Gio.AsyncReadyCallback", "Gio.AsyncResult"]
+manual = ["Gio.AsyncReadyCallback", "Gio.AsyncResult", "GLib.Error"]
 
 [[object]]
 name = "AstalBluetooth.Device"

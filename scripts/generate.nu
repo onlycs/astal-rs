@@ -1,6 +1,6 @@
-cd gir/gir-ffi
-cargo install --path .
-cd ../..
+# cd gir/gir-ffi
+# cargo install --path .
+# cd ../..
 
 ls sys
 | get name

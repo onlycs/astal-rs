@@ -70,11 +70,6 @@ pub struct IconBuilder {
                             Self { builder: self.builder.property("pixbuf", pixbuf.clone()), }
                         }
 
-                            pub fn g_icon(self, g_icon: &impl IsA<gio::Icon>) -> Self {
-                            
-                            Self { builder: self.builder.property("g-icon", g_icon.clone().upcast()), }
-                        }
-
                             pub fn icon(self, icon: impl Into<glib::GString>) -> Self {
                             
                             Self { builder: self.builder.property("icon", icon.into()), }
@@ -105,7 +100,7 @@ pub struct IconBuilder {
                         //    Self { builder: self.builder.property("icon-set", icon_set), }
                         //}
 
-                            pub fn icon_size(self, icon_size: gtk::IconSize) -> Self {
+                            pub fn icon_size(self, icon_size: i32) -> Self {
                             
                             Self { builder: self.builder.property("icon-size", icon_size), }
                         }
@@ -422,7 +417,7 @@ pub trait IconExt: IsA<Icon> + 'static {
     #[doc(alias = "get_g_icon")]
     fn g_icon(&self) -> Option<gio::Icon> {
         unsafe {
-            from_glib_none(ffi::astal_icon_get_g_icon(self.as_ref().to_glib_none().0))
+            from_glib_full(ffi::astal_icon_get_g_icon(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -445,19 +440,6 @@ pub trait IconExt: IsA<Icon> + 'static {
     fn set_icon(&self, value: &str) {
         unsafe {
             ffi::astal_icon_set_icon(self.as_ref().to_glib_none().0, value.to_glib_none().0);
-        }
-    }
-
-    #[doc(alias = "g-icon")]
-    fn connect_g_icon_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_g_icon_trampoline<P: IsA<Icon>, F: Fn(&P) + 'static>(this: *mut ffi::AstalIcon, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(Icon::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::g-icon\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_g_icon_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 

@@ -863,6 +863,8 @@ extern "C" {
     pub fn astal_slider_set_max(self_: *mut AstalSlider, value: c_double);
     pub fn astal_slider_get_step(self_: *mut AstalSlider) -> c_double;
     pub fn astal_slider_set_step(self_: *mut AstalSlider, value: c_double);
+    pub fn astal_slider_get_page(self_: *mut AstalSlider) -> c_double;
+    pub fn astal_slider_set_page(self_: *mut AstalSlider, value: c_double);
 
     //=========================================================================
     // AstalStack
@@ -878,6 +880,7 @@ extern "C" {
     // AstalWindow
     //=========================================================================
     pub fn astal_window_get_type() -> GType;
+    pub fn astal_window_get_current_monitor(self_: *mut AstalWindow) -> *mut gdk::GdkMonitor;
     pub fn astal_window_new() -> *mut AstalWindow;
     pub fn astal_window_get_inhibit(self_: *mut AstalWindow) -> gboolean;
     pub fn astal_window_set_inhibit(self_: *mut AstalWindow, value: gboolean);

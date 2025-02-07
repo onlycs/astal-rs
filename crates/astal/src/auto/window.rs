@@ -506,6 +506,14 @@ assert_initialized_main_thread!();
 }
 
 pub trait WindowExt: IsA<Window> + 'static {
+    #[doc(alias = "astal_window_get_current_monitor")]
+    #[doc(alias = "get_current_monitor")]
+    fn current_monitor(&self) -> Option<gdk::Monitor> {
+        unsafe {
+            from_glib_full(ffi::astal_window_get_current_monitor(self.as_ref().to_glib_none().0))
+        }
+    }
+
     #[doc(alias = "astal_window_get_inhibit")]
     #[doc(alias = "get_inhibit")]
     fn is_inhibit(&self) -> bool {

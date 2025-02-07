@@ -16,6 +16,15 @@ glib::wrapper! {
 }
 
 impl Wp {
+            // rustdoc-stripper-ignore-next
+            /// Creates a new builder-pattern struct instance to construct [`Wp`] objects.
+            ///
+            /// This method returns an instance of [`WpBuilder`](crate::builders::WpBuilder) which can be used to create [`Wp`] objects.
+            pub fn builder() -> WpBuilder {
+                WpBuilder::new()
+            }
+        
+
     #[doc(alias = "astal_wp_wp_get_audio")]
     #[doc(alias = "get_audio")]
     pub fn audio(&self) -> Option<Audio> {
@@ -249,4 +258,31 @@ impl Wp {
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_video_trampoline::<F> as *const ())), Box_::into_raw(f))
         }
     }
+}
+
+// rustdoc-stripper-ignore-next
+        /// A [builder-pattern] type to construct [`Wp`] objects.
+        ///
+        /// [builder-pattern]: https://doc.rust-lang.org/1.0.0/style/ownership/builders.html
+#[must_use = "The builder must be built to be used"]
+pub struct WpBuilder {
+            builder: glib::object::ObjectBuilder<'static, Wp>,
+        }
+
+        impl WpBuilder {
+        fn new() -> Self {
+            Self { builder: glib::object::Object::builder() }
+        }
+
+                            pub fn scale(self, scale: Scale) -> Self {
+                            
+                            Self { builder: self.builder.property("scale", scale.into_glib()), }
+                        }
+
+    // rustdoc-stripper-ignore-next
+    /// Build the [`Wp`].
+    #[must_use = "Building the object from the builder is usually expensive and is not expected to have side effects"]
+    pub fn build(self) -> Wp {
+assert_initialized_main_thread!();
+    self.builder.build() }
 }

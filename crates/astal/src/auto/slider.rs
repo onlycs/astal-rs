@@ -87,6 +87,11 @@ pub struct SliderBuilder {
                             Self { builder: self.builder.property("step", step), }
                         }
 
+                            pub fn page(self, page: f64) -> Self {
+                            
+                            Self { builder: self.builder.property("page", page), }
+                        }
+
                             pub fn digits(self, digits: i32) -> Self {
                             
                             Self { builder: self.builder.property("digits", digits), }
@@ -477,6 +482,21 @@ pub trait SliderExt: IsA<Slider> + 'static {
         }
     }
 
+    #[doc(alias = "astal_slider_get_page")]
+    #[doc(alias = "get_page")]
+    fn page(&self) -> f64 {
+        unsafe {
+            ffi::astal_slider_get_page(self.as_ref().to_glib_none().0)
+        }
+    }
+
+    #[doc(alias = "astal_slider_set_page")]
+    fn set_page(&self, value: f64) {
+        unsafe {
+            ffi::astal_slider_set_page(self.as_ref().to_glib_none().0, value);
+        }
+    }
+
     fn set_dragging(&self, dragging: bool) {
         ObjectExt::set_property(self.as_ref(),"dragging", dragging)
     }
@@ -569,6 +589,19 @@ pub trait SliderExt: IsA<Slider> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::step\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_step_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+
+    #[doc(alias = "page")]
+    fn connect_page_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_page_trampoline<P: IsA<Slider>, F: Fn(&P) + 'static>(this: *mut ffi::AstalSlider, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(Slider::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::page\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_page_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 }

@@ -28,9 +28,6 @@ git = "https://github.com/gtk-rs/gtk-rs-core"
 [dependencies.gio-sys]
 git = "https://github.com/gtk-rs/gtk-rs-core"
 
-[dependencies.gtk-sys]
-git = "https://github.com/onlycs/gtk3-rs"
-
 [dependencies.gdk-pixbuf-sys]
 git = "https://github.com/gtk-rs/gtk-rs-core"
 

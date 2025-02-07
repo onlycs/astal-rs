@@ -2,7 +2,7 @@
 // from ../../gir/gir-files
 // DO NOT EDIT
 
-use crate::{ffi,Workspace};
+use crate::{ffi,MonitorTransform,Workspace};
 use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
@@ -145,6 +145,11 @@ pub struct MonitorBuilder {
                             pub fn scale(self, scale: f64) -> Self {
                             
                             Self { builder: self.builder.property("scale", scale), }
+                        }
+
+                            pub fn transform(self, transform: MonitorTransform) -> Self {
+                            
+                            Self { builder: self.builder.property("transform", transform), }
                         }
 
                             pub fn focused(self, focused: bool) -> Self {
@@ -342,6 +347,14 @@ pub trait MonitorExt: IsA<Monitor> + 'static {
         }
     }
 
+    #[doc(alias = "astal_hyprland_monitor_get_transform")]
+    #[doc(alias = "get_transform")]
+    fn transform(&self) -> MonitorTransform {
+        unsafe {
+            from_glib(ffi::astal_hyprland_monitor_get_transform(self.as_ref().to_glib_none().0))
+        }
+    }
+
     #[doc(alias = "astal_hyprland_monitor_get_focused")]
     #[doc(alias = "get_focused")]
     fn is_focused(&self) -> bool {
@@ -473,6 +486,10 @@ pub trait MonitorExt: IsA<Monitor> + 'static {
 
     fn set_scale(&self, scale: f64) {
         ObjectExt::set_property(self.as_ref(),"scale", scale)
+    }
+
+    fn set_transform(&self, transform: MonitorTransform) {
+        ObjectExt::set_property(self.as_ref(),"transform", transform)
     }
 
     fn set_focused(&self, focused: bool) {
@@ -751,6 +768,19 @@ pub trait MonitorExt: IsA<Monitor> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::scale\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_scale_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+        }
+    }
+
+    #[doc(alias = "transform")]
+    fn connect_transform_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_transform_trampoline<P: IsA<Monitor>, F: Fn(&P) + 'static>(this: *mut ffi::AstalHyprlandMonitor, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+            let f: &F = &*(f as *const F);
+            f(Monitor::from_glib_borrow(this).unsafe_cast_ref())
+        }
+        unsafe {
+            let f: Box_<F> = Box_::new(f);
+            connect_raw(self.as_ptr() as *mut _, b"notify::transform\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_transform_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 

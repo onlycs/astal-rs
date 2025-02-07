@@ -15,17 +15,12 @@ generate = [
 	"AstalBattery.WarningLevel",
 	"AstalBattery.BatteryLevel",
 	"AstalBattery.Type",
-	"AstalBattery.Device",
 	"AstalBattery.UPower",
-	"AstalBattery.HistoryDataPoint",
-	"AstalBattery.IUPowerDevice",
-	"AstalBattery.StatisticsDataPoint",
 ]
 
-manual = [
-	"Gio.DBusProxy",
-	"Gio.AsyncInitable",
-	"Gio.DBusInterface",
-	"Gio.Initable",
-	"GLib.Error",
-]
+manual = ["GLib.Error"]
+
+[[object]]
+name = "AstalBattery.Device"
+status = "generate"
+generate_builder = true

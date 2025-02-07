@@ -2,7 +2,7 @@
 // from ../../gir/gir-files
 // DO NOT EDIT
 
-use crate::{ffi};
+use crate::{ffi,Device};
 use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
@@ -82,20 +82,32 @@ assert_initialized_main_thread!();
 }
 
 pub trait AdapterExt: IsA<Adapter> + 'static {
-    //#[doc(alias = "astal_bluetooth_adapter_remove_device")]
-    //fn remove_device(&self, device: &impl IsA<Device>, error: /*Ignored*/Option<glib::Error>) {
-    //    unsafe { TODO: call ffi:astal_bluetooth_adapter_remove_device() }
-    //}
+    #[doc(alias = "astal_bluetooth_adapter_remove_device")]
+    fn remove_device(&self, device: &impl IsA<Device>) -> Result<(), glib::Error> {
+        unsafe {
+            let mut error = std::ptr::null_mut();
+            let _ = ffi::astal_bluetooth_adapter_remove_device(self.as_ref().to_glib_none().0, device.as_ref().to_glib_none().0, &mut error);
+            if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) }
+        }
+    }
 
-    //#[doc(alias = "astal_bluetooth_adapter_start_discovery")]
-    //fn start_discovery(&self, error: /*Ignored*/Option<glib::Error>) {
-    //    unsafe { TODO: call ffi:astal_bluetooth_adapter_start_discovery() }
-    //}
+    #[doc(alias = "astal_bluetooth_adapter_start_discovery")]
+    fn start_discovery(&self) -> Result<(), glib::Error> {
+        unsafe {
+            let mut error = std::ptr::null_mut();
+            let _ = ffi::astal_bluetooth_adapter_start_discovery(self.as_ref().to_glib_none().0, &mut error);
+            if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) }
+        }
+    }
 
-    //#[doc(alias = "astal_bluetooth_adapter_stop_discovery")]
-    //fn stop_discovery(&self, error: /*Ignored*/Option<glib::Error>) {
-    //    unsafe { TODO: call ffi:astal_bluetooth_adapter_stop_discovery() }
-    //}
+    #[doc(alias = "astal_bluetooth_adapter_stop_discovery")]
+    fn stop_discovery(&self) -> Result<(), glib::Error> {
+        unsafe {
+            let mut error = std::ptr::null_mut();
+            let _ = ffi::astal_bluetooth_adapter_stop_discovery(self.as_ref().to_glib_none().0, &mut error);
+            if error.is_null() { Ok(()) } else { Err(from_glib_full(error)) }
+        }
+    }
 
     #[doc(alias = "astal_bluetooth_adapter_get_uuids")]
     #[doc(alias = "get_uuids")]

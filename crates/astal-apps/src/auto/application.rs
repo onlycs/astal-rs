@@ -2,7 +2,7 @@
 // from ../../gir/gir-files
 // DO NOT EDIT
 
-use crate::{ffi};
+use crate::{ffi,Score};
 use glib::{prelude::*,signal::{connect_raw, SignalHandlerId},translate::*};
 use std::{boxed::Box as Box_};
 
@@ -77,15 +77,23 @@ pub trait ApplicationExt: IsA<Application> + 'static {
         }
     }
 
-    //#[doc(alias = "astal_apps_application_fuzzy_match")]
-    //fn fuzzy_match(&self, term: &str, result: /*Ignored*/Score) {
-    //    unsafe { TODO: call ffi:astal_apps_application_fuzzy_match() }
-    //}
+    #[doc(alias = "astal_apps_application_fuzzy_match")]
+    fn fuzzy_match(&self, term: &str) -> Score {
+        unsafe {
+            let mut result = Score::uninitialized();
+            ffi::astal_apps_application_fuzzy_match(self.as_ref().to_glib_none().0, term.to_glib_none().0, result.to_glib_none_mut().0);
+            result
+        }
+    }
 
-    //#[doc(alias = "astal_apps_application_exact_match")]
-    //fn exact_match(&self, term: &str, result: /*Ignored*/Score) {
-    //    unsafe { TODO: call ffi:astal_apps_application_exact_match() }
-    //}
+    #[doc(alias = "astal_apps_application_exact_match")]
+    fn exact_match(&self, term: &str) -> Score {
+        unsafe {
+            let mut result = Score::uninitialized();
+            ffi::astal_apps_application_exact_match(self.as_ref().to_glib_none().0, term.to_glib_none().0, result.to_glib_none_mut().0);
+            result
+        }
+    }
 
     #[doc(alias = "astal_apps_application_get_app")]
     #[doc(alias = "get_app")]

@@ -19,3 +19,6 @@ pub mod traits {
     pub use super::device::DeviceExt;
     pub use super::upower::UPowerExt;
 }
+pub mod builders {
+    pub use super::device::DeviceBuilder;
+}

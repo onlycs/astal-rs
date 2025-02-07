@@ -75,11 +75,11 @@ pub trait UPowerExt: IsA<UPower> + 'static {
         }
     }
 
-    #[doc(alias = "astal_battery_upower_get_lis_is_present")]
-    #[doc(alias = "get_lis_is_present")]
-    fn is_lis_is_present(&self) -> bool {
+    #[doc(alias = "astal_battery_upower_get_lid_is_present")]
+    #[doc(alias = "get_lid_is_present")]
+    fn is_lid_is_present(&self) -> bool {
         unsafe {
-            from_glib(ffi::astal_battery_upower_get_lis_is_present(self.as_ref().to_glib_none().0))
+            from_glib(ffi::astal_battery_upower_get_lid_is_present(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -182,16 +182,16 @@ pub trait UPowerExt: IsA<UPower> + 'static {
         }
     }
 
-    #[doc(alias = "lis-is-present")]
-    fn connect_lis_is_present_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_lis_is_present_trampoline<P: IsA<UPower>, F: Fn(&P) + 'static>(this: *mut ffi::AstalBatteryUPower, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
+    #[doc(alias = "lid-is-present")]
+    fn connect_lid_is_present_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
+        unsafe extern "C" fn notify_lid_is_present_trampoline<P: IsA<UPower>, F: Fn(&P) + 'static>(this: *mut ffi::AstalBatteryUPower, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
             let f: &F = &*(f as *const F);
             f(UPower::from_glib_borrow(this).unsafe_cast_ref())
         }
         unsafe {
             let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::lis-is-present\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_lis_is_present_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
+            connect_raw(self.as_ptr() as *mut _, b"notify::lid-is-present\0".as_ptr() as *const _,
+                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_lid_is_present_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 

@@ -94,13 +94,6 @@ pub trait PowerProfilesExt: IsA<PowerProfiles> + 'static {
         }
     }
 
-    #[doc(alias = "astal_power_profiles_power_profiles_to_json_string")]
-    fn to_json_string(&self) -> Option<glib::GString> {
-        unsafe {
-            from_glib_full(ffi::astal_power_profiles_power_profiles_to_json_string(self.as_ref().to_glib_none().0))
-        }
-    }
-
     #[doc(alias = "astal_power_profiles_power_profiles_get_active_profile")]
     #[doc(alias = "get_active_profile")]
     fn active_profile(&self) -> Option<glib::GString> {
@@ -149,14 +142,6 @@ pub trait PowerProfilesExt: IsA<PowerProfiles> + 'static {
     fn performance_degraded(&self) -> Option<glib::GString> {
         unsafe {
             from_glib_full(ffi::astal_power_profiles_power_profiles_get_performance_degraded(self.as_ref().to_glib_none().0))
-        }
-    }
-
-    #[doc(alias = "astal_power_profiles_power_profiles_get_performance_inhibited")]
-    #[doc(alias = "get_performance_inhibited")]
-    fn performance_inhibited(&self) -> Option<glib::GString> {
-        unsafe {
-            from_glib_full(ffi::astal_power_profiles_power_profiles_get_performance_inhibited(self.as_ref().to_glib_none().0))
         }
     }
 
@@ -240,19 +225,6 @@ pub trait PowerProfilesExt: IsA<PowerProfiles> + 'static {
             let f: Box_<F> = Box_::new(f);
             connect_raw(self.as_ptr() as *mut _, b"notify::performance-degraded\0".as_ptr() as *const _,
                 Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_performance_degraded_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
-        }
-    }
-
-    #[doc(alias = "performance-inhibited")]
-    fn connect_performance_inhibited_notify<F: Fn(&Self) + 'static>(&self, f: F) -> SignalHandlerId {
-        unsafe extern "C" fn notify_performance_inhibited_trampoline<P: IsA<PowerProfiles>, F: Fn(&P) + 'static>(this: *mut ffi::AstalPowerProfilesPowerProfiles, _param_spec: glib::ffi::gpointer, f: glib::ffi::gpointer) {
-            let f: &F = &*(f as *const F);
-            f(PowerProfiles::from_glib_borrow(this).unsafe_cast_ref())
-        }
-        unsafe {
-            let f: Box_<F> = Box_::new(f);
-            connect_raw(self.as_ptr() as *mut _, b"notify::performance-inhibited\0".as_ptr() as *const _,
-                Some(std::mem::transmute::<*const (), unsafe extern "C" fn()>(notify_performance_inhibited_trampoline::<Self, F> as *const ())), Box_::into_raw(f))
         }
     }
 
